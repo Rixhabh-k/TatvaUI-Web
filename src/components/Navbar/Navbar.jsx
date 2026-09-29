@@ -1,8 +1,8 @@
 import { useEffect, useRef } from "react";
 import "./navbar.css";
 
-import { TextScramble } from "velmora";
-import "velmora/style.css";
+import { TextScramble } from "tatva-ui";
+import "tatva-ui/style.css";
 
 import { FaGithub } from "react-icons/fa";
 

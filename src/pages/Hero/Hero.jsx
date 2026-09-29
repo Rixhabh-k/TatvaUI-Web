@@ -3,14 +3,15 @@ import { FaGithub } from "react-icons/fa";
 import { Link } from "react-router";
 import GradientBlinds from "../../effects/GradientBlinds/GradientBlinds";
 import Navbar from "../../components/Navbar/Navbar";
-import { TextScramble } from "velmora";
-import "velmora/style.css";
+import { TextScramble } from "tatva-ui";
+import "tatva-ui/style.css";
 
 import { applyLiquidGlass } from "../../effects/liquidGlass/liquidGlass";
 
 import "./hero.css";
 import AcidSquares from "../../effects/AcidSquares/AcidSquares";
 import Silk from "../../effects/Silk/Silk";
+import WhyTatvaUI from "../About Section/WhyTatvaUI";
 
 const Hero = () => {
   const getStartedRef = useRef(null);
@@ -76,7 +77,7 @@ const Hero = () => {
   return (
     <section className="hero-section">
       <div className="hero-background">
-        {/* <GradientBlinds /> */}
+        <GradientBlinds />
         
         {/* <Silk
           speed={5}
@@ -142,6 +143,7 @@ const Hero = () => {
           </div>
         </div>
       </div>
+      <WhyTatvaUI/>
     </section>
   );
 };

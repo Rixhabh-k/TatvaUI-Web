@@ -11,11 +11,11 @@ import {
   ShadowText,
   WaveText,
   MagicText,
-} from "velmora";
+} from "tatva-ui";
 
 const docs = {
   installation: {
-    title: "Velmora UI",
+    title: "tatva-ui UI",
     description:
       "A reusable animation and interaction library for building modern, expressive web interfaces with ready-to-use React components and customizable effects.",
 
@@ -24,19 +24,19 @@ const docs = {
         title: "Installation",
 
         paragraphs: [
-          "Install Velmora using npm.",
-          "Import the Velmora stylesheet.",
+          "Install tatva-ui using npm.",
+          "Import the tatva-ui stylesheet.",
           "Import the components you need.",
         ],
 
         codeBlocks: [
           {
             language: "bash",
-            code: "npm install velmora",
+            code: "npm install tatva-ui",
           },
           {
             language: "jsx",
-            code: `import "velmora/style.css";`,
+            code: `import "tatva-ui/style.css";`,
           },
           {
             language: "jsx",
@@ -53,7 +53,7 @@ const docs = {
   ShadowText,
   WaveText,
   MagicText
-} from "velmora";`,
+} from "tatva-ui";`,
           },
         ],
       },
@@ -77,9 +77,9 @@ const docs = {
   ShadowText,
   WaveText,
   MagicText
-} from "velmora";
+} from "tatva-ui";
 
-import "velmora/style.css";
+import "tatva-ui/style.css";
 
 function App() {
   return (
@@ -101,7 +101,7 @@ function App() {
       <UploadButton />
 
       <TypewriterText
-        words={["Hello", "World", "Velmora"]}
+        words={["Hello", "World", "tatva-ui"]}
       />
 
       <TextScramble
@@ -134,7 +134,7 @@ export default App;`,
         title: "Custom Styling",
 
         paragraphs: [
-          "Velmora provides the animation behavior while users remain in control of the visual design through className.",
+          "tatva-ui provides the animation behavior while users remain in control of the visual design through className.",
           "Colors, durations and motion values are passed as props. Everything else - size, spacing, typography, borders and radius - is yours to control with CSS.",
         ],
 
@@ -179,7 +179,7 @@ export default App;`,
 
     usage: {
       language: "jsx",
-      code: `import { MagneticButton } from "velmora"
+      code: `import { MagneticButton } from "tatva-ui"
 
 export function MagneticButtonDemo() {
   return (
@@ -262,7 +262,7 @@ export function MagneticButtonDemo() {
 
     usage: {
       language: "jsx",
-      code: `import { FlipButton } from "velmora"
+      code: `import { FlipButton } from "tatva-ui"
 
 export function FlipButtonDemo() {
   return (
@@ -359,7 +359,7 @@ export function FlipButtonDemo() {
 
     usage: {
       language: "jsx",
-      code: `import { FillButton } from "velmora"
+      code: `import { FillButton } from "tatva-ui"
 
 export function FillButtonDemo() {
   return (
@@ -447,7 +447,7 @@ export function FillButtonDemo() {
 
     usage: {
       language: "jsx",
-      code: `import { ThreeDButton } from "velmora"
+      code: `import { ThreeDButton } from "tatva-ui"
 
 export function ThreeDButtonDemo() {
   return (
@@ -547,7 +547,7 @@ export function ThreeDButtonDemo() {
 
     usage: {
       language: "jsx",
-      code: `import { SubmitButton } from "velmora"
+      code: `import { SubmitButton } from "tatva-ui"
 
 export function SubmitButtonDemo() {
   return (
@@ -650,7 +650,7 @@ export function SubmitButtonDemo() {
 
     usage: {
       language: "jsx",
-      code: `import { PositionAwareButton } from "velmora"
+      code: `import { PositionAwareButton } from "tatva-ui"
 
 export function PositionAwareButtonDemo() {
   return (
@@ -739,7 +739,7 @@ export function PositionAwareButtonDemo() {
 
     usage: {
       language: "jsx",
-      code: `import { UploadButton } from "velmora"
+      code: `import { UploadButton } from "tatva-ui"
 
 export function UploadButtonDemo() {
   return (
@@ -831,7 +831,7 @@ export function UploadButtonDemo() {
     preview: TypewriterText,
 
     previewProps: {
-      words: ["Hello", "World", "Velmora"],
+      words: ["Hello", "World", "tatva-ui"],
       typingSpeed: 100,
       deletingSpeed: 50,
       pauseDuration: 1000,
@@ -840,12 +840,12 @@ export function UploadButtonDemo() {
 
     usage: {
       language: "jsx",
-      code: `import { TypewriterText } from "velmora"
+      code: `import { TypewriterText } from "tatva-ui"
 
 export function TypewriterTextDemo() {
   return (
     <TypewriterText
-      words={["Hello", "World", "Velmora"]}
+      words={["Hello", "World", "tatva-ui"]}
       typingSpeed={100}
       deletingSpeed={50}
       pauseDuration={1000}
@@ -914,7 +914,7 @@ export function TypewriterTextDemo() {
 
     usage: {
       language: "jsx",
-      code: `import { TextScramble } from "velmora"
+      code: `import { TextScramble } from "tatva-ui"
 
 export function TextScrambleDemo() {
   return (
@@ -980,7 +980,7 @@ export function TextScrambleDemo() {
 
     usage: {
       language: "jsx",
-      code: `import { ShadowText } from "velmora"
+      code: `import { ShadowText } from "tatva-ui"
 
 export function ShadowTextDemo() {
   return (
@@ -1071,7 +1071,7 @@ export function ShadowTextDemo() {
 
     usage: {
       language: "jsx",
-      code: `import { WaveText } from "velmora"
+      code: `import { WaveText } from "tatva-ui"
 
 export function WaveTextDemo() {
   return (
@@ -1173,7 +1173,7 @@ export function WaveTextDemo() {
 
     usage: {
       language: "jsx",
-      code: `import { MagicText } from "velmora"
+      code: `import { MagicText } from "tatva-ui"
 
 export function MagicTextDemo() {
   return (

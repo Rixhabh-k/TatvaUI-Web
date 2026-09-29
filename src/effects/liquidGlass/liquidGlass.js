@@ -305,7 +305,7 @@ function ensureDefs() {
     "defs"
   );
 
-  defs.id = "velmora-liquid-glass-defs";
+  defs.id = "tatva-ui-liquid-glass-defs";
 
   svg.appendChild(defs);
 
@@ -602,7 +602,7 @@ export function applyLiquidGlass(
     );
 
     const filterId =
-      "velmora-glass-" +
+      "tatva-ui-glass-" +
       Math.random()
         .toString(36)
         .slice(2, 10);
