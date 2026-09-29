@@ -267,28 +267,6 @@
 }
 
 
-.docs-navbar-mobile-search {
-  display: none;
-  width: 32px;
-  height: 32px;
-  padding: 6px;
-
-  background: transparent;
-  border: none;
-  color: #cfcfcf;
-
-  align-items: center;
-  justify-content: center;
-
-  cursor: pointer;
-}
-
-.docs-navbar-mobile-search svg {
-  width: 18px;
-  height: 18px;
-}
-
-
 /* ========================================
    TABLET
    701px - 900px
@@ -327,6 +305,7 @@
 ======================================== */
 
 @media (max-width: 700px) {
+
   .docs-navbar {
     height: 58px;
   }
@@ -336,6 +315,8 @@
     gap: 0;
   }
 
+  /* Only height changes.
+     Width is automatically calculated. */
   .docs-navbar-logo-image {
     height: 34px;
     width: auto;
@@ -346,14 +327,9 @@
     display: none;
   }
 
-  .docs-navbar-mobile-search {
-    display: flex;
-    margin-left: auto;
-  }
-
   .docs-navbar-theme {
-    margin-left: 8px;
-    margin-right: 8px;
+    margin-left: auto;
+    margin-right: 12px;
   }
 
   .docs-navbar-menu {
