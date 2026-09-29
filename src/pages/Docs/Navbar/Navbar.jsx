@@ -1,17 +1,21 @@
 import React, { useEffect, useState } from "react";
 import docs from "../../../data/doc";
-import { useNavigate, Link } from "react-router";
+import { useNavigate } from "react-router-dom";
 import "./navbar.css";
+import { Link } from "react-router";
 import Logo from "../../../../public/images/logo (1).png";
 
-const DocsNavbar = ({setIsMenuOpen}) => {
+const DocsNavbar = () => {
   const [searchOpen, setSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
-
   const navigate = useNavigate();
 
   useEffect(() => {
-    document.body.style.overflow = searchOpen ? "hidden" : "";
+    if (searchOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
 
     return () => {
       document.body.style.overflow = "";
@@ -34,10 +38,6 @@ const DocsNavbar = ({setIsMenuOpen}) => {
     );
   });
 
-  const openSearch = () => {
-    setSearchOpen(true);
-  };
-
   return (
     <>
       <header className="docs-navbar">
@@ -45,18 +45,21 @@ const DocsNavbar = ({setIsMenuOpen}) => {
           {/* Logo */}
           <Link to="/" className="docs-navbar-logo">
             <img src={Logo} alt="Tatva UI" className="docs-navbar-logo-image" />
-
             <h1 className="docs-logo-text">Tatva UI</h1>
           </Link>
 
           {/* Desktop Search */}
-          <div className="docs-navbar-search" onClick={openSearch}>
+          <div
+            className="docs-navbar-search"
+            onClick={() => setSearchOpen(true)}
+          >
             <svg
               className="docs-navbar-search-icon"
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
-              strokeWidth="2">
+              strokeWidth="2"
+            >
               <circle cx="11" cy="11" r="7" />
               <path d="m20 20-4-4" />
             </svg>
@@ -69,28 +72,13 @@ const DocsNavbar = ({setIsMenuOpen}) => {
             </div>
           </div>
 
-          {/* Mobile Search */}
-          <button
-            className="docs-navbar-mobile-search"
-            onClick={openSearch}
-            aria-label="Search documentation">
-            <svg
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2">
-              <circle cx="11" cy="11" r="7" />
-              <path d="m20 20-4-4" />
-            </svg>
-          </button>
-
-          {/* Navigation */}
+          {/* Desktop Navigation */}
           <nav className="docs-navbar-links">
-            <Link to="/templates" className="docs-navbar-link">
+            <a href="/templates" className="docs-navbar-link">
               Templates
-            </Link>
+            </a>
 
-            <Link to="/docs" className="docs-navbar-link">
+            <Link href="/docs" className="docs-navbar-link">
               Docs
             </Link>
           </nav>
@@ -101,18 +89,15 @@ const DocsNavbar = ({setIsMenuOpen}) => {
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
-              strokeWidth="1.8">
+              strokeWidth="1.8"
+            >
               <circle cx="12" cy="12" r="4" />
-
               <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" />
             </svg>
           </button>
 
           {/* Mobile Menu */}
-          <button
-            onClick={()=>setIsMenuOpen(true)}
-            className="docs-navbar-menu"
-            aria-label="Open menu">
+          <button className="docs-navbar-menu" aria-label="Open menu">
             <span></span>
             <span></span>
             <span></span>
@@ -124,16 +109,20 @@ const DocsNavbar = ({setIsMenuOpen}) => {
       {searchOpen && (
         <div
           className="docs-search-overlay"
-          onClick={() => setSearchOpen(false)}>
+          onClick={() => setSearchOpen(false)}
+        >
           <div
             className="docs-search-modal"
-            onClick={(e) => e.stopPropagation()}>
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Search Input */}
             <div className="docs-search-modal-input">
               <svg
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
-                strokeWidth="2">
+                strokeWidth="2"
+              >
                 <circle cx="11" cy="11" r="7" />
                 <path d="m20 20-4-4" />
               </svg>
@@ -147,6 +136,7 @@ const DocsNavbar = ({setIsMenuOpen}) => {
               />
             </div>
 
+            {/* Quick Links */}
             <div className="docs-search-content">
               <div className="docs-search-section-title">Quick Links</div>
 
@@ -220,7 +210,8 @@ const DocsNavbar = ({setIsMenuOpen}) => {
                 <span className="docs-search-item-type">Library</span>
               </div>
 
-              <div className="docs-search-divider" />
+              {/* Components */}
+              <div className="docs-search-divider"></div>
 
               <div className="docs-search-section-title">Components</div>
 
@@ -233,7 +224,8 @@ const DocsNavbar = ({setIsMenuOpen}) => {
                       setSearchOpen(false);
                       setSearchQuery("");
                       navigate(`/docs/${key}`);
-                    }}>
+                    }}
+                  >
                     <div className="docs-search-item-icon">◇</div>
 
                     <div className="docs-search-item-info">
