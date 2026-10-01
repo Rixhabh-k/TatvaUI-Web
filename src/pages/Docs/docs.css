@@ -1,0 +1,17 @@
+.desktop-docs-home {
+  display: block;
+}
+
+.mobile-docs-home {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .desktop-docs-home {
+    display: none;
+  }
+
+  .mobile-docs-home {
+    display: block;
+  }
+}

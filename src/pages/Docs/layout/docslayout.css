@@ -1,9 +1,7 @@
 .docs-main {
   height: 100vh;
   overflow: hidden;
-
   background-color: black;
-
   display: flex;
   flex-direction: column;
 }
@@ -11,14 +9,19 @@
 .docs-layout-section {
   flex: 1;
   min-height: 0;
-
   display: flex;
   overflow: hidden;
 }
 
 hr {
   flex-shrink: 0;
-
   border: none;
   border-top: 1px solid #202024;
+}
+
+@media (max-width: 768px) {
+  .docs-layout-section {
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
 }
