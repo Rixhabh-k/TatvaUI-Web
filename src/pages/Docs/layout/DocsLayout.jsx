@@ -1,15 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 import { Outlet } from "react-router";
 import Navbar from "../Navbar/Navbar";
-import "./docslayout.css";
 import DocsSidebar from "../Sidebar/DocsSidebar";
+import "./docslayout.css";
+import MobileTopBar from "../MobileTopbar/MobileTopBar";
+
 const DocsLayout = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   return (
     <div className="docs-main">
-      <Navbar />
-      <hr/>
-      <section className="docs-layout-section" >
-        <DocsSidebar />
+      {/* Desktop Navbar */}
+      <Navbar setIsMenuOpen={setIsMenuOpen} />
+
+      {/* Mobile Top Bar */}
+      {isMenuOpen && <MobileTopBar setIsMenuOpen={setIsMenuOpen} />}
+
+      <hr />
+
+      <section className="docs-layout-section">
+        <DocsSidebar/>
+
         <Outlet />
       </section>
     </div>

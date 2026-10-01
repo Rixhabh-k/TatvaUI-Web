@@ -197,6 +197,7 @@
   .docs-sidebar {
     width: 280px;
     padding: 24px 20px;
+    display: none;
   }
 
   .sidebar-section-header,
@@ -205,3 +206,5 @@
     font-size: 15px;
   }
 }
+
+

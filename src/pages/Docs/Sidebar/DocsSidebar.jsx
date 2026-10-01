@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Download, MousePointer2, ChevronUp,Type } from "lucide-react";
+import { Download, MousePointer2, ChevronUp, Type } from "lucide-react";
 
 import "./docsSidebar.css";
 import { useNavigate, useLocation } from "react-router";
@@ -108,8 +108,7 @@ export default function DocsSidebar() {
                 type="button"
                 className="sidebar-section-header"
                 onClick={() => toggleSection(section.title)}
-                aria-expanded={isOpen}
-              >
+                aria-expanded={isOpen}>
                 <span className="header-left">
                   <Icon size={19} strokeWidth={1.8} />
                   <span>{section.title}</span>
@@ -132,8 +131,7 @@ export default function DocsSidebar() {
                           ? "active"
                           : ""
                       }`}
-                      onClick={() => navigate(`/docs/${item.slug}`)}
-                    >
+                      onClick={() => navigate(`/docs/${item.slug}`)}>
                       {item.label}
                     </button>
                   ))}
