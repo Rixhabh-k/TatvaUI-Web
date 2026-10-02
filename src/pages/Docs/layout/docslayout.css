@@ -13,15 +13,20 @@
   overflow: hidden;
 }
 
+.docs-layout-section > * {
+  min-height: 0;
+}
+
+.docs-layout-section > :not(.docs-sidebar) {
+  flex: 1;
+  min-width: 0;
+  min-height: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
 hr {
   flex-shrink: 0;
   border: none;
   border-top: 1px solid #202024;
-}
-
-@media (max-width: 768px) {
-  .docs-layout-section {
-    overflow-y: auto;
-    overflow-x: hidden;
-  }
 }
