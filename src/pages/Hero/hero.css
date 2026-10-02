@@ -219,7 +219,13 @@
     background 0.25s ease;
 }
 
+.desktop-get-started {
+  display: inline-flex;
+}
 
+.mobile-get-started {
+  display: none;
+}
 
 /* Button icon */
 
@@ -416,6 +422,13 @@
     white-space: nowrap;
   }
 
+  .desktop-get-started {
+    display: none;
+  }
+
+  .mobile-get-started {
+    display: inline-flex;
+  }
 
   .hero-btn svg {
     width: 19px;

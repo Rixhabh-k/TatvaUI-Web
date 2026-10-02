@@ -20,22 +20,6 @@ const Hero = () => {
   useEffect(() => {
     if (!getStartedRef.current || !githubRef.current) return;
 
-    const glassConfig = {
-      glassThickness: 35,
-      bezelWidth: 18,
-      ior: 1.35,
-      scaleRatio: 0.65,
-      blur: 0.8,
-      specularOpacity: 0.8,
-      specularSat: 0,
-      tintColor: "255,255,255",
-      tintOpacity: 0.035,
-      innerShadow: "rgba(255,255,255,0.18)",
-      innerShadowBlur: 12,
-      innerShadowSpread: -1,
-      balancedSpecular: true,
-    };
-
     const cleanupGetStarted = applyLiquidGlass(getStartedRef.current, {
       glassThickness: 70,
       bezelWidth: 20,
@@ -78,14 +62,6 @@ const Hero = () => {
     <section className="hero-section">
       <div className="hero-background">
         <GradientBlinds />
-        
-        {/* <Silk
-          speed={5}
-          scale={1}
-          color="#b000c4"
-          noiseIntensity={2}
-          rotation={0}
-        /> */}
       </div>
 
       <div className="hero-content">
@@ -119,12 +95,21 @@ const Hero = () => {
           </div>
 
           <div className="hero-buttons">
+            {/* Desktop */}
             <Link
               ref={getStartedRef}
-              to={"/docs/installation"}
-              className="hero-btn"
-              data-radius="14"
-            >
+              to="/docs/installation"
+              className="hero-btn desktop-get-started"
+              data-radius="14">
+              <span>Get Started</span>
+              <span className="arrow">→</span>
+            </Link>
+
+            {/* Mobile */}
+            <Link
+              to="/docs"
+              className="hero-btn mobile-get-started"
+              data-radius="14">
               <span>Get Started</span>
               <span className="arrow">→</span>
             </Link>
@@ -135,15 +120,15 @@ const Hero = () => {
               target="_blank"
               rel="noopener noreferrer"
               className="hero-btn"
-              data-radius="14"
-            >
+              data-radius="14">
               <FaGithub />
               <span>GitHub</span>
             </a>
           </div>
         </div>
       </div>
-      <WhyTatvaUI/>
+
+      <WhyTatvaUI />
     </section>
   );
 };

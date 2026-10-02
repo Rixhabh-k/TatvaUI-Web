@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Sun,
   Menu,
@@ -6,13 +6,95 @@ import {
   MessageSquarePlus,
   Sparkles,
   MousePointer2,
+  Download,
+  Type,
+  ChevronUp
 } from "lucide-react";
 import "./mobileDocs.css";
+import { useNavigate } from "react-router";
 
 const MobileDocs = () => {
+  const navigation = [
+    {
+      title: "Buttons",
+      icon: MousePointer2,
+      items: [
+        {
+          label: "Magnetic Button",
+          slug: "magnetic-button",
+        },
+        {
+          label: "Flip Button",
+          slug: "flip-button",
+        },
+        {
+          label: "Fill Button",
+          slug: "fill-button",
+        },
+        {
+          label: "3D Button",
+          slug: "3d-button",
+        },
+        {
+          label: "Submit Button",
+          slug: "submit-button",
+        },
+        {
+          label: "Position Aware Button",
+          slug: "position-aware-button",
+        },
+        {
+          label: "Upload Button",
+          slug: "upload-button",
+        },
+      ],
+    },
+
+    {
+      title: "Text",
+      icon: Type,
+      items: [
+        {
+          label: "TypeWriter Text",
+          slug: "typewriter-text",
+        },
+        {
+          label: "Text Scramble",
+          slug: "text-scramble",
+        },
+        {
+          label: "Shadow Text",
+          slug: "shadow-text",
+        },
+        {
+          label: "Wave Text",
+          slug: "wave-text",
+        },
+        {
+          label: "Magic Text",
+          slug: "magic-text",
+        },
+      ],
+    },
+  ];
+
+  const [openSections, setOpenSections] = useState({
+    Text: true,
+    Buttons: true,
+  });
+
+  const toggleSection = (sectionTitle) => {
+    setOpenSections((previousSections) => ({
+      ...previousSections,
+      [sectionTitle]: !previousSections[sectionTitle],
+    }));
+  };
+
+  const componentsCount = navigation.reduce((acc, nav) => acc + nav.items.length, 0);
+
+  const navigate = useNavigate();
   return (
     <main className="mobile-docs-page">
-
       {/* Content */}
       <section className="mobile-docs-content">
         {/* Badge */}
@@ -37,30 +119,27 @@ const MobileDocs = () => {
 
         {/* Actions */}
         <div className="mobile-docs-actions">
-          <button className="mobile-docs-primary">
-            <span>Start with buttons</span>
+          <button
+            onClick={() => navigate("/docs/installation")}
+            className="mobile-docs-primary">
+            <span>Start with installation</span>
             <ArrowUpRight size={19} />
           </button>
 
           <button>CLI install</button>
-
-          <button>
-            <MessageSquarePlus size={19} />
-            <span>Request a component</span>
-          </button>
         </div>
 
         {/* Stats */}
         <div className="mobile-docs-stats">
           <div className="mobile-docs-stat">
-            <strong>15</strong>
+            <strong>{componentsCount}</strong>
             <span>COMPONENTS</span>
           </div>
 
-          <div className="mobile-docs-stat">
-            <strong>13</strong>
+          {/* <div className="mobile-docs-stat">
+            <strong>idhar kya daale?</strong>
             <span>NEW</span>
-          </div>
+          </div> */}
 
           <div className="mobile-docs-stat-description">
             <Sparkles size={18} />
@@ -71,22 +150,49 @@ const MobileDocs = () => {
 
         {/* Buttons category */}
         <section className="mobile-docs-category">
-          <div className="mobile-docs-category-header">
-            <div className="mobile-docs-category-icon">
-              <MousePointer2 size={27} />
-            </div>
 
-            <div>
-              <h2>Buttons</h2>
-              <p>9 components</p>
-            </div>
-          </div>
+          {navigation.map((section) => {
+            const Icon = section.icon;
+            const isOpen = openSections[section.title];
 
-          <div className="mobile-docs-component">Animated Button</div>
+            return (
+              <div className="sidebar-group" key={section.title}>
+                <button
+                  type="button"
+                  className="sidebar-section-header"
+                  onClick={() => toggleSection(section.title)}
+                  aria-expanded={isOpen}>
+                  <span className="header-left">
+                    <Icon size={19} strokeWidth={1.8} />
+                    <span>{section.title}</span>
+                  </span>
 
-          <div className="mobile-docs-component">Magnetic Button</div>
+                  <ChevronUp
+                    size={16}
+                    strokeWidth={1.8}
+                    className={`chevron ${isOpen ? "open" : ""}`}
+                  />
+                </button>
 
-          <div className="mobile-docs-component">Flip Button</div>
+                {isOpen && (
+                  <div className="sidebar-items">
+                    {section.items.map((item) => (
+                      <button
+                        key={item.slug}
+                        className={`sidebar-item ${
+                          location.pathname === `/docs/${item.slug}`
+                            ? "active"
+                            : ""
+                        }`}
+                        onClick={() => navigate(`/docs/${item.slug}`)}>
+                        {item.label}
+                      </button>
+                    ))}
+                  </div>
+                )}
+              </div>
+            );
+          })}
         </section>
       </section>
     </main>
