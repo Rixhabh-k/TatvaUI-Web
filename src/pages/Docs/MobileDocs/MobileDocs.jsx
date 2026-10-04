@@ -1,17 +1,7 @@
-import React, { useState } from "react";
-import {
-  Sun,
-  Menu,
-  ArrowUpRight,
-  MessageSquarePlus,
-  Sparkles,
-  MousePointer2,
-  Download,
-  Type,
-  ChevronUp
-} from "lucide-react";
-import "./mobileDocs.css";
+import React from "react";
+import { ArrowUpRight, Sparkles, MousePointer2, Type } from "lucide-react";
 import { useNavigate } from "react-router";
+import "./mobileDocs.css";
 
 const MobileDocs = () => {
   const navigation = [
@@ -22,30 +12,37 @@ const MobileDocs = () => {
         {
           label: "Magnetic Button",
           slug: "magnetic-button",
+          description: "Button with magnetic cursor interaction",
         },
         {
           label: "Flip Button",
           slug: "flip-button",
+          description: "Animated button with a 3D flip interaction",
         },
         {
           label: "Fill Button",
           slug: "fill-button",
+          description: "Button with an animated fill effect",
         },
         {
           label: "3D Button",
           slug: "3d-button",
+          description: "Interactive button with a 3D effect",
         },
         {
           label: "Submit Button",
           slug: "submit-button",
+          description: "Animated button designed for form submission",
         },
         {
           label: "Position Aware Button",
           slug: "position-aware-button",
+          description: "Button that reacts to pointer position",
         },
         {
           label: "Upload Button",
           slug: "upload-button",
+          description: "Animated button for file uploads",
         },
       ],
     },
@@ -57,53 +54,46 @@ const MobileDocs = () => {
         {
           label: "TypeWriter Text",
           slug: "typewriter-text",
+          description: "Animated typewriter text effect",
         },
         {
           label: "Text Scramble",
           slug: "text-scramble",
+          description: "Text animation with a scrambling effect",
         },
         {
           label: "Shadow Text",
           slug: "shadow-text",
+          description: "Text with animated shadow styling",
         },
         {
           label: "Wave Text",
           slug: "wave-text",
+          description: "Text animation with a smooth wave effect",
         },
         {
           label: "Magic Text",
           slug: "magic-text",
+          description: "Animated text effect with a magical reveal",
         },
       ],
     },
   ];
 
-  const [openSections, setOpenSections] = useState({
-    Text: true,
-    Buttons: true,
-  });
-
-  const toggleSection = (sectionTitle) => {
-    setOpenSections((previousSections) => ({
-      ...previousSections,
-      [sectionTitle]: !previousSections[sectionTitle],
-    }));
-  };
-
-  const componentsCount = navigation.reduce((acc, nav) => acc + nav.items.length, 0);
+  const componentsCount = navigation.reduce(
+    (acc, section) => acc + section.items.length,
+    0,
+  );
 
   const navigate = useNavigate();
+
   return (
     <main className="mobile-docs-page">
-      {/* Content */}
       <section className="mobile-docs-content">
-        {/* Badge */}
         <div className="mobile-docs-badge">
           <Sparkles size={17} />
           <span>Component catalog</span>
         </div>
-
-        {/* Hero */}
         <h1>
           Browse the
           <br />
@@ -117,29 +107,20 @@ const MobileDocs = () => {
           install command or manual source from the docs.
         </p>
 
-        {/* Actions */}
         <div className="mobile-docs-actions">
           <button
-            onClick={() => navigate("/docs/installation")}
-            className="mobile-docs-primary">
+            className="mobile-docs-primary"
+            onClick={() => navigate("/docs/installation")}>
             <span>Start with installation</span>
             <ArrowUpRight size={19} />
           </button>
-
-          <button>CLI install</button>
         </div>
 
-        {/* Stats */}
         <div className="mobile-docs-stats">
           <div className="mobile-docs-stat">
             <strong>{componentsCount}</strong>
             <span>COMPONENTS</span>
           </div>
-
-          {/* <div className="mobile-docs-stat">
-            <strong>idhar kya daale?</strong>
-            <span>NEW</span>
-          </div> */}
 
           <div className="mobile-docs-stat-description">
             <Sparkles size={18} />
@@ -148,49 +129,49 @@ const MobileDocs = () => {
           </div>
         </div>
 
-        {/* Buttons category */}
-        <section className="mobile-docs-category">
-
+        <section className="mobile-docs-categories">
           {navigation.map((section) => {
             const Icon = section.icon;
-            const isOpen = openSections[section.title];
 
             return (
-              <div className="sidebar-group" key={section.title}>
-                <button
-                  type="button"
-                  className="sidebar-section-header"
-                  onClick={() => toggleSection(section.title)}
-                  aria-expanded={isOpen}>
-                  <span className="header-left">
-                    <Icon size={19} strokeWidth={1.8} />
-                    <span>{section.title}</span>
-                  </span>
-
-                  <ChevronUp
-                    size={16}
-                    strokeWidth={1.8}
-                    className={`chevron ${isOpen ? "open" : ""}`}
-                  />
-                </button>
-
-                {isOpen && (
-                  <div className="sidebar-items">
-                    {section.items.map((item) => (
-                      <button
-                        key={item.slug}
-                        className={`sidebar-item ${
-                          location.pathname === `/docs/${item.slug}`
-                            ? "active"
-                            : ""
-                        }`}
-                        onClick={() => navigate(`/docs/${item.slug}`)}>
-                        {item.label}
-                      </button>
-                    ))}
+              <section className="mobile-docs-category" key={section.title}>
+         
+                <div className="mobile-docs-category-header">
+                  <div className="mobile-docs-category-icon">
+                    <Icon size={28} />
                   </div>
-                )}
-              </div>
+
+                  <div className="mobile-docs-category-info">
+                    <h2>{section.title}</h2>
+
+                    <p>{section.items.length} components</p>
+                  </div>
+                </div>
+
+                <div className="mobile-docs-component-list">
+                  {section.items.map((item) => (
+                    <button
+                      key={item.slug}
+                      className="mobile-docs-component"
+                      onClick={() => navigate(`/docs/${item.slug}`)}>
+                      <div className="mobile-docs-component-content">
+                        <span className="mobile-docs-component-title">
+                          {item.label}
+                        </span>
+
+                        <span className="mobile-docs-component-description">
+                          {item.description}
+                        </span>
+                      </div>
+
+                      <ArrowUpRight
+                        className="mobile-docs-component-arrow"
+                        size={21}
+                      />
+                    </button>
+                  ))}
+                </div>
+              </section>
             );
           })}
         </section>
