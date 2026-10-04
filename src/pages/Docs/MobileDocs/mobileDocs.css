@@ -1,6 +1,7 @@
 .mobile-docs-page {
   width: 100%;
-  min-height: 100vh;
+  min-height: 100%;
+
   box-sizing: border-box;
 
   background: #050506;
@@ -11,68 +12,17 @@
 
 
 /* =========================
-   HEADER
-========================= */
-
-.mobile-docs-header {
-  width: 100%;
-  height: 64px;
-  padding: 0 28px;
-
-  box-sizing: border-box;
-
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-  border-bottom: 1px solid #202024;
-}
-
-.mobile-docs-logo {
-  display: flex;
-  align-items: center;
-  gap: 9px;
-
-  font-size: 22px;
-  font-weight: 700;
-}
-
-.mobile-docs-logo img {
-  width: 31px;
-  height: 31px;
-  object-fit: contain;
-}
-
-.mobile-docs-header-actions {
-  display: flex;
-  align-items: center;
-  gap: 18px;
-}
-
-.mobile-docs-header-actions button {
-  width: 30px;
-  height: 30px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  padding: 0;
-
-  border: none;
-  background: transparent;
-
-  color: #eeeeee;
-  cursor: pointer;
-}
-
-
-/* =========================
    CONTENT
 ========================= */
 
 .mobile-docs-content {
-  padding: 76px 28px 50px;
+  width: 100%;
+  max-width: 760px;
+
+  margin: 0 auto;
+
+  padding: 70px 28px 80px;
+
   box-sizing: border-box;
 }
 
@@ -88,7 +38,7 @@
   align-items: center;
   gap: 10px;
 
-  padding: 11px 17px;
+  padding: 10px 14px;
 
   border: 1px solid #29292d;
   border-radius: 7px;
@@ -98,21 +48,22 @@
   color: #a8a8ae;
 
   font-family: monospace;
-  font-size: 15px;
+  font-size: 14px;
 }
 
 
 /* =========================
-   HEADING
+   HERO HEADING
 ========================= */
 
 .mobile-docs-content h1 {
-  margin: 48px 0 32px;
+  margin: 42px 0 28px;
 
   color: #f5f5f5;
 
   font-size: 48px;
-  line-height: 1.28;
+  line-height: 1.18;
+
   letter-spacing: -2px;
 
   font-weight: 500;
@@ -124,49 +75,51 @@
 ========================= */
 
 .mobile-docs-description {
+  max-width: 680px;
+
   margin: 0;
 
   color: #aaaab0;
 
-  font-size: 19px;
-  line-height: 1.65;
+  font-size: 18px;
+  line-height: 1.6;
 }
 
 
 /* =========================
-   ACTION BUTTONS
+   ACTION
 ========================= */
 
 .mobile-docs-actions {
   width: 100%;
 
-  display: flex;
-  flex-direction: column;
-  gap: 17px;
-
-  margin-top: 42px;
+  margin-top: 38px;
 }
 
 .mobile-docs-actions button {
   width: 100%;
-  min-height: 65px;
+  min-height: 62px;
 
   display: flex;
   align-items: center;
   justify-content: center;
+
   gap: 10px;
+
+  padding: 0 20px;
 
   box-sizing: border-box;
 
   border: 1px solid #29292d;
   border-radius: 7px;
 
-  background: transparent;
+  background: #151517;
 
   color: #eeeeee;
 
   font-family: inherit;
-  font-size: 18px;
+  font-size: 17px;
+  font-weight: 500;
 
   cursor: pointer;
 
@@ -176,12 +129,7 @@
 }
 
 .mobile-docs-actions button:hover {
-  background: #151517;
-  border-color: #3a3a3f;
-}
-
-.mobile-docs-actions .mobile-docs-primary {
-  background: #151517;
+  background: #1b1b1e;
   border-color: #3a3a3f;
 }
 
@@ -193,69 +141,82 @@
 .mobile-docs-stats {
   width: 100%;
 
-  margin-top: 42px;
+  margin-top: 34px;
 
-  display: grid;
-  grid-template-columns: 1fr;
+  display: flex;
+  
   border: 1px solid #242428;
+
   box-sizing: border-box;
 }
 
 .mobile-docs-stat {
-  min-height: 145px;
+  min-height: 110px;
 
-  padding: 25px 28px;
+  padding: 20px;
 
   box-sizing: border-box;
 
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
-}
 
-.mobile-docs-stat:first-child {
   border-right: 1px solid #242428;
 }
 
 .mobile-docs-stat strong {
   color: #f5f5f5;
 
-  font-size: 43px;
+  font-size: 36px;
   line-height: 1;
 
   font-weight: 500;
 }
 
 .mobile-docs-stat span {
-  margin-top: 18px;
+  margin-top: 12px;
 
   color: #85858b;
 
-  font-size: 13px;
+  font-size: 11px;
+
   letter-spacing: 0.5px;
 }
 
 .mobile-docs-stat-description {
-  grid-column: 1 / -1;
+  min-height: 110px;
 
-  min-height: 88px;
-
-  padding: 20px 28px;
+  padding: 20px;
 
   box-sizing: border-box;
 
   display: flex;
   align-items: center;
-  gap: 14px;
 
-  border-top: 1px solid #242428;
+  gap: 12px;
 
-  color: #a3a3a8;
+  color: #99999f;
 
   font-family: monospace;
-  font-size: 16px;
+  font-size: 13px;
+
   line-height: 1.5;
+}
+
+
+/* =========================
+   CATEGORIES
+========================= */
+
+.mobile-docs-categories {
+  width: 100%;
+
+  margin-top: 52px;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 42px;
 }
 
 
@@ -266,27 +227,35 @@
 .mobile-docs-category {
   width: 100%;
 
-  margin-top: 56px;
+  border: 1px solid #242428;
 
-  border-top: 1px solid #242428;
+  box-sizing: border-box;
+
+  background: #050506;
 }
 
 
-/* Category header */
+/* =========================
+   CATEGORY HEADER
+========================= */
 
 .mobile-docs-category-header {
-  min-height: 140px;
+  min-height: 110px;
 
-  padding: 30px 34px;
+  padding: 20px 34px;
 
   box-sizing: border-box;
 
   display: flex;
   align-items: center;
+
   gap: 20px;
 
   border-bottom: 1px solid #242428;
 }
+
+
+/* Icon */
 
 .mobile-docs-category-icon {
   width: 70px;
@@ -305,16 +274,26 @@
   color: #eeeeee;
 }
 
-.mobile-docs-category-header h2 {
+
+/* Category text */
+
+.mobile-docs-category-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.mobile-docs-category-info h2 {
   margin: 0;
 
   color: #f5f5f5;
 
   font-size: 27px;
+  line-height: 1.2;
+
   font-weight: 600;
 }
 
-.mobile-docs-category-header p {
+.mobile-docs-category-info p {
   margin: 6px 0 0;
 
   color: #99999f;
@@ -324,29 +303,172 @@
 
 
 /* =========================
-   COMPONENT ITEMS
+   COMPONENT LIST
+========================= */
+
+.mobile-docs-component-list {
+  width: 100%;
+}
+
+
+/* =========================
+   COMPONENT
 ========================= */
 
 .mobile-docs-component {
-  min-height: 70px;
+  width: 100%;
+  min-height: 105px;
 
-  padding: 24px 34px;
+  padding: 20px 34px;
 
   box-sizing: border-box;
 
   display: flex;
   align-items: center;
+  justify-content: space-between;
 
+  gap: 20px;
+
+  border: none;
   border-bottom: 1px solid #202024;
 
-  color: #e5e5e5;
+  background: transparent;
 
-  font-size: 18px;
-  font-weight: 500;
+  color: #f5f5f5;
 
-  transition: background 0.2s ease;
+  text-align: left;
+
+  cursor: pointer;
+
+  font-family: inherit;
+
+  transition:
+    background 0.2s ease;
+}
+
+.mobile-docs-component:last-child {
+  border-bottom: none;
 }
 
 .mobile-docs-component:hover {
   background: #0e0e10;
+}
+
+
+/* =========================
+   COMPONENT TEXT
+========================= */
+
+.mobile-docs-component-content {
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 5px;
+}
+
+.mobile-docs-component-title {
+  color: #f1f1f1;
+
+  font-size: 18px;
+  line-height: 1.3;
+
+  font-weight: 500;
+}
+
+.mobile-docs-component-description {
+  color: #8f8f96;
+
+  font-size: 15px;
+  line-height: 1.4;
+}
+
+
+/* =========================
+   ARROW
+========================= */
+
+.mobile-docs-component-arrow {
+  flex-shrink: 0;
+
+  color: #85858b;
+
+  transition:
+    transform 0.2s ease,
+    color 0.2s ease;
+}
+
+.mobile-docs-component:hover .mobile-docs-component-arrow {
+  color: #eeeeee;
+
+  transform: translate(2px, -2px);
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 768px) {
+  .mobile-docs-content {
+    padding: 45px 28px 70px;
+  }
+
+  .mobile-docs-content h1 {
+    font-size: 42px;
+    line-height: 1.18;
+    letter-spacing: -1.5px;
+  }
+
+  .mobile-docs-description {
+    font-size: 17px;
+  }
+
+  .mobile-docs-stats {
+    grid-template-columns: 100px 1fr;
+  }
+
+  .mobile-docs-stat {
+    padding: 18px;
+  }
+
+  .mobile-docs-stat strong {
+    font-size: 32px;
+  }
+
+  .mobile-docs-stat-description {
+    padding: 18px;
+    font-size: 12px;
+  }
+
+  .mobile-docs-category-header {
+    padding: 20px;
+  }
+
+  .mobile-docs-category-icon {
+    width: 52px;
+    height: 52px;
+  }
+
+  .mobile-docs-category-info h2 {
+    font-size: 24px;
+  }
+
+  .mobile-docs-category-info p {
+    font-size: 15px;
+  }
+
+  .mobile-docs-component {
+    min-height: 100px;
+    padding: 20px;
+  }
+
+  .mobile-docs-component-title {
+    font-size: 17px;
+  }
+
+  .mobile-docs-component-description {
+    font-size: 14px;
+  }
 }
