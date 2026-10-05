@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { ArrowUpRight, Sparkles, MousePointer2, Type } from "lucide-react";
 import { useNavigate } from "react-router";
 import "./mobileDocs.css";
@@ -80,6 +80,33 @@ const MobileDocs = () => {
     },
   ];
 
+  useEffect(() => {
+    const docsContainer = document.querySelector(".mobile-docs-home");
+
+    if (!docsContainer) return;
+
+    const savedScroll = sessionStorage.getItem("mobileDocsScroll");
+
+    if (savedScroll !== null) {
+      requestAnimationFrame(() => {
+        docsContainer.scrollTop = Number(savedScroll);
+      });
+    }
+
+    const handleScroll = () => {
+      sessionStorage.setItem(
+        "mobileDocsScroll",
+        String(docsContainer.scrollTop),
+      );
+    };
+
+    docsContainer.addEventListener("scroll", handleScroll);
+
+    return () => {
+      docsContainer.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   const componentsCount = navigation.reduce(
     (acc, section) => acc + section.items.length,
     0,
@@ -135,7 +162,6 @@ const MobileDocs = () => {
 
             return (
               <section className="mobile-docs-category" key={section.title}>
-         
                 <div className="mobile-docs-category-header">
                   <div className="mobile-docs-category-icon">
                     <Icon size={28} />
@@ -153,7 +179,18 @@ const MobileDocs = () => {
                     <button
                       key={item.slug}
                       className="mobile-docs-component"
-                      onClick={() => navigate(`/docs/${item.slug}`)}>
+                      onClick={() => {
+                        const docsContainer =
+                          document.querySelector(".mobile-docs-home");
+
+                        if (docsContainer) {
+                          sessionStorage.setItem(
+                            "mobileDocsScroll",
+                            String(docsContainer.scrollTop),
+                          );
+                        }
+                        navigate(`/docs/${item.slug}`);
+                      }}>
                       <div className="mobile-docs-component-content">
                         <span className="mobile-docs-component-title">
                           {item.label}
