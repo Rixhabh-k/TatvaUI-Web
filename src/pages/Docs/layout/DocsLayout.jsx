@@ -3,7 +3,7 @@ import { Outlet } from "react-router";
 import Navbar from "../Navbar/Navbar";
 import DocsSidebar from "../Sidebar/DocsSidebar";
 import "./docslayout.css";
-import MobileTopBar from "../MobileTopbar/MobileTopBar";
+import MobileTopBar from "../MobileTopBar/MobileTopBar";
 
 const DocsLayout = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);

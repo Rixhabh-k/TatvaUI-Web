@@ -1,6 +1,6 @@
 import React from "react";
 import MobileDocs from "./MobileDocs/MobileDocs";
-import "./Docs.css";
+import "./docs.css";
 import DocsPage from './DocsPage/DocsPage';
 
 const Docs = () => {
