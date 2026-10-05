@@ -4,7 +4,7 @@ import "./installation.css";
 const Installation = () => {
   const [copied, setCopied] = useState(false);
 
-  const installCommand = "npm install tatva";
+  const installCommand = "npm install tatva-ui";
 
   const handleCopy = async () => {
     try {
