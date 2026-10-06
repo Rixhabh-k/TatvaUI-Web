@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 import { FaGithub } from "react-icons/fa";
 import { Link } from "react-router";
-import GradientBlinds from "../../effects/GradientBlinds/GradientBlinds";
+
 import Navbar from "../../components/Navbar/Navbar";
 import { TextScramble } from "tatva-ui";
 import "tatva-ui/style.css";
@@ -9,9 +9,10 @@ import "tatva-ui/style.css";
 import { applyLiquidGlass } from "../../effects/liquidGlass/liquidGlass";
 
 import "./hero.css";
-import AcidSquares from "../../effects/AcidSquares/AcidSquares";
-import Silk from "../../effects/Silk/Silk";
-import WhyTatvaUI from "../About Section/WhyTatvaUI";
+
+import DotField from "../../effects/Dot Field/DotField";
+
+import AccordionFooter from "../../effects/AccordionFooter/AccordionFooter";
 
 const Hero = () => {
   const getStartedRef = useRef(null);
@@ -61,7 +62,16 @@ const Hero = () => {
   return (
     <section className="hero-section">
       <div className="hero-background">
-        <GradientBlinds />
+        <DotField
+          dotRadius={1.5}
+          dotSpacing={14}
+          bulgeStrength={67}
+          glowRadius={0}
+          sparkle
+          waveAmplitude={0}
+          gradientFrom="#8300ff"
+          gradientTo="#4000ff"
+        />
       </div>
 
       <div className="hero-content">
@@ -73,13 +83,7 @@ const Hero = () => {
 
             <div className="scramble-wrapper">
               <TextScramble
-                phrases={[
-                  "ease.",
-                  "motion.",
-                  "precision.",
-                  "detail.",
-                  "feeling.",
-                ]}
+                phrases={["ease.", "motion.", "detail.", "feeling."]}
                 pauseDuration={2000}
                 className="heading-scramble"
               />
@@ -100,7 +104,8 @@ const Hero = () => {
               ref={getStartedRef}
               to="/docs/installation"
               className="hero-btn desktop-get-started"
-              data-radius="14">
+              data-radius="14"
+            >
               <span>Get Started</span>
               <span className="arrow">→</span>
             </Link>
@@ -109,7 +114,8 @@ const Hero = () => {
             <Link
               to="/docs"
               className="hero-btn mobile-get-started"
-              data-radius="14">
+              data-radius="14"
+            >
               <span>Get Started</span>
               <span className="arrow">→</span>
             </Link>
@@ -120,7 +126,8 @@ const Hero = () => {
               target="_blank"
               rel="noopener noreferrer"
               className="hero-btn"
-              data-radius="14">
+              data-radius="14"
+            >
               <FaGithub />
               <span>GitHub</span>
             </a>
@@ -128,7 +135,7 @@ const Hero = () => {
         </div>
       </div>
 
-      <WhyTatvaUI />
+      <AccordionFooter />
     </section>
   );
 };
