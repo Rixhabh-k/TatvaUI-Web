@@ -69,7 +69,7 @@ const Installation = () => {
           <code>
             <span className="command-npm">npm</span>{" "}
             <span className="command-install">install</span>{" "}
-            <span className="command-package">tatva</span>
+            <span className="command-package">tatva-ui</span>
           </code>
         </div>
 

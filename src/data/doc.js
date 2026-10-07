@@ -15,9 +15,17 @@ import {
 
 const docs = {
   installation: {
-    title: "tatva-ui UI",
+    title: "Tatva UI Installation",
     description:
       "A reusable animation and interaction library for building modern, expressive web interfaces with ready-to-use React components and customizable effects.",
+      
+       css: {
+      title: "CSS Styling",
+      description:
+        "Import the css file from the library.",
+      language: "css",
+      code: `@import "tatva-ui/style.css";`,
+    },
 
     sections: [
       {
@@ -57,6 +65,7 @@ const docs = {
           },
         ],
       },
+      
 
       {
         title: "Basic Usage",
