@@ -1,11 +1,12 @@
 import React from "react";
 import { Search, Menu } from "lucide-react";
 import "./mobileTopBar.css";
-
+import { FaGithub } from "react-icons/fa";
+import { NavLink } from "react-router";
 const MobileTopBar = ({ isMenuOpen, setIsMenuOpen }) => {
   return (
     <header className="mobile-topbar">
-      <div className="mobile-topbar-search">
+      {/* <div className="mobile-topbar-search">
         <Search size={17} />
 
         <input type="text" placeholder="Search documentation..." />
@@ -14,7 +15,7 @@ const MobileTopBar = ({ isMenuOpen, setIsMenuOpen }) => {
           <span>⌘</span>
           <span>K</span>
         </div>
-      </div>
+      </div> */}
 
       <div className="mobile-topbar-brand">
         <span>Tatva UI</span>
@@ -28,19 +29,37 @@ const MobileTopBar = ({ isMenuOpen, setIsMenuOpen }) => {
       </div>
 
       <nav className="mobile-topbar-links">
-        <a href="/templates">Templates</a>
-        <a href="/docs" className="active">
+        <NavLink
+          onClick={() => setIsMenuOpen(false)}
+          to="/templates"
+          className={({ isActive }) => (isActive ? "active" : "")}>
+          Templates
+        </NavLink>
+
+        <NavLink
+          onClick={() => setIsMenuOpen(false)}
+          to="/docs"
+          end
+          className={({ isActive }) => (isActive ? "active" : "")}>
           Docs
-        </a>
-        <a href="/sponsors">Sponsors</a>
+        </NavLink>
+
+        <NavLink
+          onClick={() => setIsMenuOpen(false)}
+          to="/sponsors"
+          className={({ isActive }) => (isActive ? "active" : "")}>
+          Sponsors
+        </NavLink>
       </nav>
 
       <div className="mobile-topbar-bottom">
-        <span className="x-link">𝕏</span>
+        <a href="https://github.com/Rixhabh-k/TatvaUI-Web" target="_blank" className="x-link">
+          <FaGithub />
+        </a>
 
         <div className="github-pill">
           <span>◉</span>
-          <span>★ 1.2K</span>
+          <span>★ 0</span>
         </div>
       </div>
     </header>
