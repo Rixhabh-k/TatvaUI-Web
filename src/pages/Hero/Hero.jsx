@@ -104,8 +104,7 @@ const Hero = () => {
               ref={getStartedRef}
               to="/docs/installation"
               className="hero-btn desktop-get-started"
-              data-radius="14"
-            >
+              data-radius="14">
               <span>Get Started</span>
               <span className="arrow">→</span>
             </Link>
@@ -114,20 +113,18 @@ const Hero = () => {
             <Link
               to="/docs"
               className="hero-btn mobile-get-started"
-              data-radius="14"
-            >
+              data-radius="14">
               <span>Get Started</span>
               <span className="arrow">→</span>
             </Link>
 
             <a
               ref={githubRef}
-              href="https://github.com"
+              href="https://github.com/Rixhabh-k/TatvaUI-Web"
               target="_blank"
               rel="noopener noreferrer"
               className="hero-btn"
-              data-radius="14"
-            >
+              data-radius="14">
               <FaGithub />
               <span>GitHub</span>
             </a>
