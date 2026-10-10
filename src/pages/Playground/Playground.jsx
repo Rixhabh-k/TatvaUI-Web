@@ -3,8 +3,8 @@ import { useParams } from "react-router";
 
 import docs from "../../data/doc";
 
-import ElementInfo from "./components/ElementInfo/ElementInfo";
-import ControlPanel from "./components/ControlPanel/ControlPanel";
+import ElementInfo from "./Components/ElementInfo/ElementInfo";
+import ControlPanel from "./Components/ControlPanel/ControlPanel";
 import Preview from "./Components/Preview/Preview";
 
 import "./playground.css";
