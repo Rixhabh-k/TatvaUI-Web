@@ -1,206 +1,487 @@
+/* ===== Panel shell ===== */
 .playground-controls {
-  width: 100%;
-  margin-bottom: 20px;
+  --cp-bg: #0a0a0a;
+  --cp-border: #232323;
+  --cp-inner: #050505;
+  --cp-card: #141414;
+  --cp-card-hover: #1a1a1a;
+  --cp-fill: #262626;
+  --cp-text: #ffffff;
+  --cp-muted: #9a9a9a;
+  --cp-accent: #d4d4d4;
 
-  border: 1px solid #242428;
-  border-radius: 10px;
-
-  background: #111114;
-  overflow: hidden;
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  background: var(--cp-bg);
+  border: 1px solid var(--cp-border);
+  border-radius: 16px;
+  padding: 14px;
+  color: var(--cp-text);
+  box-sizing: border-box;
 }
 
-.controls-content {
-  padding: 24px;
+.playground-controls *,
+.playground-controls *::before,
+.playground-controls *::after {
+  box-sizing: border-box;
 }
 
-.control-item {
-  padding: 18px 0;
-  border-bottom: 1px solid #242428;
-}
-
-.control-item:first-child {
-  padding-top: 0;
-}
-
-.control-item:last-child {
-  border-bottom: none;
-  padding-bottom: 0;
-}
-
-.control-header {
+/* ===== Header ===== */
+.controls-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 12px;
+  padding: 6px 8px 14px;
 }
 
-.control-header label {
-  font-size: 14px;
-  color: #eee;
+.controls-title {
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.1px;
 }
 
-.control-header span {
-  max-width: 55%;
+.controls-actions {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.header-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: none;
+  border: 0;
+  padding: 4px 2px;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--cp-muted);
+  cursor: pointer;
+  transition: color 0.15s ease;
+}
+
+.header-btn:hover {
+  color: var(--cp-text);
+}
+
+.header-btn:focus-visible {
+  outline: 2px solid var(--cp-accent);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+/* ===== Grid ===== */
+.controls-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  background: var(--cp-inner);
+  border-radius: 12px;
+  padding: 10px;
+}
+
+/* ===== Card (shared) ===== */
+.control-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  min-width: 0;
+  height: 40px;
+  padding: 0 12px;
+  background: var(--cp-card);
+  border-radius: 8px;
+  overflow: hidden;
+  transition: background 0.15s ease;
+}
+
+.control-item:hover {
+  background: var(--cp-card-hover);
+}
+
+.control-name {
+  position: relative;
+  z-index: 2;
+  flex: 1 1 auto;
+  min-width: 0;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--cp-muted);
+  white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  white-space: nowrap;
-
-  font-family: monospace;
-  font-size: 12px;
-  color: #777;
+  pointer-events: none;
 }
 
-.control-item p {
-  margin: 6px 0 12px;
-
-  font-size: 12px;
-  line-height: 1.5;
-  color: #666;
-}
-
-.playground-section-top {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.reset-controls {
-  padding: 5px 10px;
-
-  border: 1px solid #29292d;
-  border-radius: 5px;
-
-  background: transparent;
-  color: #888;
-
-  font-size: 11px;
-
-  cursor: pointer;
-
-  transition: 0.2s ease;
-}
-
-.reset-controls:hover {
-  border-color: #444;
-  color: #eee;
-  background: #18181b;
-}
-
-/* -------------------- */
-/* TEXT INPUT */
-/* -------------------- */
-
-.control-item input[type="text"] {
-  width: 100%;
-  height: 38px;
-  box-sizing: border-box;
-
-  padding: 0 12px;
-
-  border: 1px solid #29292d;
-  border-radius: 6px;
-
-  outline: none;
-
-  background: #09090b;
-  color: #ddd;
-
+.control-value {
+  position: relative;
+  z-index: 2;
+  flex: 0 0 auto;
+  max-width: 50%;
   font-size: 13px;
+  font-weight: 700;
+  color: var(--cp-text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  pointer-events: none;
+  font-variant-numeric: tabular-nums;
 }
 
-.control-item input[type="text"]:focus {
-  border-color: #444;
+/* ===== Range card ===== */
+.control-range-item {
+  cursor: ew-resize;
 }
 
-/* -------------------- */
-/* COLOR INPUT */
-/* -------------------- */
+.range-fill {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: calc(6px + (100% - 12px) * var(--p));
+  background: var(--cp-fill);
+  pointer-events: none;
+  z-index: 0;
+}
 
-.color-row {
+.range-ticks {
+  position: absolute;
+  left: 12px;
+  right: 12px;
+  top: 50%;
+  height: 8px;
+  transform: translateY(-50%);
+  background: repeating-linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.1) 0 1px,
+    transparent 1px 36px
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+.range-thumb {
+  position: absolute;
+  top: 50%;
+  left: calc(6px + (100% - 12px) * var(--p));
+  width: 3px;
+  height: 16px;
+  border-radius: 2px;
+  background: #737373;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 1;
+  transition: background 0.15s ease;
+}
+
+.control-range-item:hover .range-thumb,
+.control-range-item:focus-within .range-thumb {
+  background: #e5e5e5;
+}
+
+.control-range-item:focus-within {
+  box-shadow: 0 0 0 1px var(--cp-accent);
+}
+
+/* invisible native slider covers the whole card */
+.control-range {
+  -webkit-appearance: none;
+  appearance: none;
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  opacity: 0;
+  cursor: ew-resize;
+  z-index: 3;
+}
+
+.control-range::-webkit-slider-runnable-track {
+  height: 100%;
+  background: transparent;
+}
+
+.control-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 12px;
+  height: 40px;
+  background: transparent;
+  border: 0;
+}
+
+.control-range::-moz-range-track {
+  height: 100%;
+  background: transparent;
+}
+
+.control-range::-moz-range-thumb {
+  width: 12px;
+  height: 40px;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+}
+
+/* ===== Toggle ===== */
+.control-toggle {
+  position: relative;
+  flex: 0 0 auto;
+  width: 38px;
+  height: 22px;
+  padding: 0;
+  border: 0;
+  border-radius: 999px;
+  background: #333333;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.control-toggle.active {
+  background: #d4d4d4;
+}
+
+.toggle-knob {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #8c8c8c;
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.control-toggle.active .toggle-knob {
+  transform: translateX(16px);
+  background: #0a0a0a;
+}
+
+.control-toggle:focus-visible {
+  outline: 2px solid var(--cp-accent);
+  outline-offset: 2px;
+}
+
+/* ===== Color ===== */
+.control-color-item {
+  overflow: visible;
+}
+
+.control-item.is-open {
+  z-index: 30;
+}
+
+.control-color {
+  position: relative;
+  z-index: 2;
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 8px;
+  flex: 0 0 auto;
 }
 
-.control-item input[type="color"] {
-  width: 48px;
-  height: 32px;
+.color-swatch {
+  width: 24px;
+  height: 24px;
   padding: 0;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 7px;
+  cursor: pointer;
+  transition: transform 0.12s ease, border-color 0.15s ease;
+}
 
-  border: 1px solid #29292d;
+.color-swatch:hover {
+  border-color: rgba(255, 255, 255, 0.35);
+}
+
+.color-swatch:active {
+  transform: scale(0.94);
+}
+
+.color-swatch:focus-visible {
+  outline: 2px solid var(--cp-accent);
+  outline-offset: 2px;
+}
+
+.control-color code {
+  display: inline-flex;
+  align-items: center;
+  height: 26px;
+  padding: 0 10px;
   border-radius: 6px;
-
-  background: none;
-  cursor: pointer;
+  background: #070707;
+  border: 1px solid #2a2a2a;
+  font-family: "Inter", system-ui, sans-serif;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--cp-text);
 }
 
-.color-row code {
-  font-family: monospace;
-  font-size: 12px;
-  color: #777;
-}
-
-/* -------------------- */
-/* RANGE INPUT */
-/* -------------------- */
-
-.control-item input[type="range"] {
-  width: 100%;
-  height: 16px;
-
-  margin: 8px 0 4px;
-  padding: 0;
-
-  background: transparent;
+.control-hex-input {
+  width: 84px;
+  height: 26px;
+  padding: 0 10px;
+  border-radius: 6px;
+  border: 1px solid #2a2a2a;
+  background: #070707;
+  color: var(--cp-text);
+  font-family: "Inter", system-ui, sans-serif;
+  font-size: 12.5px;
+  font-weight: 600;
   outline: none;
-  cursor: pointer;
-
-  appearance: none;
-  -webkit-appearance: none;
+  transition: border-color 0.15s ease;
 }
 
-/* Chrome / Edge / Safari */
-
-.control-item input[type="range"]::-webkit-slider-runnable-track {
-  height: 6px;
-  border-radius: 999px;
-  background: #3a3a40;
+.control-hex-input:hover {
+  border-color: #3a3a3a;
 }
 
-.control-item input[type="range"]::-webkit-slider-thumb {
+.control-hex-input:focus {
+  border-color: #d4d4d4;
+}
+
+.control-hex-input.invalid {
+  border-color: #ef4444;
+}
+
+/* ===== Color picker popover ===== */
+.cp-popover {
+  position: fixed; /* portal ke through body me render hota hai */
+  z-index: 9999;
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  box-sizing: border-box;
+  width: 226px;
+  padding: 14px;
+  background: #0b0b0b;
+  border: 1px solid #262626;
+  border-radius: 14px;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(255, 255, 255, 0.02);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  cursor: default;
+}
+
+.cp-popover *,
+.cp-popover *::before,
+.cp-popover *::after {
+  box-sizing: border-box;
+}
+
+.cp-sv {
+  position: relative;
+  width: 100%;
+  height: 150px;
+  border-radius: 8px;
+  background:
+    linear-gradient(to top, #000, rgba(0, 0, 0, 0)),
+    linear-gradient(to right, #fff, var(--hue));
+  cursor: crosshair;
+  touch-action: none;
+}
+
+.cp-sv-handle,
+.cp-hue-handle {
+  position: absolute;
   width: 16px;
   height: 16px;
-  margin-top: -5px;
-
-  border: none;
   border-radius: 50%;
-
-  background: #000;
-  cursor: pointer;
-
-  appearance: none;
-  -webkit-appearance: none;
+  border: 2px solid #fff;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.4), 0 2px 6px rgba(0, 0, 0, 0.5);
+  transform: translate(-50%, -50%);
+  pointer-events: none;
 }
 
-/* Firefox */
-
-.control-item input[type="range"]::-moz-range-track {
-  height: 6px;
+.cp-hue {
+  position: relative;
+  width: 100%;
+  height: 14px;
   border-radius: 999px;
-  background: #3a3a40;
-}
-
-.control-item input[type="range"]::-moz-range-progress {
-  background: #3a3a40;
-}
-
-.control-item input[type="range"]::-moz-range-thumb {
-  width: 16px;
-  height: 16px;
-
-  border: none;
-  border-radius: 50%;
-
-  background: #000;
+  background: linear-gradient(
+    to right,
+    #f00 0%,
+    #ff0 17%,
+    #0f0 33%,
+    #0ff 50%,
+    #00f 67%,
+    #f0f 83%,
+    #f00 100%
+  );
   cursor: pointer;
+  touch-action: none;
+}
+
+.cp-hue-handle {
+  top: 50%;
+  background: transparent;
+}
+
+.cp-presets {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 8px;
+}
+
+.cp-preset {
+  width: 100%;
+  aspect-ratio: 1;
+  padding: 0;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+
+.cp-preset:hover {
+  transform: scale(1.1);
+}
+
+.cp-preset.active {
+  box-shadow: 0 0 0 2px #0b0b0b, 0 0 0 3.5px #d4d4d4;
+}
+
+.cp-preset:focus-visible {
+  outline: 2px solid #d4d4d4;
+  outline-offset: 2px;
+}
+
+/* ===== Text / array ===== */
+.control-text-input {
+  position: relative;
+  z-index: 2;
+  flex: 0 1 55%;
+  min-width: 0;
+  height: 26px;
+  padding: 0 10px;
+  border-radius: 6px;
+  border: 1px solid #2a2a2a;
+  background: #070707;
+  color: var(--cp-text);
+  font: inherit;
+  font-size: 12.5px;
+  font-weight: 600;
+  outline: none;
+  transition: border-color 0.15s ease;
+}
+
+.control-text-input:focus {
+  border-color: var(--cp-accent);
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 760px) {
+  .controls-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 480px) {
+  .controls-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .controls-actions {
+    gap: 12px;
+  }
 }
