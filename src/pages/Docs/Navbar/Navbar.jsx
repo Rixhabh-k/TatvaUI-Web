@@ -90,8 +90,11 @@ const DocsNavbar = ({ setIsMenuOpen }) => {
               Templates
             </Link>
 
-            <Link to="/docs" className="docs-navbar-link">
+            <Link to="/docs/installation" className="docs-navbar-link">
               Docs
+            </Link>
+            <Link to="/playground" className="docs-navbar-link">
+              Playground
             </Link>
           </nav>
 

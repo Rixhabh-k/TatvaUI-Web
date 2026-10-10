@@ -13,16 +13,23 @@ import {
   MagicText,
 } from "tatva-ui";
 
+/*
+  props[] schema (ControlPanel isse chalta hai):
+    type: "range" | "text" | "color" | "array"
+    range ke liye: min, max, step
+    array ke liye: comma-separated input, value array ban jati hai
+    default: sirf docs table mein dikhane ke liye (string)
+*/
+
 const docs = {
   installation: {
     title: "Tatva UI Installation",
     description:
       "A reusable animation and interaction library for building modern, expressive web interfaces with ready-to-use React components and customizable effects.",
-      
-       css: {
+
+    css: {
       title: "CSS Styling",
-      description:
-        "Import the css file from the library.",
+      description: "Import the css file from the library.",
       language: "css",
       code: `@import "tatva-ui/style.css";`,
     },
@@ -65,7 +72,6 @@ const docs = {
           },
         ],
       },
-      
 
       {
         title: "Basic Usage",
@@ -224,31 +230,11 @@ export function MagneticButtonDemo() {
     },
 
     props: [
-      {
-        name: "children",
-        default: '"Hover Me"',
-        description: "Button content",
-      },
-      {
-        name: "strength",
-        default: "0.35",
-        description: "Magnetic strength",
-      },
-      {
-        name: "radius",
-        default: "150",
-        description: "Activation radius",
-      },
-      {
-        name: "ease",
-        default: "0.15",
-        description: "Movement smoothness",
-      },
-      {
-        name: "className",
-        default: '""',
-        description: "Custom CSS class",
-      },
+      { name: "children", type: "text", default: '"Hover Me"', description: "Button content" },
+      { name: "strength", type: "range", min: 0, max: 1, step: 0.01, default: "0.35", description: "Magnetic strength" },
+      { name: "radius", type: "range", min: 0, max: 500, step: 1, default: "150", description: "Activation radius" },
+      { name: "ease", type: "range", min: 0.01, max: 1, step: 0.01, default: "0.15", description: "Movement smoothness" },
+      { name: "className", type: "text", default: '""', description: "Custom CSS class" },
     ],
   },
 
@@ -308,46 +294,14 @@ export function FlipButtonDemo() {
     },
 
     props: [
-      {
-        name: "front",
-        default: '"Front"',
-        description: "Front text",
-      },
-      {
-        name: "back",
-        default: '"Back"',
-        description: "Back text",
-      },
-      {
-        name: "duration",
-        default: "500",
-        description: "Animation duration in ms",
-      },
-      {
-        name: "frontColor",
-        default: '"#323237"',
-        description: "Front background",
-      },
-      {
-        name: "backColor",
-        default: '"#adadaf"',
-        description: "Back background",
-      },
-      {
-        name: "textColor",
-        default: '"#adadaf"',
-        description: "Front text color",
-      },
-      {
-        name: "backTextColor",
-        default: '"#323237"',
-        description: "Back text color",
-      },
-      {
-        name: "className",
-        default: '""',
-        description: "Custom CSS class",
-      },
+      { name: "front", type: "text", default: '"Front"', description: "Front text" },
+      { name: "back", type: "text", default: '"Back"', description: "Back text" },
+      { name: "duration", type: "range", min: 100, max: 2000, step: 50, default: "500", description: "Animation duration in ms" },
+      { name: "frontColor", type: "color", default: '"#323237"', description: "Front background" },
+      { name: "backColor", type: "color", default: '"#adadaf"', description: "Back background" },
+      { name: "textColor", type: "color", default: '"#adadaf"', description: "Front text color" },
+      { name: "backTextColor", type: "color", default: '"#323237"', description: "Back text color" },
+      { name: "className", type: "text", default: '""', description: "Custom CSS class" },
     ],
   },
 
@@ -403,36 +357,12 @@ export function FillButtonDemo() {
     },
 
     props: [
-      {
-        name: "children",
-        default: '"Hover Me!"',
-        description: "Button content",
-      },
-      {
-        name: "fillColor",
-        default: '"#38146a"',
-        description: "Fill color",
-      },
-      {
-        name: "textColor",
-        default: '"#fff"',
-        description: "Default text color",
-      },
-      {
-        name: "hoverTextColor",
-        default: '"#fff"',
-        description: "Hover text color",
-      },
-      {
-        name: "duration",
-        default: "350",
-        description: "Fill duration in ms",
-      },
-      {
-        name: "className",
-        default: '""',
-        description: "Custom CSS class",
-      },
+      { name: "children", type: "text", default: '"Hover Me!"', description: "Button content" },
+      { name: "fillColor", type: "color", default: '"#38146a"', description: "Fill color" },
+      { name: "textColor", type: "color", default: '"#fff"', description: "Default text color" },
+      { name: "hoverTextColor", type: "color", default: '"#fff"', description: "Hover text color" },
+      { name: "duration", type: "range", min: 100, max: 2000, step: 50, default: "350", description: "Fill duration in ms" },
+      { name: "className", type: "text", default: '""', description: "Custom CSS class" },
     ],
   },
 
@@ -493,46 +423,14 @@ export function ThreeDButtonDemo() {
     },
 
     props: [
-      {
-        name: "front",
-        default: '"Front"',
-        description: "Front face content",
-      },
-      {
-        name: "back",
-        default: '"Back"',
-        description: "Back face content",
-      },
-      {
-        name: "duration",
-        default: "500",
-        description: "Rotation duration",
-      },
-      {
-        name: "frontColor",
-        default: '"#323237"',
-        description: "Front background",
-      },
-      {
-        name: "backColor",
-        default: '"#adadaf"',
-        description: "Back background",
-      },
-      {
-        name: "textColor",
-        default: '"#adadaf"',
-        description: "Front text color",
-      },
-      {
-        name: "backTextColor",
-        default: '"#323237"',
-        description: "Back text color",
-      },
-      {
-        name: "className",
-        default: '""',
-        description: "Custom CSS class",
-      },
+      { name: "front", type: "text", default: '"Front"', description: "Front face content" },
+      { name: "back", type: "text", default: '"Back"', description: "Back face content" },
+      { name: "duration", type: "range", min: 100, max: 2000, step: 50, default: "500", description: "Rotation duration" },
+      { name: "frontColor", type: "color", default: '"#323237"', description: "Front background" },
+      { name: "backColor", type: "color", default: '"#adadaf"', description: "Back background" },
+      { name: "textColor", type: "color", default: '"#adadaf"', description: "Front text color" },
+      { name: "backTextColor", type: "color", default: '"#323237"', description: "Back text color" },
+      { name: "className", type: "text", default: '""', description: "Custom CSS class" },
     ],
   },
 
@@ -593,51 +491,15 @@ export function SubmitButtonDemo() {
     },
 
     props: [
-      {
-        name: "idleText",
-        default: '"SUBMIT"',
-        description: "Initial text",
-      },
-      {
-        name: "loadingText",
-        default: '"SENDING..."',
-        description: "Loading label/API value",
-      },
-      {
-        name: "successText",
-        default: '"SUBMITTED"',
-        description: "Success label/API value",
-      },
-      {
-        name: "duration",
-        default: "2250",
-        description: "Loading duration",
-      },
-      {
-        name: "successDuration",
-        default: "1250",
-        description: "Success duration",
-      },
-      {
-        name: "color",
-        default: '"#1ECD97"',
-        description: "Primary color",
-      },
-      {
-        name: "loadingColor",
-        default: '"#bbbbbb"',
-        description: "Spinner color",
-      },
-      {
-        name: "successColor",
-        default: '"#471ecd"',
-        description: "Success color",
-      },
-      {
-        name: "className",
-        default: '""',
-        description: "Custom CSS class",
-      },
+      { name: "idleText", type: "text", default: '"SUBMIT"', description: "Initial text" },
+      { name: "loadingText", type: "text", default: '"SENDING..."', description: "Loading label/API value" },
+      { name: "successText", type: "text", default: '"SUBMITTED"', description: "Success label/API value" },
+      { name: "duration", type: "range", min: 500, max: 6000, step: 50, default: "2250", description: "Loading duration" },
+      { name: "successDuration", type: "range", min: 500, max: 4000, step: 50, default: "1250", description: "Success duration" },
+      { name: "color", type: "color", default: '"#1ECD97"', description: "Primary color" },
+      { name: "loadingColor", type: "color", default: '"#bbbbbb"', description: "Spinner color" },
+      { name: "successColor", type: "color", default: '"#471ecd"', description: "Success color" },
+      { name: "className", type: "text", default: '""', description: "Custom CSS class" },
     ],
   },
 
@@ -694,36 +556,12 @@ export function PositionAwareButtonDemo() {
     },
 
     props: [
-      {
-        name: "children",
-        default: '"POSITION AWARE"',
-        description: "Button content",
-      },
-      {
-        name: "fillColor",
-        default: '"#333"',
-        description: "Circular fill color",
-      },
-      {
-        name: "textColor",
-        default: '"#fff"',
-        description: "Default text color",
-      },
-      {
-        name: "hoverTextColor",
-        default: '"#fff"',
-        description: "Hover text color",
-      },
-      {
-        name: "duration",
-        default: "400",
-        description: "Fill duration in ms",
-      },
-      {
-        name: "className",
-        default: '""',
-        description: "Custom CSS class",
-      },
+      { name: "children", type: "text", default: '"POSITION AWARE"', description: "Button content" },
+      { name: "fillColor", type: "color", default: '"#333"', description: "Circular fill color" },
+      { name: "textColor", type: "color", default: '"#fff"', description: "Default text color" },
+      { name: "hoverTextColor", type: "color", default: '"#fff"', description: "Hover text color" },
+      { name: "duration", type: "range", min: 100, max: 2000, step: 50, default: "400", description: "Fill duration in ms" },
+      { name: "className", type: "text", default: '""', description: "Custom CSS class" },
     ],
   },
 
@@ -784,51 +622,15 @@ export function UploadButtonDemo() {
     },
 
     props: [
-      {
-        name: "filename",
-        default: '"File.pdf"',
-        description: "File name displayed by the button",
-      },
-      {
-        name: "buttonText",
-        default: '"Upload"',
-        description: "Initial button label",
-      },
-      {
-        name: "uploadingText",
-        default: '"Uploading..."',
-        description: "Label shown during upload",
-      },
-      {
-        name: "completedText",
-        default: '"Completed"',
-        description: "Label shown after upload completes",
-      },
-      {
-        name: "uploadDuration",
-        default: "3000",
-        description: "Upload animation duration",
-      },
-      {
-        name: "completeDuration",
-        default: "2000",
-        description: "Completion state duration",
-      },
-      {
-        name: "buttonColor",
-        default: '"#3bafda"',
-        description: "Button background color",
-      },
-      {
-        name: "progressColor",
-        default: '"#2d334c"',
-        description: "Upload progress color",
-      },
-      {
-        name: "className",
-        default: '""',
-        description: "Custom CSS class",
-      },
+      { name: "filename", type: "text", default: '"File.pdf"', description: "File name displayed by the button" },
+      { name: "buttonText", type: "text", default: '"Upload"', description: "Initial button label" },
+      { name: "uploadingText", type: "text", default: '"Uploading..."', description: "Label shown during upload" },
+      { name: "completedText", type: "text", default: '"Completed"', description: "Label shown after upload completes" },
+      { name: "uploadDuration", type: "range", min: 500, max: 8000, step: 100, default: "3000", description: "Upload animation duration" },
+      { name: "completeDuration", type: "range", min: 500, max: 5000, step: 100, default: "2000", description: "Completion state duration" },
+      { name: "buttonColor", type: "color", default: '"#3bafda"', description: "Button background color" },
+      { name: "progressColor", type: "color", default: '"#2d334c"', description: "Upload progress color" },
+      { name: "className", type: "text", default: '""', description: "Custom CSS class" },
     ],
   },
 
@@ -880,31 +682,11 @@ export function TypewriterTextDemo() {
     },
 
     props: [
-      {
-        name: "words",
-        default: "[]",
-        description: "Array of phrases to type and delete",
-      },
-      {
-        name: "typingSpeed",
-        default: "100",
-        description: "Typing speed in milliseconds",
-      },
-      {
-        name: "deletingSpeed",
-        default: "50",
-        description: "Deleting speed in milliseconds",
-      },
-      {
-        name: "pauseDuration",
-        default: "1000",
-        description: "Pause duration between phrases in milliseconds",
-      },
-      {
-        name: "className",
-        default: '""',
-        description: "Custom CSS class",
-      },
+      { name: "words", type: "array", default: "[]", description: "Array of phrases to type and delete (comma separated)" },
+      { name: "typingSpeed", type: "range", min: 20, max: 300, step: 5, default: "100", description: "Typing speed in milliseconds" },
+      { name: "deletingSpeed", type: "range", min: 10, max: 200, step: 5, default: "50", description: "Deleting speed in milliseconds" },
+      { name: "pauseDuration", type: "range", min: 200, max: 3000, step: 50, default: "1000", description: "Pause duration between phrases in milliseconds" },
+      { name: "className", type: "text", default: '""', description: "Custom CSS class" },
     ],
   },
 
@@ -952,21 +734,9 @@ export function TextScrambleDemo() {
     },
 
     props: [
-      {
-        name: "phrases",
-        default: "[]",
-        description: "Array of phrases to scramble between",
-      },
-      {
-        name: "pauseDuration",
-        default: "800",
-        description: "Pause duration between phrases in milliseconds",
-      },
-      {
-        name: "className",
-        default: '""',
-        description: "Custom CSS class",
-      },
+      { name: "phrases", type: "array", default: "[]", description: "Array of phrases to scramble between (comma separated)" },
+      { name: "pauseDuration", type: "range", min: 200, max: 3000, step: 50, default: "800", description: "Pause duration between phrases in milliseconds" },
+      { name: "className", type: "text", default: '""', description: "Custom CSS class" },
     ],
   },
 
@@ -1022,41 +792,13 @@ export function ShadowTextDemo() {
     },
 
     props: [
-      {
-        name: "children",
-        default: '"COLORS"',
-        description: "Text content",
-      },
-      {
-        name: "shadowOffset",
-        default: "100",
-        description: "Shadow offset",
-      },
-      {
-        name: "shadowOpacity",
-        default: "0.5",
-        description: "Shadow opacity",
-      },
-      {
-        name: "shadowSaturation",
-        default: "50",
-        description: "Shadow color saturation",
-      },
-      {
-        name: "shadowLightness",
-        default: "50",
-        description: "Shadow color lightness",
-      },
-      {
-        name: "smoothing",
-        default: "0.08",
-        description: "Cursor movement smoothing",
-      },
-      {
-        name: "className",
-        default: '""',
-        description: "Custom CSS class",
-      },
+      { name: "children", type: "text", default: '"COLORS"', description: "Text content" },
+      { name: "shadowOffset", type: "range", min: 0, max: 300, step: 1, default: "100", description: "Shadow offset" },
+      { name: "shadowOpacity", type: "range", min: 0, max: 1, step: 0.01, default: "0.5", description: "Shadow opacity" },
+      { name: "shadowSaturation", type: "range", min: 0, max: 100, step: 1, default: "50", description: "Shadow color saturation" },
+      { name: "shadowLightness", type: "range", min: 0, max: 100, step: 1, default: "50", description: "Shadow color lightness" },
+      { name: "smoothing", type: "range", min: 0.01, max: 1, step: 0.01, default: "0.08", description: "Cursor movement smoothing" },
+      { name: "className", type: "text", default: '""', description: "Custom CSS class" },
     ],
   },
 
@@ -1119,46 +861,14 @@ export function WaveTextDemo() {
     },
 
     props: [
-      {
-        name: "children",
-        default: '"WAVES"',
-        description: "Text content",
-      },
-      {
-        name: "colors",
-        default: '["#f24c00", "#9792e3", "#fc7a1e", "#eda96d"]',
-        description: "Colors used for the layered text effect",
-      },
-      {
-        name: "depth",
-        default: "12",
-        description: "3D layer depth",
-      },
-      {
-        name: "rotate",
-        default: "3",
-        description: "Rotation amount",
-      },
-      {
-        name: "skew",
-        default: "3",
-        description: "Skew amount",
-      },
-      {
-        name: "perspective",
-        default: "500",
-        description: "3D perspective value",
-      },
-      {
-        name: "smoothing",
-        default: "0.2",
-        description: "Cursor movement smoothing",
-      },
-      {
-        name: "className",
-        default: '""',
-        description: "Custom CSS class",
-      },
+      { name: "children", type: "text", default: '"WAVES"', description: "Text content" },
+      { name: "colors", type: "array", default: '["#f24c00", "#9792e3", "#fc7a1e", "#eda96d"]', description: "Colors used for the layered text effect (comma separated)" },
+      { name: "depth", type: "range", min: 0, max: 40, step: 1, default: "12", description: "3D layer depth" },
+      { name: "rotate", type: "range", min: 0, max: 20, step: 0.5, default: "3", description: "Rotation amount" },
+      { name: "skew", type: "range", min: 0, max: 20, step: 0.5, default: "3", description: "Skew amount" },
+      { name: "perspective", type: "range", min: 100, max: 1500, step: 10, default: "500", description: "3D perspective value" },
+      { name: "smoothing", type: "range", min: 0.01, max: 1, step: 0.01, default: "0.2", description: "Cursor movement smoothing" },
+      { name: "className", type: "text", default: '""', description: "Custom CSS class" },
     ],
   },
 
@@ -1219,46 +929,14 @@ export function MagicTextDemo() {
     },
 
     props: [
-      {
-        name: "beforeText",
-        default: `"Sometimes I'll start a line of code and I"`,
-        description: "Text displayed before the highlighted text",
-      },
-      {
-        name: "magicText",
-        default: `"don't even know"`,
-        description: "Highlighted animated text",
-      },
-      {
-        name: "afterText",
-        default: `"where it's going."`,
-        description: "Text displayed after the highlighted text",
-      },
-      {
-        name: "colors",
-        default: '["#7b1fa2", "#673ab7", "#f48fb1"]',
-        description: "Gradient colors for the magic text",
-      },
-      {
-        name: "starCount",
-        default: "3",
-        description: "Number of decorative stars",
-      },
-      {
-        name: "starInterval",
-        default: "1000",
-        description: "Interval between star appearances in milliseconds",
-      },
-      {
-        name: "starSize",
-        default: "24",
-        description: "Decorative star size",
-      },
-      {
-        name: "className",
-        default: '""',
-        description: "Custom CSS class",
-      },
+      { name: "beforeText", type: "text", default: `"Sometimes I'll start a line of code and I"`, description: "Text displayed before the highlighted text" },
+      { name: "magicText", type: "text", default: `"don't even know"`, description: "Highlighted animated text" },
+      { name: "afterText", type: "text", default: `"where it's going."`, description: "Text displayed after the highlighted text" },
+      { name: "colors", type: "array", default: '["#7b1fa2", "#673ab7", "#f48fb1"]', description: "Gradient colors for the magic text (comma separated)" },
+      { name: "starCount", type: "range", min: 0, max: 10, step: 1, default: "3", description: "Number of decorative stars" },
+      { name: "starInterval", type: "range", min: 200, max: 3000, step: 50, default: "1000", description: "Interval between star appearances in milliseconds" },
+      { name: "starSize", type: "range", min: 8, max: 60, step: 1, default: "24", description: "Decorative star size" },
+      { name: "className", type: "text", default: '""', description: "Custom CSS class" },
     ],
   },
 };

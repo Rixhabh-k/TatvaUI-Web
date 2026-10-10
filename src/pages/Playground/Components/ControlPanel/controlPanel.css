@@ -1,0 +1,187 @@
+.playground-controls {
+  width: 100%;
+  margin-bottom: 20px;
+
+  border: 1px solid #242428;
+  border-radius: 10px;
+
+  background: #111114;
+  overflow: hidden;
+}
+
+.controls-content {
+  padding: 24px;
+}
+
+.control-item {
+  padding: 18px 0;
+  border-bottom: 1px solid #242428;
+}
+
+.control-item:first-child {
+  padding-top: 0;
+}
+
+.control-item:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.control-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.control-header label {
+  font-size: 14px;
+  color: #eee;
+}
+
+.control-header span {
+  max-width: 55%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+  font-family: monospace;
+  font-size: 12px;
+  color: #777;
+}
+
+.control-item p {
+  margin: 6px 0 12px;
+
+  font-size: 12px;
+  line-height: 1.5;
+  color: #666;
+}
+
+/* -------------------- */
+/* TEXT INPUT */
+/* -------------------- */
+
+.control-item input[type="text"] {
+  width: 100%;
+  height: 38px;
+  box-sizing: border-box;
+
+  padding: 0 12px;
+
+  border: 1px solid #29292d;
+  border-radius: 6px;
+
+  outline: none;
+
+  background: #09090b;
+  color: #ddd;
+
+  font-size: 13px;
+}
+
+.control-item input[type="text"]:focus {
+  border-color: #444;
+}
+
+/* -------------------- */
+/* COLOR INPUT */
+/* -------------------- */
+
+.color-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.control-item input[type="color"] {
+  width: 48px;
+  height: 32px;
+  padding: 0;
+
+  border: 1px solid #29292d;
+  border-radius: 6px;
+
+  background: none;
+  cursor: pointer;
+}
+
+.color-row code {
+  font-family: monospace;
+  font-size: 12px;
+  color: #777;
+}
+
+/* -------------------- */
+/* RANGE INPUT */
+/* -------------------- */
+
+.control-item input[type="range"] {
+  width: 100%;
+  height: 16px;
+
+  margin: 8px 0 4px;
+  padding: 0;
+
+  background: transparent;
+  outline: none;
+  cursor: pointer;
+
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+/* Chrome / Edge / Safari */
+
+.control-item input[type="range"]::-webkit-slider-runnable-track {
+  height: 6px;
+  border-radius: 999px;
+
+  background: linear-gradient(
+    to right,
+    #1683ff 0%,
+    #1683ff var(--progress, 0%),
+    #3a3a40 var(--progress, 0%),
+    #3a3a40 100%
+  );
+}
+
+.control-item input[type="range"]::-webkit-slider-thumb {
+  width: 16px;
+  height: 16px;
+  margin-top: -5px;
+
+  border: none;
+  border-radius: 50%;
+
+  background: #1683ff;
+  cursor: pointer;
+
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+/* Firefox */
+
+.control-item input[type="range"]::-moz-range-track {
+  height: 6px;
+  border-radius: 999px;
+  background: #3a3a40;
+}
+
+.control-item input[type="range"]::-moz-range-progress {
+  height: 6px;
+  border-radius: 999px;
+  background: #1683ff;
+}
+
+.control-item input[type="range"]::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+
+  border: none;
+  border-radius: 50%;
+
+  background: #1683ff;
+  cursor: pointer;
+}

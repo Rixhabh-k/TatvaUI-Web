@@ -1,0 +1,149 @@
+.playground {
+  scrollbar-width: none;
+}
+
+.playground::-webkit-scrollbar {
+  display: none;
+}
+
+.playground {
+  width: 100%;
+  min-height: 100vh;
+  padding: 40px;
+  background: #0d0d0f;
+  color: #f5f5f5;
+}
+
+/* =========================
+   ELEMENT INFO
+========================= */
+
+.element-info {
+  margin-bottom: 40px;
+}
+
+.element-info h1 {
+  margin: 0;
+
+  font-size: 42px;
+  font-weight: 500;
+  line-height: 1.1;
+  letter-spacing: -1.5px;
+}
+
+.element-info p {
+  margin: 12px 0 0;
+
+  max-width: 650px;
+
+  color: #858585;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+
+/* =========================
+   COMMON SECTION
+========================= */
+
+.playground-preview,
+.playground-controls,
+.playground-code {
+  width: 100%;
+  margin-bottom: 20px;
+
+  border: 1px solid #242428;
+  border-radius: 10px;
+
+  background: #111114;
+  overflow: hidden;
+}
+
+.playground-section-top {
+  height: 48px;
+
+  display: flex;
+  align-items: center;
+
+  padding: 0 18px;
+
+  border-bottom: 1px solid #242428;
+
+  font-size: 13px;
+  color: #aaa;
+}
+
+
+/* =========================
+   PREVIEW
+========================= */
+
+/* Preview */
+
+.preview-stage {
+  min-height: 420px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 50px;
+
+  background: #000;
+}
+
+
+/* =========================
+   CONTROLS
+========================= */
+
+.controls-content {
+  min-height: 250px;
+
+  padding: 25px;
+
+  color: #777;
+  font-size: 13px;
+}
+
+
+/* =========================
+   CODE
+========================= */
+
+.playground-code pre {
+  margin: 0;
+  padding: 25px;
+
+  overflow-x: auto;
+
+  background: #0a0a0c;
+}
+
+.playground-code code {
+  font-family: monospace;
+  font-size: 13px;
+  line-height: 1.7;
+
+  color: #bdbdbd;
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 768px) {
+  .playground {
+    padding: 25px 18px;
+  }
+
+  .element-info h1 {
+    font-size: 32px;
+  }
+
+  .preview-stage {
+    min-height: 300px;
+    padding: 30px 20px;
+  }
+}

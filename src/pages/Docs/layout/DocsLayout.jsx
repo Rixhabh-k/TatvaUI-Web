@@ -1,26 +1,29 @@
 import React, { useState } from "react";
-import { Outlet } from "react-router";
+import { Outlet, useLocation } from "react-router";
 import Navbar from "../Navbar/Navbar";
 import DocsSidebar from "../Sidebar/DocsSidebar";
 import "./docslayout.css";
 import MobileTopBar from "../MobileTopBar/MobileTopBar";
+import Playground from "../../Playground/Playground";
 
 const DocsLayout = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const location = useLocation();
+
+  const isPlayground = location.pathname === "/playground";
+
   return (
     <div className="docs-main">
-      {/* Desktop Navbar */}
       <Navbar setIsMenuOpen={setIsMenuOpen} />
 
-      {/* Mobile Top Bar */}
       {isMenuOpen && <MobileTopBar setIsMenuOpen={setIsMenuOpen} />}
 
       <hr />
 
       <section className="docs-layout-section">
-        <DocsSidebar/>
+        <DocsSidebar />
 
-        <Outlet />
+        {isPlayground ? <Playground /> : <Outlet />}
       </section>
     </div>
   );
