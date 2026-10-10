@@ -23,6 +23,17 @@ const toHex6 = (value) => {
   return "#000000";
 };
 
+const isHexColor = (v) =>
+  typeof v === "string" && /^#([0-9a-f]{3}|[0-9a-f]{6})$/i.test(v.trim());
+
+// array prop ko "colors list" treat karna hai ya nahi
+const isColorArray = (prop, value) => {
+  if (prop.type !== "array") return false;
+  if (prop.itemType === "color") return true;
+  if (/colou?rs?$/i.test(prop.name || "")) return true;
+  return Array.isArray(value) && value.length > 0 && value.every(isHexColor);
+};
+
 const ArrayInput = ({ value, onChange }) => {
   const [text, setText] = useState(
     Array.isArray(value) ? value.join(", ") : ""
@@ -47,8 +58,7 @@ const ArrayInput = ({ value, onChange }) => {
   );
 };
 
-
-/* ---------- Color picker helpers ---------- */
+/* ---------- Color helpers ---------- */
 const PRESETS = [
   "#a855f7", "#7c3aed", "#6366f1", "#3b82f6", "#06b6d4", "#10b981", "#84cc16",
   "#eab308", "#f97316", "#ef4444", "#ec4899", "#f43f5e", "#ffffff", "#94a3b8",
@@ -124,52 +134,91 @@ const dragHandlers = (onMove) => {
   };
 };
 
-const ColorField = ({ name, description, value, onChange }) => {
+/* ---------- Editable hex input ---------- */
+const HexInput = ({ value, onCommit, className = "", label }) => {
   const hex = toHex6(value);
-  const [open, setOpen] = useState(false);
-  const [hsv, setHsv] = useState(() => hexToHsv(hex));
-  const rootRef = useRef(null);
-  const triggerRef = useRef(null);
-  const popRef = useRef(null);
-  const [pos, setPos] = useState({ top: -9999, left: -9999 });
+  const [text, setText] = useState(hex);
+  const [focused, setFocused] = useState(false);
 
-  // hex input (haath se likhne ke liye)
-  const [hexText, setHexText] = useState(hex);
-  const [hexFocused, setHexFocused] = useState(false);
-
-  const parseHex = (text, allowShort) => {
-    let t = text.trim();
+  const parseHex = (raw, allowShort) => {
+    let t = raw.trim();
     if (!t.startsWith("#")) t = "#" + t;
     if (/^#[0-9a-f]{6}$/i.test(t)) return t.toLowerCase();
     if (allowShort && /^#[0-9a-f]{3}$/i.test(t)) return toHex6(t).toLowerCase();
     return null;
   };
 
-  const hexInvalid = !/^#?[0-9a-f]{0,6}$/i.test(hexText.trim());
+  const invalid = !/^#?[0-9a-f]{0,6}$/i.test(text.trim());
 
-  const commitHex = () => {
-    const parsed = parseHex(hexText, true);
+  const commit = () => {
+    const parsed = parseHex(text, true);
     if (parsed) {
-      if (parsed !== hex.toLowerCase()) onChange(parsed);
-      setHexText(parsed);
+      if (parsed !== hex.toLowerCase()) onCommit(parsed);
+      setText(parsed);
     } else {
-      setHexText(hex); // galat input ho to purana color wapas
+      setText(hex); // galat input ho to purana color wapas
     }
   };
 
-  // picker / reset se color badle to input text bhi badle (typing ke time nahi)
+  // bahar se color badle (picker / reset) to text bhi badle, typing ke time nahi
   useEffect(() => {
-    if (!hexFocused) setHexText(hex);
-  }, [hex, hexFocused]);
+    if (!focused) setText(hex);
+  }, [hex, focused]);
 
-  // popover ko viewport ke hisaab se place karo (fixed + portal, taaki
-  // koi parent overflow:hidden usse cut na kar sake)
+  return (
+    <input
+      className={`control-hex-input ${invalid ? "invalid" : ""} ${className}`}
+      type="text"
+      value={text}
+      maxLength={7}
+      spellCheck={false}
+      autoComplete="off"
+      aria-label={label}
+      onFocus={(e) => {
+        setFocused(true);
+        e.target.select();
+      }}
+      onBlur={() => {
+        setFocused(false);
+        commit();
+      }}
+      onChange={(e) => {
+        const next = e.target.value;
+        setText(next);
+        const parsed = parseHex(next, false); // 6 digit hote hi live apply
+        if (parsed && parsed !== hex.toLowerCase()) onCommit(parsed);
+      }}
+      onKeyDown={(e) => {
+        if (e.key === "Enter") e.currentTarget.blur();
+        if (e.key === "Escape") {
+          setText(hex);
+          e.currentTarget.blur();
+        }
+      }}
+    />
+  );
+};
+
+/* ---------- Picker popover (portal + fixed) ---------- */
+const ColorPopover = ({
+  anchorEl,
+  value,
+  onChange,
+  onClose,
+  label,
+  showHex = false,
+  onRemove,
+}) => {
+  const hex = toHex6(value);
+  const [hsv, setHsv] = useState(() => hexToHsv(hex));
+  const [pos, setPos] = useState({ top: -9999, left: -9999 });
+  const popRef = useRef(null);
+
   const place = () => {
-    const trigger = triggerRef.current;
     const pop = popRef.current;
-    if (!trigger || !pop) return;
+    if (!anchorEl || !pop) return;
 
-    const r = trigger.getBoundingClientRect();
+    const r = anchorEl.getBoundingClientRect();
     const w = pop.offsetWidth;
     const h = pop.offsetHeight;
     const gap = 8;
@@ -179,7 +228,6 @@ const ColorField = ({ name, description, value, onChange }) => {
     left = Math.max(edge, Math.min(left, window.innerWidth - w - edge));
 
     let top = r.bottom + gap;
-    // neeche jagah kam ho aur upar zyada ho to upar kholo
     if (top + h > window.innerHeight - edge && r.top - gap - h >= edge) {
       top = r.top - gap - h;
     }
@@ -189,20 +237,21 @@ const ColorField = ({ name, description, value, onChange }) => {
   };
 
   useLayoutEffect(() => {
-    if (open) place();
-  }, [open]);
+    place();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [anchorEl]);
 
   useEffect(() => {
-    if (!open) return undefined;
     window.addEventListener("resize", place);
     window.addEventListener("scroll", place, true);
     return () => {
       window.removeEventListener("resize", place);
       window.removeEventListener("scroll", place, true);
     };
-  }, [open]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [anchorEl]);
 
-  // value bahar se change ho (reset etc.) to picker sync ho jaye
+  // value bahar se badle to picker sync ho
   useEffect(() => {
     if (hsvToHex(hsv).toLowerCase() !== hex.toLowerCase()) {
       setHsv(hexToHsv(hex));
@@ -212,16 +261,14 @@ const ColorField = ({ name, description, value, onChange }) => {
 
   // bahar click ya Escape pe band
   useEffect(() => {
-    if (!open) return undefined;
-
     const onDown = (e) => {
       const inside =
-        (rootRef.current && rootRef.current.contains(e.target)) ||
-        (popRef.current && popRef.current.contains(e.target));
-      if (!inside) setOpen(false);
+        (popRef.current && popRef.current.contains(e.target)) ||
+        (anchorEl && anchorEl.contains(e.target));
+      if (!inside) onClose();
     };
     const onKey = (e) => {
-      if (e.key === "Escape") setOpen(false);
+      if (e.key === "Escape") onClose();
     };
 
     document.addEventListener("pointerdown", onDown);
@@ -230,7 +277,8 @@ const ColorField = ({ name, description, value, onChange }) => {
       document.removeEventListener("pointerdown", onDown);
       document.removeEventListener("keydown", onKey);
     };
-  }, [open]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [anchorEl]);
 
   const update = (next) => {
     setHsv(next);
@@ -242,104 +290,182 @@ const ColorField = ({ name, description, value, onChange }) => {
     onChange(color);
   };
 
+  return createPortal(
+    <div
+      ref={popRef}
+      className="cp-popover"
+      style={{ top: pos.top, left: pos.left }}
+      role="dialog"
+      aria-label={`${label} picker`}
+    >
+      {/* Saturation / brightness */}
+      <div
+        className="cp-sv"
+        style={{ "--hue": `hsl(${hsv.h}, 100%, 50%)` }}
+        {...dragHandlers((x, y) => update({ ...hsv, s: x, v: 1 - y }))}
+      >
+        <span
+          className="cp-sv-handle"
+          style={{ left: `${hsv.s * 100}%`, top: `${(1 - hsv.v) * 100}%` }}
+        />
+      </div>
+
+      {/* Hue */}
+      <div
+        className="cp-hue"
+        {...dragHandlers((x) => update({ ...hsv, h: x * 360 }))}
+      >
+        <span
+          className="cp-hue-handle"
+          style={{ left: `${(hsv.h / 360) * 100}%` }}
+        />
+      </div>
+
+      {/* Presets */}
+      <div className="cp-presets">
+        {PRESETS.map((color) => (
+          <button
+            key={color}
+            type="button"
+            className={`cp-preset ${
+              color.toLowerCase() === hex.toLowerCase() ? "active" : ""
+            }`}
+            style={{ background: color }}
+            onClick={() => pickPreset(color)}
+            aria-label={color}
+          />
+        ))}
+      </div>
+
+      {/* Hex + remove (multi-color list ke liye) */}
+      {(showHex || onRemove) && (
+        <div className="cp-hex-row">
+          <HexInput
+            value={hex}
+            onCommit={(c) => {
+              setHsv(hexToHsv(c));
+              onChange(c);
+            }}
+            label={`${label} hex code`}
+          />
+          {onRemove && (
+            <button type="button" className="cp-remove" onClick={onRemove}>
+              Remove
+            </button>
+          )}
+        </div>
+      )}
+    </div>,
+    document.body
+  );
+};
+
+/* ---------- Single color ---------- */
+const ColorField = ({ name, description, value, onChange }) => {
+  const hex = toHex6(value);
+  const [anchor, setAnchor] = useState(null);
+
   return (
     <div
-      ref={rootRef}
-      className={`control-item control-color-item ${open ? "is-open" : ""}`}
+      className={`control-item control-color-item ${anchor ? "is-open" : ""}`}
       title={description || undefined}
     >
       <span className="control-name">{name}</span>
 
-      <div className="control-color" ref={triggerRef}>
+      <div className="control-color">
         <button
           type="button"
           className="color-swatch"
           style={{ background: hex }}
-          onClick={() => setOpen((o) => !o)}
-          aria-expanded={open}
+          onClick={(e) => {
+            const el = e.currentTarget;
+            setAnchor((a) => (a === el ? null : el));
+          }}
+          aria-expanded={Boolean(anchor)}
           aria-label={`${name} color picker`}
         />
-        <input
-          className={`control-hex-input ${hexInvalid ? "invalid" : ""}`}
-          type="text"
-          value={hexText}
-          maxLength={7}
-          spellCheck={false}
-          autoComplete="off"
-          aria-label={`${name} hex code`}
-          onFocus={(e) => {
-            setHexFocused(true);
-            e.target.select();
-          }}
-          onBlur={() => {
-            setHexFocused(false);
-            commitHex();
-          }}
-          onChange={(e) => {
-            const text = e.target.value;
-            setHexText(text);
-            const parsed = parseHex(text, false); // 6 digit hote hi live apply
-            if (parsed && parsed !== hex.toLowerCase()) onChange(parsed);
-          }}
-          onKeyDown={(e) => {
-            if (e.key === "Enter") e.currentTarget.blur();
-            if (e.key === "Escape") {
-              setHexText(hex);
-              e.currentTarget.blur();
-            }
-          }}
-        />
+        <HexInput value={hex} onCommit={onChange} label={`${name} hex code`} />
       </div>
 
-      {open &&
-        createPortal(
-        <div
-          ref={popRef}
-          className="cp-popover"
-          style={{ top: pos.top, left: pos.left }}
-          role="dialog"
-          aria-label={`${name} picker`}
+      {anchor && (
+        <ColorPopover
+          anchorEl={anchor}
+          value={hex}
+          onChange={onChange}
+          onClose={() => setAnchor(null)}
+          label={name}
+        />
+      )}
+    </div>
+  );
+};
+
+/* ---------- Multiple colors (array of hex) ---------- */
+const ColorListField = ({ name, description, value, onChange }) => {
+  const colors = Array.isArray(value) ? value : [];
+  const [active, setActive] = useState(null); // { index, el }
+
+  const setAt = (index, color) => {
+    const next = colors.slice();
+    next[index] = color;
+    onChange(next);
+  };
+
+  const add = () => {
+    const last = colors.length ? toHex6(colors[colors.length - 1]) : "#ffffff";
+    onChange([...colors, last]);
+  };
+
+  const remove = (index) => {
+    onChange(colors.filter((_, i) => i !== index));
+    setActive(null);
+  };
+
+  return (
+    <div
+      className={`control-item control-colors-item ${active ? "is-open" : ""}`}
+      title={description || undefined}
+    >
+      <span className="control-name">{name}</span>
+
+      <div className="color-list">
+        {colors.map((c, i) => (
+          <button
+            key={i}
+            type="button"
+            className={`color-swatch ${active && active.index === i ? "selected" : ""}`}
+            style={{ background: toHex6(c) }}
+            title={toHex6(c)}
+            onClick={(e) => {
+              const el = e.currentTarget;
+              setActive((a) => (a && a.index === i ? null : { index: i, el }));
+            }}
+            aria-label={`${name} ${i + 1}: ${toHex6(c)}`}
+          />
+        ))}
+
+        <button
+          type="button"
+          className="color-add"
+          onClick={add}
+          aria-label={`Add ${name}`}
+          title="Add color"
         >
-          {/* Saturation / brightness */}
-          <div
-            className="cp-sv"
-            style={{ "--hue": `hsl(${hsv.h}, 100%, 50%)` }}
-            {...dragHandlers((x, y) => update({ ...hsv, s: x, v: 1 - y }))}
-          >
-            <span
-              className="cp-sv-handle"
-              style={{ left: `${hsv.s * 100}%`, top: `${(1 - hsv.v) * 100}%` }}
-            />
-          </div>
+          +
+        </button>
+      </div>
 
-          {/* Hue */}
-          <div
-            className="cp-hue"
-            {...dragHandlers((x) => update({ ...hsv, h: x * 360 }))}
-          >
-            <span
-              className="cp-hue-handle"
-              style={{ left: `${(hsv.h / 360) * 100}%` }}
-            />
-          </div>
-
-          {/* Presets */}
-          <div className="cp-presets">
-            {PRESETS.map((color) => (
-              <button
-                key={color}
-                type="button"
-                className={`cp-preset ${
-                  color.toLowerCase() === hex.toLowerCase() ? "active" : ""
-                }`}
-                style={{ background: color }}
-                onClick={() => pickPreset(color)}
-                aria-label={color}
-              />
-            ))}
-          </div>
-        </div>,
-        document.body
+      {active && colors[active.index] !== undefined && (
+        <ColorPopover
+          key={active.index}
+          anchorEl={active.el}
+          value={colors[active.index]}
+          onChange={(c) => setAt(active.index, c)}
+          onClose={() => setActive(null)}
+          label={`${name} ${active.index + 1}`}
+          showHex
+          onRemove={colors.length > 1 ? () => remove(active.index) : undefined}
+        />
       )}
     </div>
   );
@@ -481,6 +607,19 @@ const ControlPanel = ({
           if (type === "color") {
             return (
               <ColorField
+                key={prop.name}
+                name={prop.name}
+                description={prop.description}
+                value={value}
+                onChange={(v) => onChange(prop.name, v)}
+              />
+            );
+          }
+
+          /* ---------- Array of colors ---------- */
+          if (isColorArray(prop, value)) {
+            return (
+              <ColorListField
                 key={prop.name}
                 name={prop.name}
                 description={prop.description}
