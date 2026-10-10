@@ -22,32 +22,29 @@ const Footer = () => {
 
             <div className="footer-socials">
               <a
-                href="https://github.com"
+                href="https://github.com/Rixhabh-k/TatvaUI-Web"
                 target="_blank"
                 rel="noreferrer"
                 aria-label="GitHub"
-                className="footer-social-link"
-              >
+                className="footer-social-link">
                 GH
               </a>
 
               <a
-                href="https://x.com"
+                href="#"
                 target="_blank"
                 rel="noreferrer"
                 aria-label="X"
-                className="footer-social-link"
-              >
+                className="footer-social-link">
                 X
               </a>
 
               <a
-                href="https://discord.com"
+                href="#"
                 target="_blank"
                 rel="noreferrer"
                 aria-label="Discord"
-                className="footer-social-link"
-              >
+                className="footer-social-link">
                 DC
               </a>
             </div>
@@ -55,22 +52,26 @@ const Footer = () => {
 
           <div className="footer-column">
             <h3>PRODUCT</h3>
-            <Link to="/docs/installation" className="desktop-docs">Components</Link>
-            <Link to="/docs" className="mobile-docs">Components</Link>
+            <Link to="/docs/installation" className="desktop-docs">
+              Components
+            </Link>
+            <Link to="/docs" className="mobile-docs">
+              Components
+            </Link>
             <a href="#">Composer</a>
           </div>
 
           <div className="footer-column">
             <h3>CONTRIBUTERS</h3>
-            <a href="https://github.com">Rishabh</a>
-            <a href="https://github.com">Pratyush</a>
-            <a href="https://github.com">Abhinav</a>
+            <a href="#">Rishabh</a>
+            <a href="#">Pratyush</a>
+            <a href="#">Abhinav</a>
           </div>
 
           <div className="footer-column">
             <h3>COMPANY</h3>
-            <Link to="/about">About</Link>
-            <Link to="/contact">Contact</Link>
+            <Link to="#">About</Link>
+            <Link to="#">Contact</Link>
           </div>
 
           <div className="footer-column">
@@ -93,8 +94,7 @@ const Footer = () => {
                 top: 0,
                 behavior: "smooth",
               })
-            }
-          >
+            }>
             Back to top
           </button>
         </div>
