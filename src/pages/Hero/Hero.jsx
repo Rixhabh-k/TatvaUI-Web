@@ -12,7 +12,7 @@ import "./hero.css";
 
 import DotField from "../../effects/Dot Field/DotField";
 
-import AccordionFooter from "../../effects/AccordionFooter/AccordionFooter";
+import Footer from "../../effects/Footer/Footer";
 
 const Hero = () => {
   const getStartedRef = useRef(null);
@@ -60,80 +60,81 @@ const Hero = () => {
   }, []);
 
   return (
-    <section className="hero-section">
-      <div className="hero-background">
-        <DotField
-          dotRadius={1.5}
-          dotSpacing={14}
-          bulgeStrength={67}
-          glowRadius={0}
-          sparkle
-          waveAmplitude={0}
-          gradientFrom="#8300ff"
-          gradientTo="#4000ff"
-        />
-      </div>
+    <>
+      <section className="hero-section">
+        <div className="hero-background">
+          <DotField
+            dotRadius={1.5}
+            dotSpacing={14}
+            bulgeStrength={67}
+            glowRadius={0}
+            sparkle
+            waveAmplitude={0}
+            gradientFrom="#8300ff"
+            gradientTo="#4000ff"
+          />
+        </div>
 
-      <div className="hero-content">
-        <Navbar />
+        <div className="hero-content">
+          <Navbar />
 
-        <div className="hero-main-content">
-          <div className="hero-heading">
-            <h1>Craft your UI with</h1>
+          <div className="hero-main-content">
+            <div className="hero-heading">
+              <h1>Craft your UI with</h1>
 
-            <div className="scramble-wrapper">
-              <TextScramble
-                phrases={["ease.", "motion.", "detail.", "feeling."]}
-                pauseDuration={2000}
-                className="heading-scramble"
-              />
+              <div className="scramble-wrapper">
+                <TextScramble
+                  phrases={["ease.", "motion.", "detail.", "feeling."]}
+                  pauseDuration={2000}
+                  className="heading-scramble"
+                />
+              </div>
+            </div>
+
+            <div className="hero-para">
+              <p>
+                Breathe life into your website with beautifully designed
+                animated components, a collection of stunning motion components
+                designed to captivate.
+              </p>
+            </div>
+
+            <div className="hero-buttons">
+              {/* Desktop */}
+              <Link
+                ref={getStartedRef}
+                to="/docs/installation"
+                className="hero-btn desktop-get-started"
+                data-radius="14">
+                <span>Get Started</span>
+                <span className="arrow">→</span>
+              </Link>
+
+              {/* Mobile */}
+              <Link
+                to="/docs"
+                className="hero-btn mobile-get-started"
+                data-radius="14">
+                <span>Get Started</span>
+                <span className="arrow">→</span>
+              </Link>
+
+              <a
+                ref={githubRef}
+                href="https://github.com/Rixhabh-k/TatvaUI-Web"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hero-btn"
+                data-radius="14">
+                <FaGithub />
+                <span>GitHub</span>
+              </a>
             </div>
           </div>
-
-          <div className="hero-para">
-            <p>
-              Breathe life into your website with beautifully designed animated
-              components, a collection of stunning motion components designed to
-              captivate.
-            </p>
-          </div>
-
-          <div className="hero-buttons">
-            {/* Desktop */}
-            <Link
-              ref={getStartedRef}
-              to="/docs/installation"
-              className="hero-btn desktop-get-started"
-              data-radius="14">
-              <span>Get Started</span>
-              <span className="arrow">→</span>
-            </Link>
-
-            {/* Mobile */}
-            <Link
-              to="/docs"
-              className="hero-btn mobile-get-started"
-              data-radius="14">
-              <span>Get Started</span>
-              <span className="arrow">→</span>
-            </Link>
-
-            <a
-              ref={githubRef}
-              href="https://github.com/Rixhabh-k/TatvaUI-Web"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hero-btn"
-              data-radius="14">
-              <FaGithub />
-              <span>GitHub</span>
-            </a>
-          </div>
         </div>
-      </div>
-
-      <AccordionFooter />
-    </section>
+      </section>
+      <Footer />
+    </>
   );
 };
 
