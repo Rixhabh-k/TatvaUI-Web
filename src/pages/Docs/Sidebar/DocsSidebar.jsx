@@ -108,7 +108,8 @@ export default function DocsSidebar() {
                 type="button"
                 className="sidebar-section-header"
                 onClick={() => toggleSection(section.title)}
-                aria-expanded={isOpen}>
+                aria-expanded={isOpen}
+              >
                 <span className="header-left">
                   <Icon size={19} strokeWidth={1.8} />
                   <span>{section.title}</span>
@@ -127,11 +128,22 @@ export default function DocsSidebar() {
                     <button
                       key={item.slug}
                       className={`sidebar-item ${
-                        location.pathname === `/docs/${item.slug}`
+                        location.pathname === `/docs/${item.slug}` ||
+                        location.pathname === `/playground/${item.slug}`
                           ? "active"
                           : ""
                       }`}
-                      onClick={() => navigate(`/docs/${item.slug}`)}>
+                      onClick={() => {
+                        const isPlayground =
+                          location.pathname.startsWith("/playground");
+
+                        navigate(
+                          isPlayground
+                            ? `/playground/${item.slug}`
+                            : `/docs/${item.slug}`,
+                        );
+                      }}
+                    >
                       {item.label}
                     </button>
                   ))}

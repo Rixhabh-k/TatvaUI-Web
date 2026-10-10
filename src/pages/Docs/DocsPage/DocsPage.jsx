@@ -1,5 +1,5 @@
 import React from "react";
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import docs from "../../../data/doc.js";
 import "./docsPage.css";
 import DocsCodeBlock from "../docs code component/DocsCodeBlock.jsx";
@@ -7,6 +7,8 @@ import Installation from "../installation Tab/Installation.jsx";
 
 const DocsPage = () => {
   const { slug } = useParams();
+  const navigate = useNavigate();
+
   const doc = docs[slug];
 
   if (!doc) {
@@ -27,9 +29,21 @@ const DocsPage = () => {
       </div>
 
       {Preview && (
-        <section className="component-preview">
-          <Preview {...doc.previewProps} />
-        </section>
+        <div className="component-preview-wrapper">
+          <section className="component-preview">
+            <Preview {...doc.previewProps} />
+          </section>
+
+          <div className="preview-playground-action">
+            <button
+              type="button"
+              onClick={() => navigate(`/playground/${slug}`)}
+            >
+              Open Playground
+              <span>→</span>
+            </button>
+          </div>
+        </div>
       )}
 
       <Installation />

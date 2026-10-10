@@ -1,0 +1,84 @@
+.configured-code {
+  width: 100%;
+  margin-bottom: 20px;
+
+  border: 1px solid #242428;
+  border-radius: 6px;
+
+  background: #050505;
+  overflow: hidden;
+}
+
+/* HEADER */
+
+.configured-code-header {
+  height: 48px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 0 18px;
+
+  border-bottom: 1px solid #242428;
+
+  background: #111114;
+}
+
+.code-language {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+
+  font-size: 12px;
+  font-weight: 500;
+
+  color: #ddd;
+}
+
+.code-dot {
+  width: 8px;
+  height: 8px;
+
+  border-radius: 50%;
+
+  background: #00d084;
+}
+
+.copy-code {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 28px;
+  height: 28px;
+
+  padding: 0;
+
+  border: none;
+  border-radius: 5px;
+
+  background: transparent;
+  color: #777;
+
+  cursor: pointer;
+
+  font-size: 15px;
+}
+
+.copy-code:hover {
+  background: #1a1a1d;
+  color: #ccc;
+}
+
+/* CODE EDITOR */
+
+.configured-code-editor {
+  width: 100%;
+
+  overflow-x: auto;
+}
+
+.configured-code-editor pre {
+  margin: 0 !important;
+}

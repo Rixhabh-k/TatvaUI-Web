@@ -35,15 +35,31 @@ const ArrayInput = ({ value, onChange }) => {
   );
 };
 
-const ControlPanel = ({ props = [], values = {}, onChange }) => {
+
+
+const ControlPanel = ({ props = [], values = {}, onChange , onReset}) => {
+
+  
+  
   return (
     <section className="playground-controls">
       <div className="playground-section-top">
-        <span>Controls</span>
-      </div>
+  <span>Controls</span>
+
+  <button
+    className="reset-controls"
+    onClick={onReset}
+    type="button"
+  >
+    Reset
+  </button>
+</div>
 
       <div className="controls-content">
         {props.map((prop) => {
+          if (prop.name === "className") return null;
+
+
           const value = values[prop.name];
 
           const label = Array.isArray(value)

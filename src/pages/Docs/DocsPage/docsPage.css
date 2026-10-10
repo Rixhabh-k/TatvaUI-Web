@@ -178,6 +178,56 @@
   height: 16px;
 }
 
+.component-preview-wrapper {
+  width: 100%;
+}
+
+.preview-playground-action {
+  display: flex;
+  justify-content: flex-end;
+
+  margin-top: 10px;
+}
+
+.preview-playground-action button {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+
+  padding: 7px 12px;
+
+  border: 1px solid #27272a;
+  border-radius: 6px;
+
+  background: #111113;
+  color: #aaa;
+
+  font-size: 12px;
+  font-weight: 500;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.preview-playground-action button span {
+  font-size: 14px;
+  transition: transform 0.2s ease;
+}
+
+.preview-playground-action button:hover {
+  background: #18181b;
+  border-color: #3f3f46;
+  color: #fff;
+}
+
+.preview-playground-action button:hover span {
+  transform: translateX(3px);
+}
+
 
 /* ========================================
    CODE CONTENT

@@ -58,6 +58,34 @@
   color: #666;
 }
 
+.playground-section-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.reset-controls {
+  padding: 5px 10px;
+
+  border: 1px solid #29292d;
+  border-radius: 5px;
+
+  background: transparent;
+  color: #888;
+
+  font-size: 11px;
+
+  cursor: pointer;
+
+  transition: 0.2s ease;
+}
+
+.reset-controls:hover {
+  border-color: #444;
+  color: #eee;
+  background: #18181b;
+}
+
 /* -------------------- */
 /* TEXT INPUT */
 /* -------------------- */
@@ -136,14 +164,7 @@
 .control-item input[type="range"]::-webkit-slider-runnable-track {
   height: 6px;
   border-radius: 999px;
-
-  background: linear-gradient(
-    to right,
-    #1683ff 0%,
-    #1683ff var(--progress, 0%),
-    #3a3a40 var(--progress, 0%),
-    #3a3a40 100%
-  );
+  background: #3a3a40;
 }
 
 .control-item input[type="range"]::-webkit-slider-thumb {
@@ -154,7 +175,7 @@
   border: none;
   border-radius: 50%;
 
-  background: #1683ff;
+  background: #000;
   cursor: pointer;
 
   appearance: none;
@@ -170,9 +191,7 @@
 }
 
 .control-item input[type="range"]::-moz-range-progress {
-  height: 6px;
-  border-radius: 999px;
-  background: #1683ff;
+  background: #3a3a40;
 }
 
 .control-item input[type="range"]::-moz-range-thumb {
@@ -182,6 +201,6 @@
   border: none;
   border-radius: 50%;
 
-  background: #1683ff;
+  background: #000;
   cursor: pointer;
 }
