@@ -2944,6 +2944,7 @@ export function NeoBrutalismDemo() {
       title: "Beyond Reality",
       description: "Where dreams take shape",
       width: "100%",
+      minWidth: 400,
       maxWidth: 400,
       height: 500,
       borderRadius: 28,
