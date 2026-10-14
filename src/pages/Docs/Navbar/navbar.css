@@ -1,0 +1,640 @@
+/* ========================================
+   DOCS NAVBAR
+======================================== */
+
+.docs-navbar {
+  width: 100%;
+  height: 72px;
+
+  background: #050505;
+  border-bottom: 1px solid #1c1c1c;
+
+  color: #ffffff;
+
+  position: relative;
+  z-index: 100;
+
+  font-family: "gothic";
+}
+
+.docs-navbar-container {
+  width: 100%;
+  height: 100%;
+
+  padding: 0 32px;
+
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+
+.docs-search-no-results {
+  padding: 30px 10px;
+  text-align: center;
+  color: #777;
+  font-size: 13px;
+}
+
+/* ========================================
+   LOGO
+======================================== */
+
+.docs-navbar-logo {
+  display: flex;
+  align-items: center;
+
+  flex-shrink: 0;
+
+  text-decoration: none;
+}
+
+.docs-navbar-logo-image {
+  height: 32px;
+  width: auto;
+
+  display: block;
+}
+.docs-logo-text{
+  color: white;
+  font-size: 1.5rem;
+}
+
+/* ========================================
+   SEARCH
+======================================== */
+
+.docs-navbar-search {
+  height: 38px;
+  width: min(260px, 28vw);
+
+  margin-left: auto;
+
+  display: flex;
+  align-items: center;
+
+  padding: 0 9px;
+
+  background: #0a0a0a;
+  border: 1px solid #242424;
+  border-radius: 6px;
+
+  color: #8b8b8b;
+
+  box-sizing: border-box;
+}
+
+.docs-navbar-search-icon {
+  width: 16px;
+  height: 16px;
+
+  flex-shrink: 0;
+}
+
+.docs-navbar-search input {
+  width: 100%;
+  min-width: 0;
+
+  margin-left: 9px;
+
+  background: transparent;
+  border: none;
+  outline: none;
+
+  color: #ffffff;
+
+  font-size: 13px;
+  font-family: inherit;
+}
+
+.docs-navbar-search input::placeholder {
+  color: #858585;
+}
+
+.docs-navbar-search-shortcut {
+  height: 25px;
+
+  padding: 0 6px;
+
+  display: flex;
+  align-items: center;
+  gap: 3px;
+
+  border: 1px solid #292929;
+  border-radius: 5px;
+
+  color: #888888;
+
+  font-size: 11px;
+
+  flex-shrink: 0;
+}
+
+.docs-navbar-search-shortcut span:first-child {
+  font-size: 13px;
+}
+
+
+/* ========================================
+   NAVIGATION LINKS
+======================================== */
+
+.docs-navbar-links {
+  display: flex;
+  align-items: center;
+
+  gap: 30px;
+
+  flex-shrink: 0;
+}
+
+.docs-navbar-link {
+  color: #b8b8b8;
+
+  text-decoration: none;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  transition: color 0.2s ease;
+}
+
+.docs-navbar-link:hover {
+  color: #ffffff;
+}
+
+
+/* ========================================
+   GITHUB
+======================================== */
+
+.docs-navbar-github {
+  height: 34px;
+
+  padding: 0 10px;
+
+  display: flex;
+  align-items: center;
+  gap: 7px;
+
+  color: #a0a0a0;
+
+  text-decoration: none;
+
+  border: 1px solid #202020;
+  border-radius: 18px;
+
+  font-size: 12px;
+
+  flex-shrink: 0;
+}
+
+.docs-navbar-github-icon {
+  width: 16px;
+  height: 16px;
+}
+
+.docs-navbar-star {
+  color: #8a8a8a;
+
+  font-size: 12px;
+}
+
+.docs-navbar-star-count {
+  color: #8a8a8a;
+}
+
+
+/* ========================================
+   THEME BUTTON
+======================================== */
+
+.docs-navbar-theme {
+  width: 34px;
+  height: 34px;
+
+  padding: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: transparent;
+  border: none;
+
+  color: #c8c8c8;
+
+  cursor: pointer;
+
+  flex-shrink: 0;
+}
+
+.docs-navbar-theme svg {
+  width: 18px;
+  height: 18px;
+}
+
+
+/* ========================================
+   MOBILE MENU
+======================================== */
+
+.docs-navbar-menu {
+  display: none;
+
+  width: 32px;
+  height: 32px;
+
+  padding: 6px;
+
+  background: transparent;
+  border: none;
+
+  flex-direction: column;
+  justify-content: center;
+
+  gap: 4px;
+
+  cursor: pointer;
+}
+
+.docs-navbar-menu span {
+  display: block;
+
+  width: 16px;
+  height: 1.5px;
+
+  background: #cfcfcf;
+}
+
+
+.docs-navbar-mobile-search {
+  display: none;
+  width: 32px;
+  height: 32px;
+  padding: 6px;
+
+  background: transparent;
+  border: none;
+  color: #cfcfcf;
+
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+}
+
+.docs-navbar-mobile-search svg {
+  width: 18px;
+  height: 18px;
+}
+
+
+/* ========================================
+   TABLET
+   701px - 900px
+======================================== */
+
+@media (max-width: 900px) {
+
+  .docs-navbar-container {
+    padding: 0 24px;
+    gap: 20px;
+  }
+
+  .docs-navbar-search {
+    width: 220px;
+  }
+
+  .docs-navbar-links {
+    gap: 18px;
+  }
+
+  .docs-navbar-github {
+    display: none;
+  }
+
+  /* Logo keeps aspect ratio */
+  .docs-navbar-logo-image {
+    height: 30px;
+    width: auto;
+  }
+}
+
+
+/* ========================================
+   MOBILE
+   700px and below
+======================================== */
+
+@media (max-width: 700px) {
+  .docs-navbar {
+    height: 58px;
+  }
+
+  .docs-navbar-container {
+    padding: 0 16px;
+    gap: 0;
+  }
+
+  .docs-navbar-logo-image {
+    height: 34px;
+    width: auto;
+  }
+
+  .docs-navbar-search,
+  .docs-navbar-links {
+    display: none;
+  }
+
+  .docs-navbar-mobile-search {
+    display: flex;
+    margin-left: auto;
+  }
+
+  .docs-navbar-theme {
+    margin-left: 8px;
+    margin-right: 8px;
+  }
+
+  .docs-navbar-menu {
+    display: flex;
+  }
+}
+
+
+/* ========================================
+   SMALL PHONES
+   380px and below
+======================================== */
+
+@media (max-width: 380px) {
+
+  .docs-navbar-container {
+    padding: 0 14px;
+  }
+
+  .docs-navbar-logo-image {
+    height: 30px;
+    width: auto;
+  }
+}
+
+
+/* ========================================
+   SEARCH MODAL OVERLAY
+======================================== */
+
+.docs-search-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  font-family: "gothic";
+
+  background: rgba(0, 0, 0, 0.72);
+
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+
+  padding-top: 72px;
+
+  animation: docsSearchFadeIn 0.15s ease;
+}
+
+
+/* ========================================
+   SEARCH MODAL
+======================================== */
+
+.docs-search-modal {
+  width: min(512px, calc(100vw - 32px));
+  max-height: calc(100vh - 100px);
+
+  background: #090909;
+
+  border: 1px solid #292929;
+  border-radius: 9px;
+
+  overflow: hidden;
+
+  box-shadow:
+    0 20px 60px rgba(0, 0, 0, 0.6),
+    0 0 0 1px rgba(255, 255, 255, 0.02);
+
+  animation: docsSearchSlideIn 0.15s ease;
+}
+
+
+/* ========================================
+   MODAL INPUT
+======================================== */
+
+.docs-search-modal-input {
+  height: 48px;
+
+  display: flex;
+  align-items: center;
+
+  padding: 0 14px;
+
+  border-bottom: 1px solid #242424;
+
+  color: #888;
+}
+
+.docs-search-modal-input svg {
+  width: 17px;
+  height: 17px;
+  flex-shrink: 0;
+}
+
+.docs-search-modal-input input {
+  width: 100%;
+
+  margin-left: 10px;
+
+  background: transparent;
+  border: none;
+  outline: none;
+
+  color: #fff;
+
+  font-family: inherit;
+  font-size: 14px;
+}
+
+.docs-search-modal-input input::placeholder {
+  color: #858585;
+}
+
+
+/* ========================================
+   SEARCH CONTENT
+======================================== */
+
+.docs-search-content {
+  padding: 9px 8px 12px;
+
+  max-height: 440px;
+  overflow-y: auto;
+}
+
+
+/* Section title */
+
+.docs-search-section-title {
+  padding: 4px 8px 7px;
+
+  color: #858585;
+
+  font-size: 11px;
+  font-weight: 600;
+}
+
+
+/* ========================================
+   SEARCH ITEM
+======================================== */
+
+.docs-search-item {
+  min-height: 54px;
+
+  display: flex;
+  align-items: center;
+
+  padding: 7px 8px;
+
+  border-radius: 6px;
+
+  cursor: pointer;
+
+  transition:
+    background 0.15s ease,
+    color 0.15s ease;
+}
+
+.docs-search-item:hover {
+  background: #202020;
+}
+
+
+/* Icon */
+
+.docs-search-item-icon {
+  width: 32px;
+  height: 32px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex-shrink: 0;
+
+  border: 1px solid #303030;
+  border-radius: 6px;
+
+  color: #aaa;
+
+  font-size: 15px;
+}
+
+
+/* Text */
+
+.docs-search-item-info {
+  min-width: 0;
+  flex: 1;
+
+  margin-left: 11px;
+}
+
+.docs-search-item-title {
+  color: #eeeeee;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  line-height: 18px;
+}
+
+.docs-search-item-description {
+  margin-top: 1px;
+
+  color: #858585;
+
+  font-size: 12px;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+
+/* Right side */
+
+.docs-search-item-type {
+  margin-left: 12px;
+
+  color: #858585;
+
+  font-size: 11px;
+
+  flex-shrink: 0;
+}
+
+
+/* Divider */
+
+.docs-search-divider {
+  height: 1px;
+
+  margin: 8px 0;
+
+  background: #292929;
+}
+
+
+/* ========================================
+   SCROLLBAR
+======================================== */
+
+.docs-search-content::-webkit-scrollbar {
+  width: 5px;
+}
+
+.docs-search-content::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.docs-search-content::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 10px;
+}
+
+
+/* ========================================
+   ANIMATIONS
+======================================== */
+
+@keyframes docsSearchFadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes docsSearchSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-8px) scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
