@@ -20,7 +20,7 @@ import {
   PixelHover,
   NeoBrutalism,
   CircleExpand,
-  FolderCard
+  FolderCard,
 } from "tatva-ui";
 //tying to push
 /*
@@ -1910,13 +1910,15 @@ export function AnimatedBorderCardDemo() {
 
     previewProps: {
       className: "project-card",
-      image: "https://ik.imagekit.io/rixhabh/Tattva%20UI%20Default%20Images/batman.jpg",
+      image:
+        "https://ik.imagekit.io/rixhabh/Tattva%20UI%20Default%20Images/batman.jpg",
       imageAlt: "Man are brave",
       title: "Batman",
       subtitle: "Do you bleed",
       showPreview: true,
       previewLabel: "Live Link",
       previewHref: "https://me.rixhabh.in",
+      previewTarget: "_blank",
       heading: "How to become Batman",
       tags: [
         "Rich",
@@ -1926,7 +1928,6 @@ export function AnimatedBorderCardDemo() {
       description: "Short story about the project...",
       openLabel: "View",
       closeLabel: "Close",
-      defaultOpen: false,
       cardColor: "#faf8f7",
       panelColor: "#ececec",
       textColor: "#0a0a0a",
@@ -1935,6 +1936,8 @@ export function AnimatedBorderCardDemo() {
       subtitleColor: "#cbd5e1",
       tagColor: "#959595",
       tagTextColor: "#000000",
+      imageHref: "me.rixhabh.in",
+      imageTarget: "_blank",
     },
 
     usage: {
@@ -2020,13 +2023,13 @@ export function ShowCardDemo() {
         name: "imageTarget",
         type: "select",
         options: ["_self", "_blank"],
-        default: `"undefined"`,
+        default: "_blank",
         description: "Target for the image link",
       },
       {
         name: "showPreview",
         type: "boolean",
-        default: "true",
+        default: true,
         description: "Show or hide the preview button",
       },
       {
@@ -2045,14 +2048,8 @@ export function ShowCardDemo() {
         name: "previewTarget",
         type: "select",
         options: ["_self", "_blank"],
-        default: `"_blank"`,
+        default: "_blank",
         description: "Target for the preview link",
-      },
-      {
-        name: "onPreview",
-        type: "text",
-        default: `"undefined"`,
-        description: "Click handler used when previewHref is not provided",
       },
       {
         name: "heading",
@@ -2074,12 +2071,6 @@ export function ShowCardDemo() {
         description: "Description displayed in the expanded panel",
       },
       {
-        name: "children",
-        type: "text",
-        default: `"undefined"`,
-        description: "Custom content replacing the default panel details",
-      },
-      {
         name: "openLabel",
         type: "text",
         default: `"View"`,
@@ -2090,24 +2081,6 @@ export function ShowCardDemo() {
         type: "text",
         default: `"Close"`,
         description: "Label for closing the expanded panel",
-      },
-      {
-        name: "defaultOpen",
-        type: "boolean",
-        default: "false",
-        description: "Sets the initial expanded state in uncontrolled mode",
-      },
-      {
-        name: "open",
-        type: "boolean",
-        default: `"undefined"`,
-        description: "Controls the expanded state when using controlled mode",
-      },
-      {
-        name: "onToggle",
-        type: "text",
-        default: `"undefined"`,
-        description: "Callback receiving the next expanded state",
       },
       {
         name: "cardColor",
@@ -2163,12 +2136,6 @@ export function ShowCardDemo() {
         default: `""`,
         description: "Custom CSS class for the root element",
       },
-      {
-        name: "style",
-        type: "object",
-        default: `"undefined"`,
-        description: "Inline styles for the root element",
-      },
     ],
   },
 
@@ -2181,12 +2148,15 @@ export function ShowCardDemo() {
 
     previewProps: {
       className: "team-card",
-      image: "https://ik.imagekit.io/rixhabh/Tattva%20UI%20Default%20Images/sideReveal?updatedAt=1791959791151",
+      image:
+        "https://ik.imagekit.io/rixhabh/Tattva%20UI%20Default%20Images/sideReveal?updatedAt=1791959791151",
       imageAlt: "Aya Takahashi",
-      thumbnail: "https://ik.imagekit.io/rixhabh/Tattva%20UI%20Default%20Images/sideReveal?updatedAt=1791959791151",
+      thumbnail:
+        "https://ik.imagekit.io/rixhabh/Tattva%20UI%20Default%20Images/sideReveal?updatedAt=1791959791151",
       title: "Aya Takahashi",
       subtitle: "(Founder, Studio)",
-      description: "Studio is a digital marketing agency building powerful brands and strengthening digital presence through creative strategies, impactful design, and result-driven marketing.",
+      description:
+        "Studio is a digital marketing agency building powerful brands and strengthening digital presence through creative strategies, impactful design, and result-driven marketing.",
       arrowColor: "#ffffff",
       arrowHoverColor: "#facc15",
       arrowIconColor: "#000000",
@@ -2199,9 +2169,6 @@ export function ShowCardDemo() {
       backArrowColor: "#000000",
       backArrowIconColor: "#ffffff",
       quoteColor: "#d1d5db",
-      defaultOpen: false,
-      openLabel: "Show details",
-      closeLabel: "Go back",
     },
 
     usage: {
@@ -2297,12 +2264,6 @@ export function SideRevealCardDemo() {
         description: "Description displayed on the back card",
       },
       {
-        name: "children",
-        type: "text",
-        default: `"undefined"`,
-        description: "Custom content replacing the default description",
-      },
-      {
         name: "arrowColor",
         type: "color",
         default: `"#ffffff"`,
@@ -2375,46 +2336,10 @@ export function SideRevealCardDemo() {
         description: "Color of the quote icon on the back card",
       },
       {
-        name: "defaultOpen",
-        type: "boolean",
-        default: "false",
-        description: "Initial expanded state in uncontrolled mode",
-      },
-      {
-        name: "open",
-        type: "boolean",
-        default: `"undefined"`,
-        description: "Controls the card state in controlled mode",
-      },
-      {
-        name: "onToggle",
-        type: "text",
-        default: `"undefined"`,
-        description: "Callback receiving the next open state",
-      },
-      {
-        name: "openLabel",
-        type: "text",
-        default: `"Show details"`,
-        description: "Accessible label for opening the details card",
-      },
-      {
-        name: "closeLabel",
-        type: "text",
-        default: `"Go back"`,
-        description: "Accessible label for returning to the front card",
-      },
-      {
         name: "className",
         type: "text",
         default: `""`,
         description: "Custom CSS class for the root element",
-      },
-      {
-        name: "style",
-        type: "object",
-        default: `"undefined"`,
-        description: "Inline styles for the root element",
       },
     ],
   },
@@ -2428,8 +2353,10 @@ export function SideRevealCardDemo() {
 
     previewProps: {
       className: "product-card",
-      image: "https://cdn.example.com/flat-lay.jpg",
-      hoverImage: "https://cdn.example.com/model.jpg",
+      image:
+        "https://ik.imagekit.io/rixhabh/Tattva%20UI%20Default%20Images/mode-1?updatedAt=1791959889225",
+      hoverImage:
+        "https://ik.imagekit.io/rixhabh/Tattva%20UI%20Default%20Images/model-2.jpg?updatedAt=1791959927518",
       imageAlt: "Atlas Knit Cardigan",
       title: "Atlas Knit Cardigan",
       description: "Chunky merino knit in burnt sienna.",
@@ -2445,11 +2372,12 @@ export function SideRevealCardDemo() {
       buttonColor: "#7c3aed",
       buttonHoverColor: "#4c1d95",
       buttonTextColor: "#ffffff",
-      pixelSize: 4,
+      pixelSize: 2,
       duration: 0.9,
       showGrid: false,
       gridColor: "#d6d3d1",
-      imageHeight: 260,
+      imageHeight: 350,
+      imageAspectRatio: "6 / 5",
       imageFit: "cover",
       imagePosition: "center top",
       imageBackground: "#e7e5e0",
@@ -2473,7 +2401,7 @@ export function PixelHoverDemo() {
       buttonText="Add to Cart"
       buttonHref="/products/atlas"
       cardColor="#ffffff"
-      imageHeight={260}
+      imageHeight={350}
       imageFit="cover"
       imagePosition="center top"
       buttonColor="#7c3aed"
@@ -2559,12 +2487,12 @@ export function PixelHoverDemo() {
         name: "buttonTarget",
         type: "select",
         options: ["_self", "_blank"],
-        default: `"undefined"`,
+        default: "_self",
         description: "Target for the button link",
       },
       {
         name: "onButtonClick",
-        type: "text",
+        type: "function",
         default: `"undefined"`,
         description:
           "Click handler when using a button action instead of a link",
@@ -2623,7 +2551,7 @@ export function PixelHoverDemo() {
         min: 2,
         max: 5,
         step: 1,
-        default: "3",
+        default: 3,
         description: "Size of pixels used in the transition effect",
       },
       {
@@ -2632,13 +2560,13 @@ export function PixelHoverDemo() {
         min: 0.1,
         max: 5,
         step: 0.1,
-        default: "0.7",
+        default: 0.7,
         description: "Duration of the pixel transition in seconds",
       },
       {
         name: "showGrid",
         type: "boolean",
-        default: "false",
+        default: false,
         description: "Show subtle pixel grid lines",
       },
       {
@@ -2649,9 +2577,12 @@ export function PixelHoverDemo() {
       },
       {
         name: "imageHeight",
-        type: "text",
-        default: `"auto"`,
-        description: "Fixed image height in pixels or a CSS length",
+        type: "range",
+        min: 100,
+        max: 600,
+        step: 10,
+        default: 350,
+        description: "Image height in pixels.",
       },
       {
         name: "imageAspectRatio",
@@ -2663,7 +2594,7 @@ export function PixelHoverDemo() {
         name: "imageFit",
         type: "select",
         options: ["cover", "contain"],
-        default: `"cover"`,
+        default: "cover",
         description: "Controls how the image fits its container",
       },
       {
@@ -2900,7 +2831,7 @@ export function NeoBrutalismDemo() {
         min: 1,
         max: 8,
         step: 1,
-        default: "3",
+        default: 3,
         description: "Thickness of the card border in pixels",
       },
       {
@@ -2909,7 +2840,7 @@ export function NeoBrutalismDemo() {
         min: 0,
         max: 15,
         step: 1,
-        default: "5",
+        default: 5,
         description: "Offset distance of the card shadow in pixels",
       },
       {
@@ -2918,7 +2849,7 @@ export function NeoBrutalismDemo() {
         min: 0,
         max: 10,
         step: 1,
-        default: "3",
+        default: 3,
         description: "Card movement distance on hover in pixels",
       },
       {
@@ -2935,35 +2866,38 @@ export function NeoBrutalismDemo() {
     description:
       "An interactive image card with an expanding circular overlay, customizable text, arrow styling, and smooth hover transitions.",
     preview: CircleExpand,
+
     previewProps: {
-      image: "https://ik.imagekit.io/rixhabh/Tattva%20UI%20Default%20Images/space.jpg?updatedAt=1791986900603",
-      imageAlt: "Rain on fern leaves",
+      image:
+        "https://ik.imagekit.io/rixhabh/Tattva%20UI%20Default%20Images/space.jpg?updatedAt=1791986900603",
+      imageAlt: "Dreamscape space image",
       imagePosition: "50% 30%",
       imageScale: 1.12,
       topText: "Dreamscape",
       title: "Beyond Reality",
       description: "Where dreams take shape",
       width: "100%",
-      minWidth: 400,
-      maxWidth: 400,
-      height: 500,
-      borderRadius: 28,
+      maxWidth: 300,
+      height: 420,
+      borderRadius: 10,
       circleSize: 56,
       circleColor: "#002463",
       overlayColor: "#002463",
+      arrow: "↗",
+      showArrow: true,
       arrowColor: "#ffffff",
       arrowHoverColor: "#ffffff",
-      arrow: "--",
-      arrowRotation: -45,
-      topTextColor: "#fff",
-      hoverTopTextColor: "#fff",
-      titleColor: "#fff",
-      hoverTitleColor: "#fff",
-      descriptionColor: "#ddd",
-      hoverDescriptionColor: "#fff",
+      arrowRotation: 45,
+      topTextColor: "#ffffff",
+      hoverTopTextColor: "#ffffff",
+      titleColor: "#ffffff",
+      hoverTitleColor: "#ffffff",
+      descriptionColor: "#dddddd",
+      hoverDescriptionColor: "#ffffff",
       transitionDuration: 900,
       easing: "cubic-bezier(0.65, 0, 0.35, 1)",
     },
+
     usage: {
       language: "jsx",
       code: `import { CircleExpand } from "tattva-ui";
@@ -2973,19 +2907,30 @@ export default function Example() {
     <CircleExpand
       image="/img/forest.jpg"
       imageAlt="Rain on fern leaves"
+      imagePosition="50% 30%"
+      imageScale={1.12}
       topText="Nature"
       title="OverSpace"
       description="Explore the canopy"
       width="100%"
       maxWidth={400}
       height={500}
-      circleColor="#ffd166"
+      borderRadius={28}
+      circleSize={56}
+      circleColor="#002463"
       overlayColor="#ef476f"
       arrow="→"
+      showArrow={true}
+      arrowColor="#ffffff"
+      arrowHoverColor="#ffffff"
+      arrowRotation={45}
+      transitionDuration={900}
+      easing="cubic-bezier(0.65, 0, 0.35, 1)"
     />
   );
 }`,
     },
+
     css: {
       title: "CSS Styling",
       description:
@@ -2997,161 +2942,157 @@ export default function Example() {
   margin: 0 auto;
 }`,
     },
+
     props: [
       {
         name: "image",
-        type: "string",
+        type: "text",
         default: "Unsplash URL",
         description: "Background image URL for the card.",
       },
       {
         name: "imageAlt",
-        type: "string",
+        type: "text",
         default: '""',
-        description:
-          "Alternative text for the image. An empty string marks it as decorative.",
+        description: "Alternative text for the image.",
       },
       {
         name: "imagePosition",
-        type: "string",
-        default: '"center"',
-        description: "Controls the image position, such as '50% 30%'.",
+        type: "text",
+        default: '"50% 30%"',
+        description: "Controls the image crop position.",
       },
       {
         name: "imageScale",
-        type: "number",
-        default: 1.08,
-        description: "Controls the image scale.",
+        type: "range",
         min: 1,
         max: 2,
         step: 0.01,
+        default: 1.12,
+        description: "Scale applied to the background image.",
+      },
+      {
+        name: "width",
+        type: "text",
+        default: '"100%"',
+        description: "Card width as a CSS length.",
+      },
+      {
+        name: "maxWidth",
+        type: "range",
+        min: 200,
+        max: 700,
+        step: 10,
+        default: 400,
+        description: "Maximum card width in pixels.",
+      },
+      {
+        name: "height",
+        type: "range",
+        min: 250,
+        max: 700,
+        step: 10,
+        default: 500,
+        description: "Card height in pixels.",
+      },
+      {
+        name: "borderRadius",
+        type: "range",
+        min: 0,
+        max: 60,
+        step: 1,
+        default: 28,
+        description: "Card corner radius in pixels.",
       },
       {
         name: "topText",
-        type: "string",
+        type: "text",
         default: '"Top Text"',
-        description:
-          "Small text displayed above the title. Empty string hides it.",
+        description: "Small text displayed above the title.",
       },
       {
         name: "title",
-        type: "string",
+        type: "text",
         default: '"Card Title"',
         description: "Main heading displayed on the card.",
       },
       {
         name: "description",
-        type: "string",
+        type: "text",
         default: '"Card subtitle"',
         description: "Supporting text displayed below the title.",
       },
       {
-        name: "width",
-        type: "string | number",
-        default: '"285px"',
-        description: "Card width. Numbers are interpreted as pixels.",
-      },
-      {
-        name: "height",
-        type: "string | number",
-        default: '"336px"',
-        description: "Card height. Numbers are interpreted as pixels.",
-      },
-      {
-        name: "minWidth",
-        type: "string | number",
-        default: "none",
-        description: "Optional minimum card width.",
-      },
-      {
-        name: "maxWidth",
-        type: "string | number",
-        default: '"100%"',
-        description: "Optional maximum card width.",
-      },
-      {
-        name: "borderRadius",
-        type: "string | number",
-        default: "20",
-        description: "Controls the card corner radius.",
-      },
-      {
         name: "className",
-        type: "string",
+        type: "text",
         default: '""',
         description: "Custom CSS class applied to the card.",
       },
       {
-        name: "style",
-        type: "object",
-        default: "none",
-        description: "Inline CSS styles for the card.",
-      },
-      {
         name: "topTextColor",
         type: "color",
-        default: '"#ffffff"',
+        default: "#ffffff",
         description: "Top text color before expansion.",
       },
       {
         name: "hoverTopTextColor",
         type: "color",
-        default: '"#0f3d22"',
+        default: "#ffffff",
         description: "Top text color during expansion.",
       },
       {
         name: "titleColor",
         type: "color",
-        default: '"#ffffff"',
+        default: "#ffffff",
         description: "Title color before expansion.",
       },
       {
         name: "hoverTitleColor",
         type: "color",
-        default: '"#0f3d22"',
+        default: "#ffffff",
         description: "Title color during expansion.",
       },
       {
         name: "descriptionColor",
         type: "color",
-        default: '"rgba(255,255,255,0.85)"',
+        default: "#dddddd",
         description: "Description color before expansion.",
       },
       {
         name: "hoverDescriptionColor",
         type: "color",
-        default: '"#1d5a36"',
+        default: "#ffffff",
         description: "Description color during expansion.",
       },
       {
         name: "circleColor",
         type: "color",
-        default: '"#b9f0c4"',
+        default: "#002463",
         description: "Color of the circle in its resting state.",
       },
       {
         name: "overlayColor",
         type: "color",
-        default: "circleColor",
+        default: "#002463",
         description: "Color of the expanded circular overlay.",
       },
       {
         name: "arrowColor",
         type: "color",
-        default: '"#0f3d22"',
+        default: "#ffffff",
         description: "Arrow color in its resting state.",
       },
       {
         name: "arrowHoverColor",
         type: "color",
-        default: "arrowColor",
+        default: "#ffffff",
         description: "Arrow color during hover.",
       },
       {
         name: "arrow",
-        type: "string | ReactNode",
-        default: '"↗"',
-        description: "Arrow content; accepts text or a React node.",
+        type: "text",
+        default: "↗",
+        description: "Arrow content.",
       },
       {
         name: "showArrow",
@@ -3161,69 +3102,42 @@ export default function Example() {
       },
       {
         name: "circleSize",
-        type: "string | number",
-        default: "44",
+        type: "range",
+        min: 20,
+        max: 200,
+        step: 1,
+        default: 56,
         description: "Size of the expanding circle.",
       },
       {
         name: "arrowRotation",
         type: "number",
-        default: 45,
-        description: "Arrow rotation angle in degrees.",
         min: -360,
         max: 360,
         step: 1,
+        default: 45,
+        description: "Arrow rotation angle in degrees.",
       },
       {
         name: "transitionDuration",
         type: "number",
-        default: 750,
-        description: "Animation duration in milliseconds.",
         min: 100,
         max: 2000,
         step: 50,
+        default: 900,
+        description: "Animation duration in milliseconds.",
       },
       {
         name: "easing",
-        type: "string",
-        default: '"cubic-bezier(0.22,1,0.36,1)"',
+        type: "text",
+        default: "cubic-bezier(0.65, 0, 0.35, 1)",
         description: "CSS easing function for the transition.",
-      },
-      {
-        name: "hoverScale",
-        type: "number | string",
-        default: '"auto"',
-        description: "Advanced override for the hover scale.",
-      },
-      {
-        name: "enableHover",
-        type: "boolean",
-        default: true,
-        description: "Enables hover interactions.",
-      },
-      {
-        name: "tapToToggle",
-        type: "boolean",
-        default: true,
-        description: "Allows tapping or clicking to toggle the expanded state.",
       },
       {
         name: "onClick",
         type: "function",
         default: "none",
         description: "Callback invoked when the card is clicked.",
-      },
-      {
-        name: "onMouseEnter",
-        type: "function",
-        default: "none",
-        description: "Callback invoked when the pointer enters the card.",
-      },
-      {
-        name: "onMouseLeave",
-        type: "function",
-        default: "none",
-        description: "Callback invoked when the pointer leaves the card.",
       },
     ],
   },
@@ -3233,16 +3147,45 @@ export default function Example() {
     description:
       "An interactive folder-style card where the image rises as the folder opens on hover, creating a smooth and playful animation.",
     preview: FolderCard,
+
     previewProps: {
       image: "",
       imageAlt: "Project preview",
+      imageFit: "contain",
+      imageWidth: "80%",
+      imageHeight: "58%",
+      imageTop: "6%",
+      imageBackground: "radial-gradient(circle, #8b5cf6, #02002f)",
+      panelColor: "#08063f",
+      folderColor: "#02002f",
+      folderHeight: "78%",
+      folderOpenHeight: "50%",
+      tabWidth: "36%",
+      tabHeight: "16px",
+      folderRadius: "16px",
+      panelPadding: 6,
       label: "01",
       title: "Creative Projects",
       description: "Explore something new",
       arrow: "↗",
+      showArrow: true,
+      labelColor: "#ffffff",
+      titleColor: "#ffffff",
+      descriptionColor: "rgba(255, 255, 255, 0.6)",
+      arrowColor: "rgba(255, 255, 255, 0.85)",
       width: "260px",
       height: "340px",
+      minWidth: "0px",
+      maxWidth: "100%",
+      borderRadius: "24px",
+      transitionDuration: 650,
+      easing: "cubic-bezier(0.22, 1, 0.36, 1)",
+      enableHover: true,
+      tapToToggle: true,
+      className: "",
+      style: {},
     },
+
     usage: {
       language: "jsx",
       code: `import { FolderCard } from "tattva-ui";
@@ -3251,13 +3194,20 @@ export default function Example() {
   return (
     <FolderCard
       image="/img/project.png"
+      imageAlt="Project preview"
+      imageFit="contain"
       label="01"
       title="Creative Projects"
       description="Explore something new"
+      width="260px"
+      height="340px"
+      enableHover={true}
+      tapToToggle={true}
     />
   );
 }`,
     },
+
     css: {
       title: "CSS Styling",
       description: "Customize the card layout using a custom class.",
@@ -3266,121 +3216,125 @@ export default function Example() {
   margin: 0 auto;
 }`,
     },
+
     props: [
       {
         name: "image",
-        type: "string",
+        type: "text",
         default: "Built-in placeholder",
         description: "Image URL or data URI displayed inside the folder.",
       },
       {
         name: "imageAlt",
-        type: "string",
+        type: "text",
         default: '""',
         description: "Alternative text for the image.",
       },
       {
         name: "imageBackground",
-        type: "string",
+        type: "text",
         default: "Purple radial gradient",
         description: "Background shown behind the image.",
       },
       {
         name: "imageFit",
-        type: "string",
-        default: '"contain"',
-        description: "Controls how the image fits inside its container.",
+        type: "select",
+        default: "contain",
         options: ["contain", "cover", "fill", "none", "scale-down"],
+        description: "Controls how the image fits inside its container.",
       },
       {
         name: "imageWidth",
-        type: "string | number",
-        default: '"80%"',
+        type: "text",
+        default: "80%",
         description: "Width of the image relative to the card's inner area.",
       },
       {
         name: "imageHeight",
-        type: "string | number",
-        default: '"58%"',
+        type: "text",
+        default: "58%",
         description: "Height of the image relative to the card's inner area.",
       },
       {
         name: "imageTop",
-        type: "string | number",
-        default: '"6%"',
+        type: "text",
+        default: "6%",
         description: "Image's top position when the folder is open.",
       },
       {
         name: "panelColor",
         type: "color",
-        default: '"#08063f"',
+        default: "#08063f",
         description: "Background color of the outer panel.",
       },
       {
         name: "folderColor",
         type: "color",
-        default: '"#02002f"',
+        default: "#02002f",
         description: "Color of the folder body and tab.",
       },
       {
         name: "folderHeight",
-        type: "string | number",
-        default: '"78%"',
+        type: "text",
+        default: "78%",
         description: "Folder height in its closed state.",
       },
       {
         name: "folderOpenHeight",
-        type: "string | number",
-        default: '"50%"',
+        type: "text",
+        default: "50%",
         description: "Folder height when opened on hover.",
       },
       {
         name: "tabWidth",
-        type: "string | number",
-        default: '"36%"',
+        type: "text",
+        default: "36%",
         description: "Width of the folder tab.",
       },
       {
         name: "tabHeight",
-        type: "string | number",
-        default: '"16px"',
+        type: "text",
+        default: "16px",
         description: "Height of the raised folder tab.",
       },
       {
         name: "folderRadius",
-        type: "string | number",
-        default: '"16px"',
+        type: "text",
+        default: "16px",
         description: "Corner radius of the folder tab and body.",
       },
       {
         name: "panelPadding",
-        type: "string | number",
+        type: "number",
+        min: 0,
+        max: 30,
+        step: 1,
         default: 6,
         description: "Thickness of the outer panel frame.",
       },
       {
         name: "label",
-        type: "string",
-        default: '"01"',
+        type: "text",
+        default: "01",
         description: "Text displayed on the folder tab.",
       },
       {
         name: "title",
-        type: "string",
-        default: '"Simple and easy to use"',
+        type: "text",
+        default: "Simple and easy to use",
         description: "Main heading displayed on the card.",
       },
       {
         name: "description",
-        type: "string",
-        default: '"Fully customize to suit your needs"',
+        type: "text",
+        default: "Fully customize to suit your needs",
         description: "Supporting text below the title.",
       },
       {
         name: "arrow",
-        type: "ReactNode",
-        default: '"↗"',
-        description: "Arrow content; accepts text, emoji, or a React element.",
+        type: "text",
+        default: "↗",
+        description: "Arrow content.",
       },
       {
         name: "showArrow",
@@ -3391,67 +3345,70 @@ export default function Example() {
       {
         name: "labelColor",
         type: "color",
-        default: '"#ffffff"',
+        default: "#ffffff",
         description: "Color of the folder label.",
       },
       {
         name: "titleColor",
         type: "color",
-        default: '"#ffffff"',
+        default: "#ffffff",
         description: "Color of the title.",
       },
       {
         name: "descriptionColor",
         type: "color",
-        default: '"rgba(255, 255, 255, 0.6)"',
+        default: "rgba(255, 255, 255, 0.6)",
         description: "Color of the description.",
       },
       {
         name: "arrowColor",
         type: "color",
-        default: '"rgba(255, 255, 255, 0.85)"',
+        default: "rgba(255, 255, 255, 0.85)",
         description: "Color of the arrow.",
       },
       {
         name: "width",
-        type: "string | number",
-        default: '"260px"',
+        type: "text",
+        default: "260px",
         description: "Width of the card.",
       },
       {
         name: "height",
-        type: "string | number",
-        default: '"340px"',
+        type: "text",
+        default: "340px",
         description: "Height of the card.",
       },
       {
         name: "minWidth",
-        type: "string | number",
-        default: "none",
+        type: "text",
+        default: "0px",
         description: "Minimum width of the card.",
       },
       {
         name: "maxWidth",
-        type: "string | number",
-        default: '"100%"',
+        type: "text",
+        default: "100%",
         description: "Maximum width of the card.",
       },
       {
         name: "borderRadius",
-        type: "string | number",
-        default: '"24px"',
+        type: "text",
+        default: "24px",
         description: "Outer corner radius of the card.",
       },
       {
         name: "transitionDuration",
-        type: "string | number",
+        type: "number",
+        min: 100,
+        max: 2000,
+        step: 50,
         default: 650,
-        description: "Animation duration in milliseconds or CSS time format.",
+        description: "Animation duration in milliseconds.",
       },
       {
         name: "easing",
-        type: "string",
-        default: '"cubic-bezier(0.22, 1, 0.36, 1)"',
+        type: "text",
+        default: "cubic-bezier(0.22, 1, 0.36, 1)",
         description: "CSS timing function used for the animation.",
       },
       {
@@ -3486,8 +3443,8 @@ export default function Example() {
       },
       {
         name: "className",
-        type: "string",
-        default: '""',
+        type: "text",
+        default: "",
         description: "Custom CSS class applied to the card.",
       },
       {

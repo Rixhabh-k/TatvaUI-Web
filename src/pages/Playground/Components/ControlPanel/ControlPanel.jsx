@@ -23,6 +23,28 @@ const toHex6 = (value) => {
   return "#000000";
 };
 
+
+const getControlType = (prop) => {
+  const type = (prop.type || "text").toLowerCase().trim();
+
+  if (type === "color") return "color";
+  if (type === "boolean") return "boolean";
+  if (type === "array") return "array";
+  if (type === "range") return "range";
+  if (type === "select") return "select";
+
+  if (type === "number") {
+    return prop.min !== undefined && prop.max !== undefined
+      ? "range"
+      : "number";
+  }
+
+  if (type === "function" || type === "object") return "unsupported";
+
+  return "text";
+};
+
+
 const isHexColor = (v) =>
   typeof v === "string" && /^#([0-9a-f]{3}|[0-9a-f]{6})$/i.test(v.trim());
 
