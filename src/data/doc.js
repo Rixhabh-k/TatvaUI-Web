@@ -2868,6 +2868,7 @@ export function NeoBrutalismDemo() {
     preview: CircleExpand,
 
     previewProps: {
+      className: "circle-expand-demo",
       image:
         "https://ik.imagekit.io/rixhabh/Tattva%20UI%20Default%20Images/space.jpg?updatedAt=1791986900603",
       imageAlt: "Dreamscape space image",
