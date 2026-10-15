@@ -2376,7 +2376,7 @@ export function SideRevealCardDemo() {
       duration: 0.9,
       showGrid: false,
       gridColor: "#d6d3d1",
-      imageHeight: 350,
+      imageHeight: 280,
       imageAspectRatio: "6 / 5",
       imageFit: "cover",
       imagePosition: "center top",

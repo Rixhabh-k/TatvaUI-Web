@@ -44,6 +44,30 @@ const getControlType = (prop) => {
   return "text";
 };
 
+const EASING_PRESETS = [
+  { label: "Linear", value: "linear" },
+  { label: "Ease", value: "ease" },
+  { label: "Ease In", value: "ease-in" },
+  { label: "Ease Out", value: "ease-out" },
+  { label: "Ease In Out", value: "ease-in-out" },
+  {
+    label: "Smooth",
+    value: "cubic-bezier(0.65, 0, 0.35, 1)",
+  },
+  {
+    label: "Snappy",
+    value: "cubic-bezier(0.16, 1, 0.3, 1)",
+  },
+  {
+    label: "Bounce",
+    value: "cubic-bezier(0.34, 1.56, 0.64, 1)",
+  },
+  {
+    label: "Custom",
+    value: "custom",
+  },
+];
+
 
 const isHexColor = (v) =>
   typeof v === "string" && /^#([0-9a-f]{3}|[0-9a-f]{6})$/i.test(v.trim());
@@ -664,6 +688,53 @@ const ControlPanel = ({
               </div>
             );
           }
+
+          /* ---------- Easing ---------- */
+if (prop.name === "easing") {
+  const isPreset = EASING_PRESETS.some(
+    (preset) => preset.value === value && preset.value !== "custom"
+  );
+
+  return (
+    <div
+      className="control-item control-field"
+      key={prop.name}
+      title={prop.description || undefined}
+    >
+      <span className="control-name">{prop.name}</span>
+
+      <select
+        className="control-text-input"
+        value={isPreset ? value : "custom"}
+        onChange={(e) => {
+          const next = e.target.value;
+
+          if (next !== "custom") {
+            onChange(prop.name, next);
+          }
+        }}
+        aria-label="Easing preset"
+      >
+        {EASING_PRESETS.map((preset) => (
+          <option key={preset.value} value={preset.value}>
+            {preset.label}
+          </option>
+        ))}
+      </select>
+
+      {!isPreset && (
+        <input
+          className="control-text-input"
+          type="text"
+          value={value ?? ""}
+          placeholder="cubic-bezier(0.65, 0, 0.35, 1)"
+          onChange={(e) => onChange(prop.name, e.target.value)}
+          aria-label="Custom easing value"
+        />
+      )}
+    </div>
+  );
+}
 
           /* ---------- Text (default) ---------- */
           return (

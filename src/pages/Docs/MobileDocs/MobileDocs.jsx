@@ -1,5 +1,11 @@
 import React, { useEffect } from "react";
-import { ArrowUpRight, Sparkles, MousePointer2, Type,PlayingCardsFan } from "lucide-react";
+import {
+  ArrowUpRight,
+  Sparkles,
+  MousePointer2,
+  Type,
+  PlayingCardsFan,
+} from "lucide-react";
 import { useNavigate } from "react-router";
 import "./mobileDocs.css";
 
@@ -80,28 +86,61 @@ const MobileDocs = () => {
     },
 
     {
-    title: "Cards",
-    icon: PlayingCardsFan,
-    items: [
-      {
-        label: "3D Card",
-        slug: "three-d-card",
-      },
-      {
-        label: "Gliter Card",
-        slug: "gliter-card",
-      },
-      {
-        label: "Pixel Card",
-        slug: "pixel-card",
-      },
-      {
-        label: "Animated Border Card",
-        slug: "animated-border-card",
-      },
-
-    ],
-  },
+  title: "Cards",
+  icon: PlayingCardsFan,
+  items: [
+    {
+      label: "Show Card",
+      slug: "show-card",
+      description: "Expandable project showcase card with customizable content.",
+    },
+    {
+      label: "Side Reveal Card",
+      slug: "side-reveal-card",
+      description: "Interactive two-sided card with profile details.",
+    },
+    {
+      label: "Circle Expand",
+      slug: "circle-expand",
+      description: "Image card with an expanding circular overlay animation.",
+    },
+    {
+      label: "Pixel Hover",
+      slug: "pixel-hover",
+      description: "Product card with a pixelated image hover effect.",
+    },
+    {
+      label: "Folder Card",
+      slug: "folder-card",
+      description: "Folder-style card with a rising image hover animation.",
+    },
+    {
+      label: "Neo Brutalism",
+      slug: "neo-brutalism",
+      description: "Bold card design with thick borders and offset shadows.",
+    },
+    {
+      label: "Pixel Card",
+      slug: "pixel-card",
+      description: "Interactive card with customizable pixel effects.",
+    },
+    {
+      label: "Animated Border Card",
+      slug: "animated-border-card",
+      description: "Card with an animated gradient border and glow.",
+    },
+    {
+      label: "Gliter Card",
+      slug: "gliter-card",
+      description: "Stylish card with a glitter-inspired visual effect.",
+    },
+    {
+      label: "3D Card",
+      slug: "three-d-card",
+      description: "Interactive card with depth and 3D tilt effects.",
+    },
+  ],
+},
   ];
 
   useEffect(() => {
@@ -161,7 +200,8 @@ const MobileDocs = () => {
         <div className="mobile-docs-actions">
           <button
             className="mobile-docs-primary"
-            onClick={() => navigate("/docs/installation")}>
+            onClick={() => navigate("/docs/installation")}
+          >
             <span>Start with installation</span>
             <ArrowUpRight size={19} />
           </button>
@@ -214,7 +254,8 @@ const MobileDocs = () => {
                           );
                         }
                         navigate(`/docs/${item.slug}`);
-                      }}>
+                      }}
+                    >
                       <div className="mobile-docs-component-content">
                         <span className="mobile-docs-component-title">
                           {item.label}
