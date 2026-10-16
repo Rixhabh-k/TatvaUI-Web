@@ -60,20 +60,31 @@
 }
 
 .branched-menu__head {
-  display: block;
-  margin: 0;
-  padding: 9px 0;
-  border: 0;
-  background: none;
-  color: var(--bm-muted);
-  font: inherit;
-  font-size: calc(var(--bm-font) + 1px);
-  font-weight: 500;
-  text-align: left;
-  cursor: pointer;
-  outline: none;
-  -webkit-tap-highlight-color: transparent;
-  transition: color 200ms ease;
+  display: flex;
+  align-items: center;
+
+  padding: 10px 12px;
+  margin: 8px 0 4px;
+
+  color: #a1a1aa;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+
+  border-radius: 8px;
+  transition:
+    color 180ms ease,
+    background 180ms ease;
+}
+
+.branched-menu__head:hover {
+  color: #fafafa;
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.branched-menu__section[data-open] > .branched-menu__head {
+  color: #fafafa;
+  font-weight: 650;
 }
 
 .branched-menu__section[data-open] .branched-menu__head,
