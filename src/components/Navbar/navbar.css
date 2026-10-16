@@ -1,262 +1,132 @@
 .navbar {
-
   position: relative;
-
-  width: min(1100px, calc(100% - 48px));
-
+  width: min(900px, calc(100% - 48px));
   height: 72px;
-
   margin: 24px auto;
-
-  border-radius: 999px;
-
+  border-radius: 18px;               /* rounded rectangle, not a pill */
   background: rgba(255, 255, 255, 0.045);
-
-  /* border: 1px solid rgba(255, 255, 255, 0.16); */
-
   overflow: hidden;
-
   z-index: 20;
-
-  /* box-shadow:
-    0 8px 40px rgba(0, 0, 0, 0.25),
-
-    inset 0 1px 0 rgba(255, 255, 255, 0.2); */
-
 }
 
 .navbar-content {
-
   position: relative;
-
   z-index: 5;
-
   height: 100%;
-
   display: flex;
-
   align-items: center;
-
   justify-content: space-between;
-
-  padding: 0 28px;
-
+  padding: 0 32px;
   color: white;
+}
 
+/* ---------- Logo ---------- */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo-mark {
+  width: 32px;
+  height: 24px;
+  color: #fff;
+  flex-shrink: 0;
 }
 
 .logo h1 {
-
-  font-size: 1.8rem;
-
-  font-family: "gothic";
-
-}
-
-.logo h1 span {
-
-  background: linear-gradient(90deg,
-
-      #00e5ff 0%,
-
-      #001eff 100%);
-
-  -webkit-background-clip: text;
-
-  -webkit-text-fill-color: transparent;
-
-  background-clip: text;
-
-}
-
-.logo-scramble {
-
+  margin: 0;
   font-size: 1.5rem;
-
-  font-family: "gothic";
-
-}
-
-.nav-links {
-
-  display: flex;
-
-  align-items: center;
-
-  gap: 32px;
-
-}
-
-.nav-links a {
-
-  color: rgba(255, 255, 255, 0.78);
-
-  text-decoration: none;
-
-  font-size: 14px;
-
   font-weight: 500;
-
-  transition:
-
-    color 0.2s ease,
-
-    opacity 0.2s ease;
-
+  font-family: "gothic";
+  line-height: 1;
 }
 
-.nav-links a:hover {
-
-  color: white;
-
+/* "ui" – light lavender sampled from the background image glow,
+   bright enough to stay readable on the purple glass */
+.logo h1 span {
+  background: linear-gradient(90deg, #e9cfff 0%, #c9a2ff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
+/* ---------- Right side ---------- */
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
 
-/* GitHub Liquid Glass Button */
-
+/* GitHub liquid-glass button: rounded square like the reference */
 .github-button {
   position: relative;
-
-  width: 44px;
-  height: 44px;
-
+  width: 36px;
+  height: 36px;
   display: flex;
   align-items: center;
   justify-content: center;
-
   padding: 0;
-
-  border-radius: 50%;
-
+  border-radius: 10px;
   background: rgba(255, 255, 255, 0.035);
-
   border: 1px solid rgba(255, 255, 255, 0.12);
-
-  color: rgba(255, 255, 255, 0.85);
-
+  color: rgba(255, 255, 255, 0.9);
   overflow: hidden;
-
   text-decoration: none;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
 
-  transition:
-    color 0.2s ease,
-    transform 0.2s ease;
+.github-button:hover {
+  color: #fff;
+  transform: translateY(-1px);
 }
 
 .github-button svg {
   position: relative;
-
   z-index: 5;
-
   width: 20px;
   height: 20px;
 }
 
-
-/* ========================================
-   TABLET
-   ======================================== */
-
+/* ---------- Tablet ---------- */
 @media (max-width: 900px) {
-
   .navbar {
     width: calc(100% - 40px);
     height: 64px;
     margin: 18px auto 0;
   }
-
-  .navbar-content {
-    padding: 0 22px;
-  }
-
-  .logo h1 {
-    font-size: 1.6rem;
-  }
-
-  .nav-links {
-    gap: 20px;
-  }
-
-  .github-button {
-    width: 40px;
-    height: 40px;
-  }
-
-  .github-button svg {
-    width: 18px;
-    height: 18px;
-  }
+  .navbar-content { padding: 0 22px; }
+  .logo h1 { font-size: 1.35rem; }
+  .logo-mark { width: 28px; height: 21px; }
+  .github-button { width: 34px; height: 34px; }
+  .github-button svg { width: 18px; height: 18px; }
 }
 
-
-/* ========================================
-   PHONE
-   ======================================== */
-
+/* ---------- Phone ---------- */
 @media (max-width: 600px) {
-
   .navbar {
     width: calc(100% - 24px);
     height: 58px;
-
     margin: 12px auto 0;
-
-    border-radius: 999px;
+    border-radius: 16px;
   }
-
-  .navbar-content {
-    padding: 0 16px;
-  }
-
-  .logo h1 {
-    font-size: 1.35rem;
-    margin: 0;
-  }
-
-  .nav-links {
-    gap: 12px;
-  }
-
-  .github-button {
-    width: 38px;
-    height: 38px;
-  }
-
-  .github-button svg {
-    width: 17px;
-    height: 17px;
-  }
+  .navbar-content { padding: 0 16px; }
+  .logo { gap: 9px; }
+  .logo h1 { font-size: 1.2rem; }
+  .logo-mark { width: 25px; height: 19px; }
+  .github-button { width: 32px; height: 32px; border-radius: 9px; }
+  .github-button svg { width: 17px; height: 17px; }
 }
 
-
-/* ========================================
-   SMALL PHONES
-   ======================================== */
-
+/* ---------- Small phones ---------- */
 @media (max-width: 380px) {
-
   .navbar {
     width: calc(100% - 16px);
     height: 54px;
-
     margin-top: 8px;
   }
-
-  .navbar-content {
-    padding: 0 13px;
-  }
-
-  .logo h1 {
-    font-size: 1.2rem;
-  }
-
-  .github-button {
-    width: 35px;
-    height: 35px;
-  }
-
-  .github-button svg {
-    width: 16px;
-    height: 16px;
-  }
+  .navbar-content { padding: 0 13px; }
+  .logo h1 { font-size: 1.1rem; }
+  .github-button { width: 30px; height: 30px; }
+  .github-button svg { width: 16px; height: 16px; }
 }

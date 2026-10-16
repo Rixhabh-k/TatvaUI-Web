@@ -1,9 +1,6 @@
 import { useEffect, useRef } from "react";
 import "./navbar.css";
 
-import { TextScramble } from "tatva-ui";
-import "tatva-ui/style.css";
-
 import { FaGithub } from "react-icons/fa";
 
 import { applyLiquidGlass } from "../../effects/liquidGlass/liquidGlass";
@@ -57,19 +54,31 @@ const Navbar = () => {
   }, []);
 
   return (
-    <nav ref={navbarRef} className="navbar" data-radius="999">
+    // data-radius matches the rounded-rectangle shape (was 999 for the pill)
+    <nav ref={navbarRef} className="navbar" data-radius="18">
       <div className="navbar-content">
-
         <div className="logo">
-          {/* <TextScramble phrases={["Tatva/ui", "तत्त्व/ui"]} pauseDuration={4000} className="logo-scramble" /> */}
-          {/* <span className="logo-static">/ui</span> */}
-          <h1>Tatva/<span>ui</span> </h1>
+          <svg
+            className="logo-mark"
+            viewBox="0 0 34 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="3.5"
+            aria-hidden="true"
+          >
+            <path d="M2 22 L11 4 L20 22" />
+            <path d="M14 22 L23 4 L32 22" />
+          </svg>
+          <h1>
+            Tatva/<span>ui</span>
+          </h1>
         </div>
 
         <div className="nav-links">
           <a
             ref={githubRef}
             className="github-button"
+            data-radius="10"
             href="https://github.com"
             target="_blank"
             rel="noopener noreferrer"
@@ -78,7 +87,6 @@ const Navbar = () => {
             <FaGithub />
           </a>
         </div>
-
       </div>
     </nav>
   );

@@ -1,166 +1,71 @@
-import { useEffect, useRef } from "react";
-import { FaGithub } from "react-icons/fa";
-import { Link } from "react-router";
-
-import Navbar from "../../components/Navbar/Navbar";
-import { TextScramble } from "tatva-ui";
-import "tatva-ui/style.css";
-
-import { applyLiquidGlass } from "../../effects/liquidGlass/liquidGlass";
-
+import { Link } from "react-router-dom";
 import "./hero.css";
+import heroBg from "../../assets/images/Purple Horizon Dunes.png";
+import Navbar from "../../components/Navbar/Navbar";
 
-import DotField from "../../effects/Dot Field/DotField";
+const ArrowIcon = () => (
+  <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor"
+       strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <path d="M5 12h14M13 6l6 6-6 6" />
+  </svg>
+);
 
-import Footer from "../../effects/Footer/Footer";
+const GithubIcon = () => (
+  <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+    <path d="M12 .5A11.5 11.5 0 0 0 .5 12.2c0 5.2 3.3 9.6 7.9 11.1.6.1.8-.3.8-.6v-2c-3.2.7-3.9-1.4-3.9-1.4-.5-1.3-1.3-1.7-1.3-1.7-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.7 1.3 3.4 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.8 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.2 1.2a11 11 0 0 1 5.8 0c2.2-1.5 3.2-1.2 3.2-1.2.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.5-2.7 5.5-5.3 5.8.4.4.8 1.1.8 2.2v3.2c0 .3.2.7.8.6a11.7 11.7 0 0 0 7.9-11.1A11.5 11.5 0 0 0 12 .5Z" />
+  </svg>
+);
 
-const Hero = () => {
-  const getStartedRef = useRef(null);
-  const githubRef = useRef(null);
-  const getStartedMobileRef = useRef(null);
-  useEffect(() => {
-    if (!getStartedRef.current || !githubRef.current) return;
-
-    const cleanups = [];
-    if (getStartedRef.current) {
-      cleanups.push(
-        applyLiquidGlass(getStartedRef.current, {
-          glassThickness: 70,
-          bezelWidth: 20,
-          ior: 1.4,
-          scaleRatio: 1,
-          blur: 0.8,
-          specularOpacity: 0.65,
-          specularSat: 0,
-          tintColor: "255,255,255",
-          tintOpacity: 0.025,
-          innerShadow: "rgba(255,255,255,0.16)",
-          innerShadowBlur: 12,
-          innerShadowSpread: -1,
-          balancedSpecular: true,
-        }),
-      );
-    }
-
-    if (getStartedMobileRef.current) {
-      cleanups.push(
-        applyLiquidGlass(getStartedMobileRef.current, {
-          glassThickness: 70,
-          bezelWidth: 20,
-          ior: 1.4,
-          scaleRatio: 1,
-          blur: 0.8,
-          specularOpacity: 0.65,
-          specularSat: 0,
-          tintColor: "255,255,255",
-          tintOpacity: 0.025,
-          innerShadow: "rgba(255,255,255,0.16)",
-          innerShadowBlur: 12,
-          innerShadowSpread: -1,
-          balancedSpecular: true,
-        }),
-      );
-    }
-
-    if (githubRef.current) {
-      cleanups.push(
-        applyLiquidGlass(githubRef.current, {
-          glassThickness: 55,
-          bezelWidth: 18,
-          ior: 1.4,
-          scaleRatio: 0.9,
-          blur: 0.7,
-          specularOpacity: 0.55,
-          specularSat: 0,
-          tintColor: "255,255,255",
-          tintOpacity: 0.025,
-          innerShadow: "rgba(255,255,255,0.14)",
-          innerShadowBlur: 10,
-          innerShadowSpread: -1,
-          balancedSpecular: true,
-        }),
-      );
-    }
-
-   return () => cleanups.forEach((cleanup) => cleanup?.());
-  }, []);
-
+export default function Hero({
+  getStartedHref = "/docs/installation",
+  githubHref = "https://github.com",
+}) {
   return (
-    <section className="hero-section">
-      <div className="hero-background">
-        <DotField
-          dotRadius={1.5}
-          dotSpacing={14}
-          bulgeStrength={67}
-          glowRadius={0}
-          sparkle
-          waveAmplitude={0}
-          gradientFrom="#8300ff"
-          gradientTo="#4000ff"
-        />
+    <section className="hero" aria-labelledby="hero-title">
+      {/* Navbar floats over the background */}
+      <div className="hero__nav">
+        <Navbar />
       </div>
 
-      <div className="hero-content">
-        <Navbar />
+      {/* Background image + readability overlay */}
+      <div
+        className="hero__bg"
+        style={{ backgroundImage: `url(${heroBg})` }}
+        aria-hidden="true"
+      >
+        <div className="hero__overlay" />
+        <div className="hero__fade" />
+      </div>
 
-        <div className="hero-main-content">
-          <div className="hero-heading">
-            <h1>Craft your UI with</h1>
+      <div className="hero__content">
+        <h1 id="hero-title" className="hero__title">
+          <span className="hero__line">
+            <span className="tone-light">Build</span>{" "}
+            <span className="tone-dark bold-font">Fast.</span>{" "}
+            <span className="tone-light">Animate</span>{" "}
+            <span className="tone-light">Bold.</span>
+          </span>
+          <span className="hero__line">
+            <span className="tone-light">Ship</span>{" "}
+            <span className="tone-dark bold-font">Beautiful.</span>
+          </span>
+        </h1>
 
-            <div className="scramble-wrapper">
-              <TextScramble
-                phrases={["ease.", "motion.", "detail.", "feeling."]}
-                pauseDuration={2000}
-                className="heading-scramble"
-              />
-            </div>
-          </div>
+        <p className="hero__subtitle">
+          Breathe life into your website with beautifully designed animated
+          components, a collection of stunning motion components designed to
+          captivate.
+        </p>
 
-          <div className="hero-para">
-            <p>
-              Breathe life into your website with beautifully designed animated
-              components, a collection of stunning motion components designed to
-              captivate.
-            </p>
-          </div>
-
-          <div className="hero-buttons">
-            {/* Desktop */}
-            <Link
-              ref={getStartedRef}
-              to="/docs/installation"
-              className="hero-btn desktop-get-started"
-              data-radius="14">
-              <span>Get Started</span>
-              <span className="arrow">→</span>
-            </Link>
-
-            {/* Mobile */}
-            <Link
-              ref={getStartedMobileRef}
-              to="/docs"
-              className="hero-btn mobile-get-started"
-              data-radius="14">
-              <span>Get Started</span>
-              <span className="arrow">→</span>
-            </Link>
-
-            <a
-              ref={githubRef}
-              href="https://github.com/Rixhabh-k/TatvaUI-Web"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hero-btn"
-              data-radius="14">
-              <FaGithub />
-              <span>GitHub</span>
-            </a>
-          </div>
+        <div className="hero__actions">
+          <Link className="btn btn--primary" to={getStartedHref}>
+            Get Started <ArrowIcon />
+          </Link>
+          <a className="btn btn--light" href={githubHref} target="_blank" rel="noreferrer">
+            <GithubIcon /> Github <ArrowIcon />
+          </a>
         </div>
       </div>
-      <Footer />
     </section>
   );
-};
-
-export default Hero;
+}
