@@ -4,10 +4,12 @@ import Docs from "../pages/Docs/Docs";
 import DocsLayout from "../pages/Docs/layout/DocsLayout";
 import DocsPage from "../pages/Docs/DocsPage/DocsPage";
 import Playground from "../pages/Playground/Playground";
+import PageTitle from "./PageTitle";
 
 const AppRoutes = () => {
   return (
     <BrowserRouter>
+      <PageTitle/>
       <Routes>
         <Route path="/" element={<Hero />} />
 
