@@ -17,6 +17,7 @@ const GithubIcon = () => (
 );
 
 export default function Hero({
+  getStartedMobileHref="/docs",
   getStartedHref = "/docs/installation",
   githubHref = "https://github.com",
 }) {
@@ -58,7 +59,10 @@ export default function Hero({
         </p>
 
         <div className="hero__actions">
-          <Link className="btn btn--primary" to={getStartedHref}>
+          <Link className="btn btn--primary btn-desktop" to={getStartedHref}>
+            Get Started <ArrowIcon />
+          </Link>
+          <Link className="btn btn--primary btn-mobile" to={getStartedMobileHref}>
             Get Started <ArrowIcon />
           </Link>
           <a className="btn btn--light" href={githubHref} target="_blank" rel="noreferrer">
