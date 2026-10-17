@@ -1,3 +1,4 @@
+
 import { Link } from "react-router-dom";
 import "./hero.css";
 import heroBg from "../../assets/images/Purple Horizon Dunes.png";
@@ -33,18 +34,17 @@ const GithubIcon = () => (
 );
 
 export default function Hero({
+  getStartedMobileHref = "/docs",
   getStartedHref = "/docs/installation",
   githubHref = "https://github.com",
 }) {
   return (
     <>
       <section className="hero" aria-labelledby="hero-title">
-        {/* Navbar floats over the background */}
         <div className="hero__nav">
           <Navbar />
         </div>
 
-        {/* Background image + readability overlay */}
         <div
           className="hero__bg"
           style={{ backgroundImage: `url(${heroBg})` }}
@@ -62,6 +62,7 @@ export default function Hero({
               <span className="tone-light">Design</span>{" "}
               <span className="tone-dark bold-font">Bold.</span>
             </span>
+
             <span className="hero__line">
               <span className="tone-light">Animate</span>{" "}
               <span className="tone-dark bold-font">Without Limits.</span>
@@ -75,9 +76,20 @@ export default function Hero({
           </p>
 
           <div className="hero__actions">
-            <Link className="btn btn--primary" to={getStartedHref}>
+            <Link
+              className="btn btn--primary btn-desktop"
+              to={getStartedHref}
+            >
               Get Started <ArrowIcon />
             </Link>
+
+            <Link
+              className="btn btn--primary btn-mobile"
+              to={getStartedMobileHref}
+            >
+              Get Started <ArrowIcon />
+            </Link>
+
             <a
               className="btn btn--light"
               href={githubHref}
@@ -89,6 +101,7 @@ export default function Hero({
           </div>
         </div>
       </section>
+
       <Footer />
     </>
   );

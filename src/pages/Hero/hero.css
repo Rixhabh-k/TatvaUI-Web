@@ -128,6 +128,11 @@
   background: linear-gradient(135deg, var(--violet), var(--orchid));
   box-shadow: 0 8px 24px rgb(122 44 176 / 0.45), inset 0 0 0 1px rgb(255 255 255 / 0.15);
 }
+
+.btn-mobile{
+  display: none;
+}
+
 .btn--light {
   color: var(--night);
   background: linear-gradient(135deg, #f4ecff, var(--lavender));
@@ -155,6 +160,15 @@
 
 @media (max-width: 480px) {
   .hero__line { display: inline; }
+  .btn-desktop{
+    display: none;
+  }
+
+ 
+
+  .btn-mobile{
+    display: inline-flex;
+  }
 }
 
 /* ---------- Bold accent words ---------- */
