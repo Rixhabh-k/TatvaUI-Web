@@ -58,17 +58,7 @@ const Navbar = () => {
     <nav ref={navbarRef} className="navbar" data-radius="18">
       <div className="navbar-content">
         <div className="logo">
-          <svg
-            className="logo-mark"
-            viewBox="0 0 34 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="3.5"
-            aria-hidden="true"
-          >
-            <path d="M2 22 L11 4 L20 22" />
-            <path d="M14 22 L23 4 L32 22" />
-          </svg>
+         
           <h1>
             Tatva/<span>ui</span>
           </h1>

@@ -1,5 +1,7 @@
 import React from "react";
 import { Link } from "react-router";
+import { FaGithub } from "react-icons/fa";
+import { FaXTwitter } from "react-icons/fa6";
 import "./footer.css";
 
 const Footer = () => {
@@ -8,95 +10,47 @@ const Footer = () => {
   return (
     <footer className="site-footer" id="site-footer">
       <div className="footer-container">
-        <div className="footer-main">
+        <div className="footer-top">
+          {/* Brand */}
           <div className="footer-brand">
-            <Link to="/" className="footer-logo">
-              <span className="footer-logo-icon" />
-              <span>TatvaUI</span>
+            <Link to="/" className="footer-logo" aria-label="Tatva UI home">
+              
+              <span className="footer-logo-text">
+                Tatva/<span>ui</span>
+              </span>
             </Link>
 
-            <p className="footer-tagline">
-              The component library you own
-              <br className="desktop-break" /> outright.
-            </p>
+            <p className="footer-tagline">Animate Your Web Presence</p>
+          </div>
 
+          {/* Socials */}
+          <div className="footer-connect">
+            <h3>Connect With Us</h3>
             <div className="footer-socials">
               <a
                 href="https://github.com/Rixhabh-k/TatvaUI-Web"
                 target="_blank"
                 rel="noreferrer"
                 aria-label="GitHub"
-                className="footer-social-link">
-                GH
+                className="footer-social-link"
+              >
+                <FaGithub />
               </a>
-
               <a
                 href="#"
                 target="_blank"
                 rel="noreferrer"
                 aria-label="X"
-                className="footer-social-link">
-                X
-              </a>
-
-              <a
-                href="#"
-                target="_blank"
-                rel="noreferrer"
-                aria-label="Discord"
-                className="footer-social-link">
-                DC
+                className="footer-social-link"
+              >
+                <FaXTwitter />
               </a>
             </div>
-          </div>
-
-          <div className="footer-column">
-            <h3>PRODUCT</h3>
-            <Link to="/docs/installation" className="desktop-docs">
-              Components
-            </Link>
-            <Link to="/docs" className="mobile-docs">
-              Components
-            </Link>
-            <a href="#">Composer</a>
-          </div>
-
-          <div className="footer-column">
-            <h3>CONTRIBUTERS</h3>
-            <a href="#">Rishabh</a>
-            <a href="#">Pratyush</a>
-            <a href="#">Abhinav</a>
-          </div>
-
-          <div className="footer-column">
-            <h3>COMPANY</h3>
-            <Link to="#">About</Link>
-            <Link to="#">Contact</Link>
-          </div>
-
-          <div className="footer-column">
-            <h3>LEGAL</h3>
-            <a href="#">Privacy</a>
-            <a href="#">Terms</a>
-            <a href="#">Security</a>
-            <a href="#">DPA</a>
           </div>
         </div>
 
         <div className="footer-bottom">
-          <p>© {currentYear} TatvaUI</p>
-
-          <button
-            type="button"
-            className="footer-back-to-top"
-            onClick={() =>
-              window.scrollTo({
-                top: 0,
-                behavior: "smooth",
-              })
-            }>
-            Back to top
-          </button>
+          <p>© {currentYear} Tatva UI, Inc. All rights reserved.</p>
         </div>
       </div>
     </footer>
@@ -104,4 +58,3 @@ const Footer = () => {
 };
 
 export default Footer;
-
