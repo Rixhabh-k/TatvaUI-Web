@@ -22,7 +22,6 @@ const DocsLayout = () => {
 
       <section className="docs-layout-section">
         <DocsSidebar />
-
         {isPlayground ? <Playground /> : <Outlet />}
       </section>
     </div>
