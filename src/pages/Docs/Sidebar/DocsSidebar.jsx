@@ -1,13 +1,9 @@
-import { useMemo } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useLocation, useNavigate } from "react-router";
-import BranchedMenu from "../../../effects/BranchedMenu/BranchedMenu";
-import {
-  Download04Icon,
-  CursorMagicSelection04Icon,
-  TextFontIcon,
-  Layers01Icon,
-} from "@hugeicons/core-free-icons";
+import { Download, MousePointer2, Type, Layers } from "lucide-react";
 import "./docsSidebar.css";
+
+// Keep your existing navigation array and iconMap here.
 
 const navigation = [
   {
@@ -68,14 +64,24 @@ const navigation = [
 
 // ek category ke ek icon yaha daale ↓
 const iconMap = {
-  buttons: CursorMagicSelection04Icon,
-  text: TextFontIcon,
-  cards: Layers01Icon,
+  buttons: MousePointer2,
+  text: Type,
+  cards: Layers,
 };
 
 const DocsSidebar = () => {
   const location = useLocation();
   const navigate = useNavigate();
+  const sidebarRef = useRef(null);
+  const itemRefs = useRef(new Map());
+
+  const [hoveredSlug, setHoveredSlug] = useState(null);
+  const [indicator, setIndicator] = useState({
+    left: 0,
+    top: 0,
+    height: 0,
+    visible: false,
+  });
 
   const isPlayground = location.pathname.startsWith("/playground");
 
@@ -89,15 +95,13 @@ const DocsSidebar = () => {
         const children = section.children ?? [];
 
         if (children.some((item) => item.children)) {
-          return children.map((category) => {
-            return {
-              label: category.label,
-              children: (category.children ?? []).map((item) => ({
-                ...item,
-                icon: iconMap[category.value],
-              })),
-            };
-          });
+          return children.map((category) => ({
+            label: category.label,
+            children: (category.children ?? []).map((item) => ({
+              ...item,
+              icon: iconMap[category.value],
+            })),
+          }));
         }
 
         return [
@@ -105,7 +109,7 @@ const DocsSidebar = () => {
             label: section.label,
             children: children.map((item) => ({
               ...item,
-              icon: Download04Icon,
+              icon: Download,
             })),
           },
         ];
@@ -113,35 +117,205 @@ const DocsSidebar = () => {
     [],
   );
 
-  const activeSection = Math.max(
-    0,
-    menuItems.findIndex((section) =>
-      section.children.some((item) => item.value === currentSlug),
-    ),
+  const findItem = useCallback(
+    (slug) =>
+      menuItems
+        .flatMap((section) => section.children)
+        .find((item) => item.value === slug),
+    [menuItems],
   );
+
+  const moveIndicator = useCallback((slug) => {
+    const sidebar = sidebarRef.current;
+    const element = itemRefs.current.get(slug);
+
+    if (!sidebar || !element) return;
+
+    const sidebarRect = sidebar.getBoundingClientRect();
+    const itemRect = element.getBoundingClientRect();
+
+    const itemsContainer = element.closest(".docs-sidebar__items");
+
+    if (!itemsContainer) return;
+
+    const itemsRect = itemsContainer.getBoundingClientRect();
+
+    setIndicator({
+      top: itemRect.top - sidebarRect.top + sidebar.scrollTop,
+      left: itemsRect.left - sidebarRect.left + sidebar.scrollLeft,
+      height: itemRect.height,
+      visible: true,
+    });
+  }, []);
+
+  const restoreActiveIndicator = useCallback(() => {
+    if (itemRefs.current.has(currentSlug)) {
+      moveIndicator(currentSlug);
+    } else {
+      setIndicator((previous) => ({
+        ...previous,
+        visible: false,
+      }));
+    }
+  }, [currentSlug, moveIndicator]);
+
+  useEffect(() => {
+    const frame = requestAnimationFrame(() => {
+      moveIndicator(hoveredSlug ?? currentSlug);
+    });
+
+    return () => cancelAnimationFrame(frame);
+  }, [currentSlug, hoveredSlug, moveIndicator]);
+
+  useEffect(() => {
+    const sidebar = sidebarRef.current;
+    if (!sidebar) return;
+
+    const observer = new ResizeObserver(() => {
+      moveIndicator(hoveredSlug ?? currentSlug);
+    });
+
+    observer.observe(sidebar);
+
+    return () => observer.disconnect();
+  }, [currentSlug, hoveredSlug, moveIndicator]);
+
+  const handleNavigate = (slug) => {
+    const item = findItem(slug);
+    if (!item) return;
+
+    const prefix = isPlayground ? "/playground" : "/docs";
+    navigate(item.href ?? `${prefix}/${slug}`);
+  };
 
   return (
     <aside className="docs-sidebar">
-      <BranchedMenu
-        items={menuItems}
-        defaultOpen={[1, 2]}
-        defaultActive={currentSlug}
-        onSelect={(value) => {
-          navigate(`/${isPlayground ? "playground" : "docs"}/${value}`);
-        }}
-        color="#f5f5f5"
-        accentColor="#f5f5f7"
-        lineColor="#3f3f46"
-        width={240}
-        rowHeight={36}
-        indent={40}
-        trunk={14}
-        radius={10}
-        lineWidth={1.5}
-        fontSize={14}
-        drawDuration={400}
-        foldDuration={300}
-      />
+      <nav
+        ref={sidebarRef}
+        className="docs-sidebar__nav"
+        aria-label="Documentation navigation"
+        onMouseLeave={() => {
+          setHoveredSlug(null);
+          restoreActiveIndicator();
+        }}>
+        <span
+          className={`docs-sidebar__indicator ${
+            indicator.visible ? "is-visible" : ""
+          }`}
+          style={{
+            transform: `translate(${indicator.left ?? 0}px, ${indicator.top}px)`,
+            height: `${indicator.height}px`,
+          }}
+          aria-hidden="true"
+        />
+
+        {menuItems.map((section, sectionIndex) => (
+          <div className="docs-sidebar__section" key={section.label}>
+            <h3 className="docs-sidebar__heading">{section.label}</h3>
+
+            <div className="docs-sidebar__items">
+              {section.children.map((item) => {
+                const Icon = item.icon;
+                const hasChildren = Boolean(item.children?.length);
+
+                return (
+                  <div className="docs-sidebar__group" key={item.value}>
+                    {hasChildren ? (
+                      <>
+                        <div className="docs-sidebar__category">
+                          {Icon && <Icon className="docs-sidebar__icon" />}
+                          <span>{item.label}</span>
+                        </div>
+
+                        <div className="docs-sidebar__nested">
+                          {item.children.map((child) => {
+                            const ChildIcon = child.icon;
+                            const isActive = child.value === currentSlug;
+
+                            return (
+                              <button
+                                key={child.value}
+                                ref={(element) => {
+                                  if (element) {
+                                    itemRefs.current.set(child.value, element);
+                                  } else {
+                                    itemRefs.current.delete(child.value);
+                                  }
+                                }}
+                                type="button"
+                                className={`docs-sidebar__link ${
+                                  isActive ? "is-active" : ""
+                                }`}
+                                aria-current={isActive ? "page" : undefined}
+                                onMouseEnter={() => {
+                                  setHoveredSlug(child.value);
+                                  moveIndicator(child.value);
+                                }}
+                                onFocus={() => {
+                                  setHoveredSlug(child.value);
+                                  moveIndicator(child.value);
+                                }}
+                                onBlur={(event) => {
+                                  if (
+                                    !event.currentTarget.parentElement?.contains(
+                                      event.relatedTarget,
+                                    )
+                                  ) {
+                                    setHoveredSlug(null);
+                                    restoreActiveIndicator();
+                                  }
+                                }}
+                                onClick={() => handleNavigate(child.value)}>
+                                {ChildIcon && (
+                                  <ChildIcon className="docs-sidebar__icon" />
+                                )}
+                                <span>{child.label}</span>
+                                {child.badge && (
+                                  <span className="docs-sidebar__badge">
+                                    {child.badge}
+                                  </span>
+                                )}
+                              </button>
+                            );
+                          })}
+                        </div>
+                      </>
+                    ) : (
+                      <button
+                        ref={(element) => {
+                          if (element) {
+                            itemRefs.current.set(item.value, element);
+                          } else {
+                            itemRefs.current.delete(item.value);
+                          }
+                        }}
+                        type="button"
+                        className={`docs-sidebar__link ${
+                          item.value === currentSlug ? "is-active" : ""
+                        }`}
+                        aria-current={
+                          item.value === currentSlug ? "page" : undefined
+                        }
+                        onMouseEnter={() => {
+                          setHoveredSlug(item.value);
+                          moveIndicator(item.value);
+                        }}
+                        onFocus={() => {
+                          setHoveredSlug(item.value);
+                          moveIndicator(item.value);
+                        }}
+                        onClick={() => handleNavigate(item.value)}>
+                        {Icon && <Icon className="docs-sidebar__icon" />}
+                        <span>{item.label}</span>
+                      </button>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        ))}
+      </nav>
     </aside>
   );
 };
