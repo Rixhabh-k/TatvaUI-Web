@@ -34,6 +34,8 @@
   height: 100%;
   overflow-x: hidden;
   overflow-y: auto;
+  border-right: 1px solid #202024;
+  scrollbar-width: none;
 }
 
 /* Documentation content */
