@@ -21,6 +21,20 @@ import {
   NeoBrutalism,
   CircleExpand,
   FolderCard,
+  DayNightToggle,
+  MoodToggle,
+  SleepyCat,
+  RockerSwitch,
+  EyeToggle,
+  PadlockToggle,
+  BellToggle,
+  CandleToggle,
+  FireflyJar,
+  LavaLamp,
+  RecordPlayer,
+  RocketToggle,
+  NeonSign,
+  FlowerBloom,
 } from "tatva-ui";
 //tying to push
 /*
@@ -3453,6 +3467,1572 @@ export default function Example() {
         type: "object",
         default: "none",
         description: "Inline styles applied to the card.",
+      },
+    ],
+  },
+
+  "day-night-toggle": {
+    title: "Day Night Toggle",
+    description:
+      "A dark-mode switch drawn as a little sky. Flip it and the sun rolls across and turns into a cratered moon, the clouds sink away and the stars come out.",
+
+    preview: DayNightToggle,
+
+    previewProps: {
+      size: 40,
+      label: "Dark mode",
+      disabled: false,
+      daySky: "linear-gradient(180deg, #4fa8f7 0%, #8fd0ff 100%)",
+      nightSky: "linear-gradient(180deg, #0e1530 0%, #23305c 100%)",
+      sunColor: "#ffd23f",
+      moonColor: "#e4e8f2",
+    },
+
+    usage: {
+      language: "jsx",
+      code: `import { useState } from "react"
+import { DayNightToggle } from "tatva-ui"
+
+export function DayNightToggleDemo() {
+  const [night, setNight] = useState(false)
+
+  return <DayNightToggle checked={night} onChange={setNight} />
+}`,
+    },
+
+    css: {
+      title: "CSS Styling",
+      description:
+        "Everything is drawn by the component. To restyle it, set any of its CSS variables on your own class: --tattva-dnt-size (height; everything scales with it); --tattva-dnt-day (sky by day); --tattva-dnt-night (sky by night); --tattva-dnt-sun (sun colour); --tattva-dnt-moon (moon colour); --tattva-dnt-speed (how long the change takes).",
+      language: "css",
+      code: `/* every variable is optional; set the ones you want on your own class */
+.my-day-night-toggle {
+  --tattva-dnt-size: 48px;
+  --tattva-dnt-sun: #ffb703; /* a deeper sun */
+}`,
+    },
+
+    props: [
+      {
+        name: "checked",
+        type: "boolean",
+        default: "undefined",
+        description: "Night (dark mode) when true. Pass it with onChange to control the toggle.",
+        control: false,
+      },
+      {
+        name: "defaultChecked",
+        type: "boolean",
+        default: "false",
+        description: "Starting state when you let the toggle manage itself.",
+        control: false,
+      },
+      {
+        name: "onChange",
+        type: "function",
+        default: "none",
+        description: "Called with (checked, event) whenever it flips.",
+        control: false,
+      },
+      {
+        name: "size",
+        type: "range",
+        min: 24,
+        max: 120,
+        step: 1,
+        default: "40",
+        description: "Size in pixels; the whole scene scales with it.",
+      },
+      {
+        name: "label",
+        type: "text",
+        default: "\"Dark mode\"",
+        description: "What screen readers announce.",
+      },
+      {
+        name: "disabled",
+        type: "boolean",
+        default: "false",
+        description: "Cannot be switched.",
+      },
+      {
+        name: "daySky",
+        type: "text",
+        default: "linear-gradient(180deg, #4fa8f7 0%, #8fd0ff 100%)",
+        description: "Sky by day. Any CSS background, gradients included.",
+      },
+      {
+        name: "nightSky",
+        type: "text",
+        default: "linear-gradient(180deg, #0e1530 0%, #23305c 100%)",
+        description: "Sky by night. Any CSS background, gradients included.",
+      },
+      {
+        name: "sunColor",
+        type: "color",
+        default: "#ffd23f",
+        description: "Colour of the sun.",
+      },
+      {
+        name: "moonColor",
+        type: "color",
+        default: "#e4e8f2",
+        description: "Colour of the moon.",
+      },
+      {
+        name: "className",
+        type: "text",
+        default: "\"\"",
+        description: "Custom CSS class.",
+      },
+      {
+        name: "style",
+        type: "object",
+        default: "none",
+        description: "Inline styles.",
+        control: false,
+      },
+    ],
+  },
+
+  "mood-toggle": {
+    title: "Mood Toggle",
+    description:
+      "A switch whose knob is a little face. Off, it is sad and rolls left with a tear; on, it rolls right and smiles with rosy cheeks, blinking every time it flips.",
+
+    preview: MoodToggle,
+
+    previewProps: {
+      size: 40,
+      label: "Happy",
+      disabled: false,
+      offColor: "#a9b4cf",
+      onColor: "#6fdc9f",
+      faceColor: "#ffd84d",
+    },
+
+    usage: {
+      language: "jsx",
+      code: `import { useState } from "react"
+import { MoodToggle } from "tatva-ui"
+
+export function MoodToggleDemo() {
+  const [happy, setHappy] = useState(false)
+
+  return <MoodToggle checked={happy} onChange={setHappy} />
+}`,
+    },
+
+    css: {
+      title: "CSS Styling",
+      description:
+        "Everything is drawn by the component. To restyle it, set any of its CSS variables on your own class: --tattva-mood-size (height; everything scales with it); --tattva-mood-off (track colour when off); --tattva-mood-on (track colour when on); --tattva-mood-face (colour of the face); --tattva-mood-ink (eyes and mouth); --tattva-mood-speed (how long the roll takes).",
+      language: "css",
+      code: `/* every variable is optional; set the ones you want on your own class */
+.my-mood-toggle {
+  --tattva-mood-size: 48px;
+  --tattva-mood-on: #4ade80; /* a brighter green when happy */
+}`,
+    },
+
+    props: [
+      {
+        name: "checked",
+        type: "boolean",
+        default: "undefined",
+        description: "Happy when true. Pass it with onChange to control the toggle.",
+        control: false,
+      },
+      {
+        name: "defaultChecked",
+        type: "boolean",
+        default: "false",
+        description: "Starting state when you let the toggle manage itself.",
+        control: false,
+      },
+      {
+        name: "onChange",
+        type: "function",
+        default: "none",
+        description: "Called with (checked, event) whenever it flips.",
+        control: false,
+      },
+      {
+        name: "size",
+        type: "range",
+        min: 24,
+        max: 120,
+        step: 1,
+        default: "40",
+        description: "Size in pixels; the whole scene scales with it.",
+      },
+      {
+        name: "label",
+        type: "text",
+        default: "\"Happy\"",
+        description: "What screen readers announce.",
+      },
+      {
+        name: "disabled",
+        type: "boolean",
+        default: "false",
+        description: "Cannot be switched.",
+      },
+      {
+        name: "offColor",
+        type: "color",
+        default: "#a9b4cf",
+        description: "Track colour when off.",
+      },
+      {
+        name: "onColor",
+        type: "color",
+        default: "#6fdc9f",
+        description: "Track colour when on.",
+      },
+      {
+        name: "faceColor",
+        type: "color",
+        default: "#ffd84d",
+        description: "Colour of the face.",
+      },
+      {
+        name: "className",
+        type: "text",
+        default: "\"\"",
+        description: "Custom CSS class.",
+      },
+      {
+        name: "style",
+        type: "object",
+        default: "none",
+        description: "Inline styles.",
+        control: false,
+      },
+    ],
+  },
+
+  "sleepy-cat": {
+    title: "Sleepy Cat",
+    description:
+      "A switch with a cat for a knob. Off, it dozes on a dusky track with z's floating up; on, it slides into the sunshine, its eyes pop open, its ears perk up and its whiskers twitch.",
+
+    preview: SleepyCat,
+
+    previewProps: {
+      size: 44,
+      label: "Awake",
+      disabled: false,
+      furColor: "#f5a14a",
+      nightColor: "#8f86c9",
+      dayColor: "#ffd28a",
+    },
+
+    usage: {
+      language: "jsx",
+      code: `import { useState } from "react"
+import { SleepyCat } from "tatva-ui"
+
+export function SleepyCatDemo() {
+  const [awake, setAwake] = useState(false)
+
+  return <SleepyCat checked={awake} onChange={setAwake} />
+}`,
+    },
+
+    css: {
+      title: "CSS Styling",
+      description:
+        "Everything is drawn by the component. To restyle it, set any of its CSS variables on your own class: --tattva-cat-size (height; everything scales with it); --tattva-cat-fur (colour of the cat); --tattva-cat-night (track colour while it sleeps); --tattva-cat-day (track colour while it is awake); --tattva-cat-ink (eyes, nose and whiskers); --tattva-cat-speed (how long the slide takes).",
+      language: "css",
+      code: `/* every variable is optional; set the ones you want on your own class */
+.my-sleepy-cat {
+  --tattva-cat-size: 52px;
+  --tattva-cat-fur: #9ca3af; /* a grey cat */
+}`,
+    },
+
+    props: [
+      {
+        name: "checked",
+        type: "boolean",
+        default: "undefined",
+        description: "Awake when true. Pass it with onChange to control the toggle.",
+        control: false,
+      },
+      {
+        name: "defaultChecked",
+        type: "boolean",
+        default: "false",
+        description: "Starting state when you let the toggle manage itself.",
+        control: false,
+      },
+      {
+        name: "onChange",
+        type: "function",
+        default: "none",
+        description: "Called with (checked, event) whenever it flips.",
+        control: false,
+      },
+      {
+        name: "size",
+        type: "range",
+        min: 24,
+        max: 120,
+        step: 1,
+        default: "44",
+        description: "Size in pixels; the whole scene scales with it.",
+      },
+      {
+        name: "label",
+        type: "text",
+        default: "\"Awake\"",
+        description: "What screen readers announce.",
+      },
+      {
+        name: "disabled",
+        type: "boolean",
+        default: "false",
+        description: "Cannot be switched.",
+      },
+      {
+        name: "furColor",
+        type: "color",
+        default: "#f5a14a",
+        description: "Colour of the cat.",
+      },
+      {
+        name: "nightColor",
+        type: "color",
+        default: "#8f86c9",
+        description: "Track colour while it sleeps.",
+      },
+      {
+        name: "dayColor",
+        type: "color",
+        default: "#ffd28a",
+        description: "Track colour while it is awake.",
+      },
+      {
+        name: "className",
+        type: "text",
+        default: "\"\"",
+        description: "Custom CSS class.",
+      },
+      {
+        name: "style",
+        type: "object",
+        default: "none",
+        description: "Inline styles.",
+        control: false,
+      },
+    ],
+  },
+
+  "rocker-switch": {
+    title: "Rocker Switch",
+    description:
+      "A chunky retro power switch. The paddle tips in 3D toward the side you pressed, the pressed half falls into shadow, and an LED above it glows when the power is on.",
+
+    preview: RockerSwitch,
+
+    previewProps: {
+      size: 56,
+      label: "Power",
+      disabled: false,
+      ledColor: "#36f08a",
+      paddleColor: "#2b2b33",
+    },
+
+    usage: {
+      language: "jsx",
+      code: `import { useState } from "react"
+import { RockerSwitch } from "tatva-ui"
+
+export function RockerSwitchDemo() {
+  const [power, setPower] = useState(false)
+
+  return <RockerSwitch checked={power} onChange={setPower} />
+}`,
+    },
+
+    css: {
+      title: "CSS Styling",
+      description:
+        "Everything is drawn by the component. To restyle it, set any of its CSS variables on your own class: --tattva-rocker-size (height of the housing; everything scales with it); --tattva-rocker-led (colour of the lit LED); --tattva-rocker-paddle (colour of the paddle); --tattva-rocker-housing (colour of the housing); --tattva-rocker-speed (how quickly it tips over).",
+      language: "css",
+      code: `/* every variable is optional; set the ones you want on your own class */
+.my-rocker-switch {
+  --tattva-rocker-size: 64px;
+  --tattva-rocker-led: #ff4d4d; /* a red power light */
+}`,
+    },
+
+    props: [
+      {
+        name: "checked",
+        type: "boolean",
+        default: "undefined",
+        description: "On when true. Pass it with onChange to control the toggle.",
+        control: false,
+      },
+      {
+        name: "defaultChecked",
+        type: "boolean",
+        default: "false",
+        description: "Starting state when you let the toggle manage itself.",
+        control: false,
+      },
+      {
+        name: "onChange",
+        type: "function",
+        default: "none",
+        description: "Called with (checked, event) whenever it flips.",
+        control: false,
+      },
+      {
+        name: "size",
+        type: "range",
+        min: 32,
+        max: 140,
+        step: 1,
+        default: "56",
+        description: "Size in pixels; the whole scene scales with it.",
+      },
+      {
+        name: "label",
+        type: "text",
+        default: "\"Power\"",
+        description: "What screen readers announce.",
+      },
+      {
+        name: "disabled",
+        type: "boolean",
+        default: "false",
+        description: "Cannot be switched.",
+      },
+      {
+        name: "ledColor",
+        type: "color",
+        default: "#36f08a",
+        description: "Colour of the lit LED.",
+      },
+      {
+        name: "paddleColor",
+        type: "color",
+        default: "#2b2b33",
+        description: "Colour of the paddle.",
+      },
+      {
+        name: "className",
+        type: "text",
+        default: "\"\"",
+        description: "Custom CSS class.",
+      },
+      {
+        name: "style",
+        type: "object",
+        default: "none",
+        description: "Inline styles.",
+        control: false,
+      },
+    ],
+  },
+
+  "eye-toggle": {
+    title: "Eye Toggle",
+    description:
+      "A show/hide toggle drawn as an eye, made for password fields. Closed, it shows a lid and lashes; open, its pupil follows the pointer and it blinks now and then.",
+
+    preview: EyeToggle,
+
+    previewProps: {
+      size: 40,
+      label: "Show password",
+      disabled: false,
+      follow: true,
+      irisColor: "#3d8bff",
+    },
+
+    usage: {
+      language: "jsx",
+      code: `import { useState } from "react"
+import { EyeToggle } from "tatva-ui"
+
+export function PasswordField() {
+  const [show, setShow] = useState(false)
+
+  return (
+    <div className="password-field">
+      <EyeToggle checked={show} onChange={setShow} />
+      <input type={show ? "text" : "password"} placeholder="Password" />
+    </div>
+  )
+}`,
+    },
+
+    css: {
+      title: "CSS Styling",
+      description:
+        "Everything is drawn by the component. To restyle it, set any of its CSS variables on your own class: --tattva-eye-size (height; everything scales with it); --tattva-eye-iris (colour of the iris); --tattva-eye-ink (lids and lashes); --tattva-eye-bg (the pad behind the eye).",
+      language: "css",
+      code: `/* every variable is optional; set the ones you want on your own class */
+.my-eye-toggle {
+  --tattva-eye-size: 48px;
+  --tattva-eye-iris: #22c55e; /* green eyes */
+}`,
+    },
+
+    props: [
+      {
+        name: "checked",
+        type: "boolean",
+        default: "undefined",
+        description: "Open (password shown) when true. Pass it with onChange to control the toggle.",
+        control: false,
+      },
+      {
+        name: "defaultChecked",
+        type: "boolean",
+        default: "false",
+        description: "Starting state when you let the toggle manage itself.",
+        control: false,
+      },
+      {
+        name: "onChange",
+        type: "function",
+        default: "none",
+        description: "Called with (checked, event) whenever it flips.",
+        control: false,
+      },
+      {
+        name: "size",
+        type: "range",
+        min: 24,
+        max: 120,
+        step: 1,
+        default: "40",
+        description: "Size in pixels; the whole scene scales with it.",
+      },
+      {
+        name: "label",
+        type: "text",
+        default: "\"Show password\"",
+        description: "What screen readers announce.",
+      },
+      {
+        name: "disabled",
+        type: "boolean",
+        default: "false",
+        description: "Cannot be switched.",
+      },
+      {
+        name: "follow",
+        type: "boolean",
+        default: "true",
+        description: "Whether the pupil follows the pointer.",
+      },
+      {
+        name: "irisColor",
+        type: "color",
+        default: "#3d8bff",
+        description: "Colour of the iris.",
+      },
+      {
+        name: "className",
+        type: "text",
+        default: "\"\"",
+        description: "Custom CSS class.",
+      },
+      {
+        name: "style",
+        type: "object",
+        default: "none",
+        description: "Inline styles.",
+        control: false,
+      },
+    ],
+  },
+
+  "padlock-toggle": {
+    title: "Padlock Toggle",
+    description:
+      "A padlock. Lock it and the shackle snaps down, the keyhole turns, the body thunks and a few sparkles pop; unlock it and the shackle springs up and swings open.",
+
+    preview: PadlockToggle,
+
+    previewProps: {
+      size: 90,
+      label: "Locked",
+      disabled: false,
+      lockedColor: "#4f6bff",
+      openColor: "#ffb020",
+    },
+
+    usage: {
+      language: "jsx",
+      code: `import { useState } from "react"
+import { PadlockToggle } from "tatva-ui"
+
+export function PadlockToggleDemo() {
+  const [locked, setLocked] = useState(false)
+
+  return <PadlockToggle checked={locked} onChange={setLocked} />
+}`,
+    },
+
+    css: {
+      title: "CSS Styling",
+      description:
+        "Everything is drawn by the component. To restyle it, set any of its CSS variables on your own class: --tattva-lock-size (height; everything scales with it); --tattva-lock-locked (body colour when locked); --tattva-lock-open (body colour when open); --tattva-lock-metal (colour of the shackle).",
+      language: "css",
+      code: `/* every variable is optional; set the ones you want on your own class */
+.my-padlock-toggle {
+  --tattva-lock-size: 98px;
+  --tattva-lock-locked: #10b981; /* green when locked */
+}`,
+    },
+
+    props: [
+      {
+        name: "checked",
+        type: "boolean",
+        default: "undefined",
+        description: "Locked when true. Pass it with onChange to control the toggle.",
+        control: false,
+      },
+      {
+        name: "defaultChecked",
+        type: "boolean",
+        default: "false",
+        description: "Starting state when you let the toggle manage itself.",
+        control: false,
+      },
+      {
+        name: "onChange",
+        type: "function",
+        default: "none",
+        description: "Called with (checked, event) whenever it flips.",
+        control: false,
+      },
+      {
+        name: "size",
+        type: "range",
+        min: 48,
+        max: 200,
+        step: 1,
+        default: "90",
+        description: "Size in pixels; the whole scene scales with it.",
+      },
+      {
+        name: "label",
+        type: "text",
+        default: "\"Locked\"",
+        description: "What screen readers announce.",
+      },
+      {
+        name: "disabled",
+        type: "boolean",
+        default: "false",
+        description: "Cannot be switched.",
+      },
+      {
+        name: "lockedColor",
+        type: "color",
+        default: "#4f6bff",
+        description: "Body colour when locked.",
+      },
+      {
+        name: "openColor",
+        type: "color",
+        default: "#ffb020",
+        description: "Body colour when open.",
+      },
+      {
+        name: "className",
+        type: "text",
+        default: "\"\"",
+        description: "Custom CSS class.",
+      },
+      {
+        name: "style",
+        type: "object",
+        default: "none",
+        description: "Inline styles.",
+        control: false,
+      },
+    ],
+  },
+
+  "bell-toggle": {
+    title: "Bell Toggle",
+    description:
+      "A notifications switch drawn as a bell. Off, it is muted and struck through; on, the slash wipes away, the bell turns gold and rings, and a badge pops up.",
+
+    preview: BellToggle,
+
+    previewProps: {
+      size: 64,
+      label: "Notifications",
+      disabled: false,
+      bellColor: "#ffbf1f",
+      badgeColor: "#ff4d5e",
+    },
+
+    usage: {
+      language: "jsx",
+      code: `import { useState } from "react"
+import { BellToggle } from "tatva-ui"
+
+export function BellToggleDemo() {
+  const [notify, setNotify] = useState(false)
+
+  return <BellToggle checked={notify} onChange={setNotify} />
+}`,
+    },
+
+    css: {
+      title: "CSS Styling",
+      description:
+        "Everything is drawn by the component. To restyle it, set any of its CSS variables on your own class: --tattva-bell-size (size of the button; everything scales with it); --tattva-bell-on (colour of the bell when on); --tattva-bell-off (colour of the bell when muted); --tattva-bell-badge (colour of the badge); --tattva-bell-bg (the round pad behind it).",
+      language: "css",
+      code: `/* every variable is optional; set the ones you want on your own class */
+.my-bell-toggle {
+  --tattva-bell-size: 72px;
+  --tattva-bell-on: #a855f7; /* a violet bell */
+}`,
+    },
+
+    props: [
+      {
+        name: "checked",
+        type: "boolean",
+        default: "undefined",
+        description: "Notifications on when true. Pass it with onChange to control the toggle.",
+        control: false,
+      },
+      {
+        name: "defaultChecked",
+        type: "boolean",
+        default: "false",
+        description: "Starting state when you let the toggle manage itself.",
+        control: false,
+      },
+      {
+        name: "onChange",
+        type: "function",
+        default: "none",
+        description: "Called with (checked, event) whenever it flips.",
+        control: false,
+      },
+      {
+        name: "size",
+        type: "range",
+        min: 32,
+        max: 160,
+        step: 1,
+        default: "64",
+        description: "Size in pixels; the whole scene scales with it.",
+      },
+      {
+        name: "label",
+        type: "text",
+        default: "\"Notifications\"",
+        description: "What screen readers announce.",
+      },
+      {
+        name: "disabled",
+        type: "boolean",
+        default: "false",
+        description: "Cannot be switched.",
+      },
+      {
+        name: "bellColor",
+        type: "color",
+        default: "#ffbf1f",
+        description: "Colour of the bell when on.",
+      },
+      {
+        name: "badgeColor",
+        type: "color",
+        default: "#ff4d5e",
+        description: "Colour of the badge.",
+      },
+      {
+        name: "className",
+        type: "text",
+        default: "\"\"",
+        description: "Custom CSS class.",
+      },
+      {
+        name: "style",
+        type: "object",
+        default: "none",
+        description: "Inline styles.",
+        control: false,
+      },
+    ],
+  },
+
+  "candle-toggle": {
+    title: "Candle Toggle",
+    description:
+      "A candle you light with a click. On, a flame grows from the wick and flickers in its own warm glow; off, it goes out with a curl of smoke.",
+
+    preview: CandleToggle,
+
+    previewProps: {
+      size: 110,
+      label: "Candle",
+      disabled: false,
+      waxColor: "#f7e7c4",
+      flameColor: "#ff8a1f",
+    },
+
+    usage: {
+      language: "jsx",
+      code: `import { useState } from "react"
+import { CandleToggle } from "tatva-ui"
+
+export function CandleToggleDemo() {
+  const [lit, setLit] = useState(false)
+
+  return <CandleToggle checked={lit} onChange={setLit} />
+}`,
+    },
+
+    css: {
+      title: "CSS Styling",
+      description:
+        "Everything is drawn by the component. To restyle it, set any of its CSS variables on your own class: --tattva-candle-size (height; everything scales with it); --tattva-candle-wax (colour of the candle); --tattva-candle-flame (outer colour of the flame); --tattva-candle-plate (colour of the plate under it).",
+      language: "css",
+      code: `/* every variable is optional; set the ones you want on your own class */
+.my-candle-toggle {
+  --tattva-candle-size: 118px;
+  --tattva-candle-flame: #3b82f6; /* a blue flame */
+}`,
+    },
+
+    props: [
+      {
+        name: "checked",
+        type: "boolean",
+        default: "undefined",
+        description: "Lit when true. Pass it with onChange to control the toggle.",
+        control: false,
+      },
+      {
+        name: "defaultChecked",
+        type: "boolean",
+        default: "false",
+        description: "Starting state when you let the toggle manage itself.",
+        control: false,
+      },
+      {
+        name: "onChange",
+        type: "function",
+        default: "none",
+        description: "Called with (checked, event) whenever it flips.",
+        control: false,
+      },
+      {
+        name: "size",
+        type: "range",
+        min: 60,
+        max: 220,
+        step: 1,
+        default: "110",
+        description: "Size in pixels; the whole scene scales with it.",
+      },
+      {
+        name: "label",
+        type: "text",
+        default: "\"Candle\"",
+        description: "What screen readers announce.",
+      },
+      {
+        name: "disabled",
+        type: "boolean",
+        default: "false",
+        description: "Cannot be switched.",
+      },
+      {
+        name: "waxColor",
+        type: "color",
+        default: "#f7e7c4",
+        description: "Colour of the candle.",
+      },
+      {
+        name: "flameColor",
+        type: "color",
+        default: "#ff8a1f",
+        description: "Outer colour of the flame.",
+      },
+      {
+        name: "className",
+        type: "text",
+        default: "\"\"",
+        description: "Custom CSS class.",
+      },
+      {
+        name: "style",
+        type: "object",
+        default: "none",
+        description: "Inline styles.",
+        control: false,
+      },
+    ],
+  },
+
+  "firefly-jar": {
+    title: "Firefly Jar",
+    description:
+      "A glass jar of fireflies. Off, they sleep at the bottom; on, they wake one by one, rise, and drift around the jar, each glowing to its own rhythm.",
+
+    preview: FireflyJar,
+
+    previewProps: {
+      size: 120,
+      label: "Fireflies",
+      disabled: false,
+      glowColor: "#e9ff70",
+    },
+
+    usage: {
+      language: "jsx",
+      code: `import { useState } from "react"
+import { FireflyJar } from "tatva-ui"
+
+export function FireflyJarDemo() {
+  const [awake, setAwake] = useState(false)
+
+  return <FireflyJar checked={awake} onChange={setAwake} />
+}`,
+    },
+
+    css: {
+      title: "CSS Styling",
+      description:
+        "Everything is drawn by the component. To restyle it, set any of its CSS variables on your own class: --tattva-firefly-size (height; everything scales with it); --tattva-firefly-glow (colour of the fireflies' light).",
+      language: "css",
+      code: `/* every variable is optional; set the ones you want on your own class */
+.my-firefly-jar {
+  --tattva-firefly-size: 128px;
+  --tattva-firefly-glow: #7df9ff; /* icy blue fireflies */
+}`,
+    },
+
+    props: [
+      {
+        name: "checked",
+        type: "boolean",
+        default: "undefined",
+        description: "Fireflies awake when true. Pass it with onChange to control the toggle.",
+        control: false,
+      },
+      {
+        name: "defaultChecked",
+        type: "boolean",
+        default: "false",
+        description: "Starting state when you let the toggle manage itself.",
+        control: false,
+      },
+      {
+        name: "onChange",
+        type: "function",
+        default: "none",
+        description: "Called with (checked, event) whenever it flips.",
+        control: false,
+      },
+      {
+        name: "size",
+        type: "range",
+        min: 60,
+        max: 240,
+        step: 1,
+        default: "120",
+        description: "Size in pixels; the whole scene scales with it.",
+      },
+      {
+        name: "label",
+        type: "text",
+        default: "\"Fireflies\"",
+        description: "What screen readers announce.",
+      },
+      {
+        name: "disabled",
+        type: "boolean",
+        default: "false",
+        description: "Cannot be switched.",
+      },
+      {
+        name: "glowColor",
+        type: "color",
+        default: "#e9ff70",
+        description: "Colour of the fireflies' light.",
+      },
+      {
+        name: "className",
+        type: "text",
+        default: "\"\"",
+        description: "Custom CSS class.",
+      },
+      {
+        name: "style",
+        type: "object",
+        default: "none",
+        description: "Inline styles.",
+        control: false,
+      },
+    ],
+  },
+
+  "lava-lamp": {
+    title: "Lava Lamp",
+    description:
+      "A lava lamp. Off, the wax lies cold at the bottom of dark glass; on, the lamp glows and soft blobs of wax rise, merge, split and sink again.",
+
+    preview: LavaLamp,
+
+    previewProps: {
+      size: 130,
+      label: "Lava lamp",
+      disabled: false,
+      waxColor: "#ffcf3a",
+      liquidColor: "#ff4f7b",
+    },
+
+    usage: {
+      language: "jsx",
+      code: `import { useState } from "react"
+import { LavaLamp } from "tatva-ui"
+
+export function LavaLampDemo() {
+  const [on, setOn] = useState(false)
+
+  return <LavaLamp checked={on} onChange={setOn} />
+}`,
+    },
+
+    css: {
+      title: "CSS Styling",
+      description:
+        "Everything is drawn by the component. To restyle it, set any of its CSS variables on your own class: --tattva-lava-size (height; everything scales with it); --tattva-lava-wax (colour of the wax); --tattva-lava-liquid (colour of the glowing liquid); --tattva-lava-metal (colour of the cap and base).",
+      language: "css",
+      code: `/* every variable is optional; set the ones you want on your own class */
+.my-lava-lamp {
+  --tattva-lava-size: 138px;
+  --tattva-lava-liquid: #7c3aed; /* purple lava */
+}`,
+    },
+
+    props: [
+      {
+        name: "checked",
+        type: "boolean",
+        default: "undefined",
+        description: "On when true. Pass it with onChange to control the toggle.",
+        control: false,
+      },
+      {
+        name: "defaultChecked",
+        type: "boolean",
+        default: "false",
+        description: "Starting state when you let the toggle manage itself.",
+        control: false,
+      },
+      {
+        name: "onChange",
+        type: "function",
+        default: "none",
+        description: "Called with (checked, event) whenever it flips.",
+        control: false,
+      },
+      {
+        name: "size",
+        type: "range",
+        min: 70,
+        max: 260,
+        step: 1,
+        default: "130",
+        description: "Size in pixels; the whole scene scales with it.",
+      },
+      {
+        name: "label",
+        type: "text",
+        default: "\"Lava lamp\"",
+        description: "What screen readers announce.",
+      },
+      {
+        name: "disabled",
+        type: "boolean",
+        default: "false",
+        description: "Cannot be switched.",
+      },
+      {
+        name: "waxColor",
+        type: "color",
+        default: "#ffcf3a",
+        description: "Colour of the wax.",
+      },
+      {
+        name: "liquidColor",
+        type: "color",
+        default: "#ff4f7b",
+        description: "Colour of the glowing liquid.",
+      },
+      {
+        name: "className",
+        type: "text",
+        default: "\"\"",
+        description: "Custom CSS class.",
+      },
+      {
+        name: "style",
+        type: "object",
+        default: "none",
+        description: "Inline styles.",
+        control: false,
+      },
+    ],
+  },
+
+  "record-player": {
+    title: "Record Player",
+    description:
+      "A little turntable. Switch it on and the tonearm swings onto the record, the vinyl spins and notes float up; switch it off and the arm lifts back while the record stops.",
+
+    preview: RecordPlayer,
+
+    previewProps: {
+      size: 100,
+      label: "Music",
+      disabled: false,
+      labelColor: "#ef5b3c",
+      noteColor: "#ffcf5c",
+    },
+
+    usage: {
+      language: "jsx",
+      code: `import { useState } from "react"
+import { RecordPlayer } from "tatva-ui"
+
+export function RecordPlayerDemo() {
+  const [playing, setPlaying] = useState(false)
+
+  return <RecordPlayer checked={playing} onChange={setPlaying} />
+}`,
+    },
+
+    css: {
+      title: "CSS Styling",
+      description:
+        "Everything is drawn by the component. To restyle it, set any of its CSS variables on your own class: --tattva-record-size (height; everything scales with it); --tattva-record-label (colour of the record's centre label); --tattva-record-note (colour of the floating notes); --tattva-record-wood (colour of the plinth).",
+      language: "css",
+      code: `/* every variable is optional; set the ones you want on your own class */
+.my-record-player {
+  --tattva-record-size: 108px;
+  --tattva-record-label: #3b82f6; /* a blue record label */
+}`,
+    },
+
+    props: [
+      {
+        name: "checked",
+        type: "boolean",
+        default: "undefined",
+        description: "Playing when true. Pass it with onChange to control the toggle.",
+        control: false,
+      },
+      {
+        name: "defaultChecked",
+        type: "boolean",
+        default: "false",
+        description: "Starting state when you let the toggle manage itself.",
+        control: false,
+      },
+      {
+        name: "onChange",
+        type: "function",
+        default: "none",
+        description: "Called with (checked, event) whenever it flips.",
+        control: false,
+      },
+      {
+        name: "size",
+        type: "range",
+        min: 60,
+        max: 200,
+        step: 1,
+        default: "100",
+        description: "Size in pixels; the whole scene scales with it.",
+      },
+      {
+        name: "label",
+        type: "text",
+        default: "\"Music\"",
+        description: "What screen readers announce.",
+      },
+      {
+        name: "disabled",
+        type: "boolean",
+        default: "false",
+        description: "Cannot be switched.",
+      },
+      {
+        name: "labelColor",
+        type: "color",
+        default: "#ef5b3c",
+        description: "Colour of the record's centre label.",
+      },
+      {
+        name: "noteColor",
+        type: "color",
+        default: "#ffcf5c",
+        description: "Colour of the floating notes.",
+      },
+      {
+        name: "className",
+        type: "text",
+        default: "\"\"",
+        description: "Custom CSS class.",
+      },
+      {
+        name: "style",
+        type: "object",
+        default: "none",
+        description: "Inline styles.",
+        control: false,
+      },
+    ],
+  },
+
+  "rocket-toggle": {
+    title: "Rocket Toggle",
+    description:
+      "A rocket on its launch pad. Switch it on and the engine fires, the rocket lifts off in a cloud of smoke and hovers while the stars streak past; switch it off and it lands.",
+
+    preview: RocketToggle,
+
+    previewProps: {
+      size: 96,
+      label: "Launch",
+      disabled: false,
+      rocketColor: "#ff5a5f",
+      skyColor: "#1c2250",
+    },
+
+    usage: {
+      language: "jsx",
+      code: `import { useState } from "react"
+import { RocketToggle } from "tatva-ui"
+
+export function RocketToggleDemo() {
+  const [launched, setLaunched] = useState(false)
+
+  return <RocketToggle checked={launched} onChange={setLaunched} />
+}`,
+    },
+
+    css: {
+      title: "CSS Styling",
+      description:
+        "Everything is drawn by the component. To restyle it, set any of its CSS variables on your own class: --tattva-rocket-size (size of the tile; everything scales with it); --tattva-rocket-accent (nose cone and fins); --tattva-rocket-sky (the sky behind it).",
+      language: "css",
+      code: `/* every variable is optional; set the ones you want on your own class */
+.my-rocket-toggle {
+  --tattva-rocket-size: 104px;
+  --tattva-rocket-accent: #22c55e; /* a green rocket */
+}`,
+    },
+
+    props: [
+      {
+        name: "checked",
+        type: "boolean",
+        default: "undefined",
+        description: "In flight when true. Pass it with onChange to control the toggle.",
+        control: false,
+      },
+      {
+        name: "defaultChecked",
+        type: "boolean",
+        default: "false",
+        description: "Starting state when you let the toggle manage itself.",
+        control: false,
+      },
+      {
+        name: "onChange",
+        type: "function",
+        default: "none",
+        description: "Called with (checked, event) whenever it flips.",
+        control: false,
+      },
+      {
+        name: "size",
+        type: "range",
+        min: 56,
+        max: 200,
+        step: 1,
+        default: "96",
+        description: "Size in pixels; the whole scene scales with it.",
+      },
+      {
+        name: "label",
+        type: "text",
+        default: "\"Launch\"",
+        description: "What screen readers announce.",
+      },
+      {
+        name: "disabled",
+        type: "boolean",
+        default: "false",
+        description: "Cannot be switched.",
+      },
+      {
+        name: "rocketColor",
+        type: "color",
+        default: "#ff5a5f",
+        description: "Colour of the nose cone and fins.",
+      },
+      {
+        name: "skyColor",
+        type: "color",
+        default: "#1c2250",
+        description: "Colour of the sky.",
+      },
+      {
+        name: "className",
+        type: "text",
+        default: "\"\"",
+        description: "Custom CSS class.",
+      },
+      {
+        name: "style",
+        type: "object",
+        default: "none",
+        description: "Inline styles.",
+        control: false,
+      },
+    ],
+  },
+
+  "neon-sign": {
+    title: "Neon Sign",
+    description:
+      "A neon \"OPEN\" sign on a brick wall. Switch it on and the tubes flicker to life one letter at a time inside a glowing border; switch it off and they go dark.",
+
+    preview: NeonSign,
+
+    previewProps: {
+      size: 80,
+      label: "Open sign",
+      disabled: false,
+      textColor: "#ff3fa4",
+      borderColor: "#3df2ff",
+    },
+
+    usage: {
+      language: "jsx",
+      code: `import { useState } from "react"
+import { NeonSign } from "tatva-ui"
+
+export function NeonSignDemo() {
+  const [open, setOpen] = useState(false)
+
+  return <NeonSign checked={open} onChange={setOpen} />
+}`,
+    },
+
+    css: {
+      title: "CSS Styling",
+      description:
+        "Everything is drawn by the component. To restyle it, set any of its CSS variables on your own class: --tattva-neon-size (height; everything scales with it); --tattva-neon-text (colour of the lettering); --tattva-neon-border (colour of the border tube); --tattva-neon-wall (colour of the brick wall).",
+      language: "css",
+      code: `/* every variable is optional; set the ones you want on your own class */
+.my-neon-sign {
+  --tattva-neon-size: 88px;
+  --tattva-neon-text: #a3ff3c; /* green lettering */
+}`,
+    },
+
+    props: [
+      {
+        name: "checked",
+        type: "boolean",
+        default: "undefined",
+        description: "Lit when true. Pass it with onChange to control the toggle.",
+        control: false,
+      },
+      {
+        name: "defaultChecked",
+        type: "boolean",
+        default: "false",
+        description: "Starting state when you let the toggle manage itself.",
+        control: false,
+      },
+      {
+        name: "onChange",
+        type: "function",
+        default: "none",
+        description: "Called with (checked, event) whenever it flips.",
+        control: false,
+      },
+      {
+        name: "size",
+        type: "range",
+        min: 48,
+        max: 180,
+        step: 1,
+        default: "80",
+        description: "Size in pixels; the whole scene scales with it.",
+      },
+      {
+        name: "label",
+        type: "text",
+        default: "\"Open sign\"",
+        description: "What screen readers announce.",
+      },
+      {
+        name: "disabled",
+        type: "boolean",
+        default: "false",
+        description: "Cannot be switched.",
+      },
+      {
+        name: "textColor",
+        type: "color",
+        default: "#ff3fa4",
+        description: "Colour of the lettering.",
+      },
+      {
+        name: "borderColor",
+        type: "color",
+        default: "#3df2ff",
+        description: "Colour of the border tube.",
+      },
+      {
+        name: "className",
+        type: "text",
+        default: "\"\"",
+        description: "Custom CSS class.",
+      },
+      {
+        name: "style",
+        type: "object",
+        default: "none",
+        description: "Inline styles.",
+        control: false,
+      },
+    ],
+  },
+
+  "flower-bloom": {
+    title: "Flower Bloom",
+    description:
+      "A flower in a pot. Off, it is a closed bud on a drooping stem; on, the stem straightens, the leaves unfurl and the petals open one after another.",
+
+    preview: FlowerBloom,
+
+    previewProps: {
+      size: 120,
+      label: "Bloom",
+      disabled: false,
+      petalColor: "#ff6fae",
+      potColor: "#d9774a",
+    },
+
+    usage: {
+      language: "jsx",
+      code: `import { useState } from "react"
+import { FlowerBloom } from "tatva-ui"
+
+export function FlowerBloomDemo() {
+  const [bloom, setBloom] = useState(false)
+
+  return <FlowerBloom checked={bloom} onChange={setBloom} />
+}`,
+    },
+
+    css: {
+      title: "CSS Styling",
+      description:
+        "Everything is drawn by the component. To restyle it, set any of its CSS variables on your own class: --tattva-bloom-size (height; everything scales with it); --tattva-bloom-petal (colour of the petals); --tattva-bloom-pot (colour of the pot); --tattva-bloom-leaf (colour of the stem and leaves).",
+      language: "css",
+      code: `/* every variable is optional; set the ones you want on your own class */
+.my-flower-bloom {
+  --tattva-bloom-size: 128px;
+  --tattva-bloom-petal: #a78bfa; /* lavender petals */
+}`,
+    },
+
+    props: [
+      {
+        name: "checked",
+        type: "boolean",
+        default: "undefined",
+        description: "In bloom when true. Pass it with onChange to control the toggle.",
+        control: false,
+      },
+      {
+        name: "defaultChecked",
+        type: "boolean",
+        default: "false",
+        description: "Starting state when you let the toggle manage itself.",
+        control: false,
+      },
+      {
+        name: "onChange",
+        type: "function",
+        default: "none",
+        description: "Called with (checked, event) whenever it flips.",
+        control: false,
+      },
+      {
+        name: "size",
+        type: "range",
+        min: 60,
+        max: 240,
+        step: 1,
+        default: "120",
+        description: "Size in pixels; the whole scene scales with it.",
+      },
+      {
+        name: "label",
+        type: "text",
+        default: "\"Bloom\"",
+        description: "What screen readers announce.",
+      },
+      {
+        name: "disabled",
+        type: "boolean",
+        default: "false",
+        description: "Cannot be switched.",
+      },
+      {
+        name: "petalColor",
+        type: "color",
+        default: "#ff6fae",
+        description: "Colour of the petals.",
+      },
+      {
+        name: "potColor",
+        type: "color",
+        default: "#d9774a",
+        description: "Colour of the pot.",
+      },
+      {
+        name: "className",
+        type: "text",
+        default: "\"\"",
+        description: "Custom CSS class.",
+      },
+      {
+        name: "style",
+        type: "object",
+        default: "none",
+        description: "Inline styles.",
+        control: false,
       },
     ],
   },
