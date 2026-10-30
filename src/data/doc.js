@@ -21,6 +21,11 @@ import {
   NeoBrutalism,
   CircleExpand,
   FolderCard,
+  ScatterLoadingText,
+  GlitchText,
+  ShimmerText,
+  RollText,
+  CircularText,
 } from "tatva-ui";
 //tying to push
 /*
@@ -1435,6 +1440,593 @@ export function MagicTextDemo() {
         step: 1,
         default: "24",
         description: "Decorative star size",
+      },
+      {
+        name: "className",
+        type: "text",
+        default: '""',
+        description: "Custom CSS class",
+      },
+    ],
+  },
+
+  "scatter-text": {
+    title: "Scatter Text",
+    description:
+      "Text that dissolves into floating vertical streaks, drifts, and re-forms. Ideal for loading states.",
+
+    preview: ScatterLoadingText,
+
+    previewProps: {
+      text: "Loading",
+      fontSize: 48,
+      className: "scatter-text",
+    },
+
+    usage: {
+      language: "jsx",
+      code: `import { ScatterLoadingText } from "tatva-ui"
+
+export function ScatterTextDemo() {
+  return (
+    <ScatterLoadingText
+      text="Loading"
+      fontSize={48}
+      className="scatter-text"
+    />
+  )
+}`,
+    },
+
+    css: {
+      title: "CSS Styling",
+      description:
+        "The text colour is read from CSS, so a className is enough. Size and font are props instead, because the effect is drawn on a canvas that samples them.",
+      language: "css",
+      code: `.scatter-text {
+  color: #38146a;
+}`,
+    },
+
+    props: [
+      {
+        name: "text",
+        type: "text",
+        default: '"Loading"',
+        description: "The word that dissolves and re-forms",
+      },
+      {
+        name: "fontSize",
+        type: "range",
+        min: 16,
+        max: 120,
+        step: 1,
+        default: "51",
+        description: "Font size in pixels",
+      },
+      {
+        name: "spread",
+        type: "range",
+        min: 0.5,
+        max: 3,
+        step: 0.1,
+        default: "2.1",
+        description: "How far the streaks fly, in em",
+      },
+      {
+        name: "drift",
+        type: "range",
+        min: 0,
+        max: 1,
+        step: 0.05,
+        default: "0.5",
+        description: "How far the streaks float back while scattered, in em",
+      },
+      {
+        name: "speed",
+        type: "range",
+        min: 0.25,
+        max: 3,
+        step: 0.05,
+        default: "1",
+        description: "Playback speed multiplier",
+      },
+      {
+        name: "seed",
+        type: "range",
+        min: 1,
+        max: 50,
+        step: 1,
+        default: "1",
+        description: "Changes the random scatter pattern",
+      },
+      {
+        name: "baseColor",
+        type: "color",
+        default: '""',
+        description: "Text colour (defaults to the inherited colour)",
+      },
+      {
+        name: "subpixel",
+        type: "boolean",
+        default: "true",
+        description: "Animate between whole pixels for smoother motion",
+      },
+      {
+        name: "paused",
+        type: "boolean",
+        default: "false",
+        description: "Freeze on the finished word",
+      },
+      {
+        name: "className",
+        type: "text",
+        default: '""',
+        description: "Custom CSS class",
+      },
+    ],
+  },
+
+  "glitch-text": {
+    title: "Glitch Text",
+    description:
+      "Text that tears into offset cyan and magenta slices, in short bursts or continuously.",
+
+    preview: GlitchText,
+
+    previewProps: {
+      text: "Glitch",
+      trigger: "loop",
+      className: "glitch-text",
+    },
+
+    usage: {
+      language: "jsx",
+      code: `import { GlitchText } from "tatva-ui"
+
+export function GlitchTextDemo() {
+  return (
+    <GlitchText
+      text="Glitch"
+      trigger="loop"
+      className="glitch-text"
+    />
+  )
+}`,
+    },
+
+    css: {
+      title: "CSS Styling",
+      description:
+        "Bold, wide-tracked type shows the slices best. The coloured copies inherit the font, size and case, so style the className as you normally would.",
+      language: "css",
+      code: `.glitch-text {
+  font-size: 44px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #38146a;
+}`,
+    },
+
+    props: [
+      {
+        name: "text",
+        type: "text",
+        default: '"Glitch"',
+        description: "The text to glitch",
+      },
+      {
+        name: "trigger",
+        type: "select",
+        options: ["loop", "hover", "always"],
+        default: '"loop"',
+        description:
+          "loop: short bursts with quiet gaps. hover: glitches while hovered. always: glitches continuously",
+      },
+      {
+        name: "interval",
+        type: "range",
+        min: 0.2,
+        max: 6,
+        step: 0.1,
+        default: "3.2",
+        description:
+          "Seconds per glitch cycle (3.2 for loop, 0.55 for hover and always when not set)",
+      },
+      {
+        name: "shift",
+        type: "range",
+        min: 0.01,
+        max: 0.2,
+        step: 0.01,
+        default: "0.06",
+        description: "How far the slices jump sideways, in em",
+      },
+      {
+        name: "colors",
+        type: "array",
+        default: '["#00e5ff", "#ff2e93"]',
+        description: "The two slice colours (comma separated)",
+      },
+      {
+        name: "baseColor",
+        type: "color",
+        default: '""',
+        description: "Text colour (defaults to the inherited colour)",
+      },
+      {
+        name: "className",
+        type: "text",
+        default: '""',
+        description: "Custom CSS class",
+      },
+    ],
+  },
+
+  "shimmer-text": {
+    title: "Shimmer Text",
+    description:
+      'A soft band of light that sweeps across the text. Perfect for "Thinking..." and "Generating..." states.',
+
+    preview: ShimmerText,
+
+    previewProps: {
+      children: "Thinking through it...",
+      className: "shimmer-text",
+    },
+
+    usage: {
+      language: "jsx",
+      code: `import { ShimmerText } from "tatva-ui"
+
+export function ShimmerTextDemo() {
+  return (
+    <ShimmerText className="shimmer-text">
+      Thinking through it...
+    </ShimmerText>
+  )
+}`,
+    },
+
+    css: {
+      title: "CSS Styling",
+      description:
+        "The resting colour is a dimmed copy of the text colour and the light band uses the text colour itself, so setting color is enough. Use baseColor and highlightColor to set them separately.",
+      language: "css",
+      code: `.shimmer-text {
+  font-size: 34px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  color: #38146a;
+}`,
+    },
+
+    props: [
+      {
+        name: "children",
+        type: "text",
+        default: '"Thinking..."',
+        description: "The text to shimmer",
+      },
+      {
+        name: "duration",
+        type: "range",
+        min: 0.5,
+        max: 6,
+        step: 0.1,
+        default: "2.2",
+        description: "Seconds each sweep takes",
+      },
+      {
+        name: "delay",
+        type: "range",
+        min: 0,
+        max: 3,
+        step: 0.1,
+        default: "0",
+        description: "Seconds to wait before the first sweep",
+      },
+      {
+        name: "angle",
+        type: "range",
+        min: 0,
+        max: 180,
+        step: 5,
+        default: "100",
+        description: "Angle of the light band in degrees",
+      },
+      {
+        name: "direction",
+        type: "select",
+        options: ["ltr", "rtl"],
+        default: '"ltr"',
+        description:
+          "Which way the light sweeps (left to right or right to left)",
+      },
+      {
+        name: "baseColor",
+        type: "color",
+        default: '""',
+        description:
+          "Colour of the resting text, where the light hasn't reached (defaults to a dimmed copy of the text colour)",
+      },
+      {
+        name: "highlightColor",
+        type: "color",
+        default: '""',
+        description: "Colour of the light band (defaults to the text colour)",
+      },
+      {
+        name: "paused",
+        type: "boolean",
+        default: "false",
+        description: "Freeze the animation",
+      },
+      {
+        name: "className",
+        type: "text",
+        default: '""',
+        description: "Custom CSS class",
+      },
+    ],
+  },
+
+
+  "roll-text": {
+    title: "Roll Text",
+    description:
+      "Every letter rolls up like a slot-machine reel, one after another. Great for buttons and links.",
+
+    preview: RollText,
+
+    previewProps: {
+      text: "Get started",
+      trigger: "loop",
+      className: "roll-text",
+    },
+
+    usage: {
+      language: "jsx",
+      code: `import { RollText } from "tatva-ui"
+
+export function RollTextDemo() {
+  return (
+    <RollText
+      text="Get started"
+      trigger="loop"
+      className="roll-text"
+    />
+  )
+}`,
+    },
+
+    css: {
+      title: "CSS Styling",
+      description:
+        "Style the className as you normally would. To roll when a button or card is hovered instead of the text itself, add the class velmora-roll-group to that parent element.",
+      language: "css",
+      code: `.roll-text {
+  font-size: 40px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: #38146a;
+}`,
+    },
+
+    props: [
+      {
+        name: "text",
+        type: "text",
+        default: '"Roll"',
+        description: "The text to roll",
+      },
+      {
+        name: "trigger",
+        type: "select",
+        options: ["hover", "loop"],
+        default: '"hover"',
+        description:
+          "hover: rolls when the pointer enters. loop: rolls automatically with a pause in between",
+      },
+      {
+        name: "duration",
+        type: "range",
+        min: 0.2,
+        max: 1.5,
+        step: 0.05,
+        default: "0.55",
+        description: "Seconds each letter takes to roll",
+      },
+      {
+        name: "stagger",
+        type: "range",
+        min: 0,
+        max: 0.12,
+        step: 0.005,
+        default: "0.03",
+        description: "Seconds between one letter and the next",
+      },
+      {
+        name: "pause",
+        type: "range",
+        min: 0,
+        max: 5,
+        step: 0.1,
+        default: "1.6",
+        description: "Seconds to rest between rolls (loop only)",
+      },
+      {
+        name: "easing",
+        type: "text",
+        default: '"cubic-bezier(0.76, 0, 0.24, 1)"',
+        description: "Any CSS timing function",
+      },
+      {
+        name: "baseColor",
+        type: "color",
+        default: '""',
+        description: "Text colour (defaults to the inherited colour)",
+      },
+      {
+        name: "nextColor",
+        type: "color",
+        default: '""',
+        description:
+          "Colour the incoming letters flash as they roll in, settling into the text colour as they land",
+      },
+      {
+        name: "className",
+        type: "text",
+        default: '""',
+        description: "Custom CSS class",
+      },
+    ],
+  },
+
+  "circular-text": {
+    title: "Circular Text",
+    description:
+      "Text laid out on a circle that rotates continuously, with selectable hover effects and an optional centre element.",
+
+    preview: CircularText,
+
+    previewProps: {
+      text: "BUILD • CREATE • ANIMATE • ",
+      radius: 105,
+      fontSize: 32,
+      duration: 12.3,
+      direction: "clockwise",
+      onHover: "expand",
+      hoverSpeed: 1.5,
+      expandScale: 1.05,
+      shrinkScale: 0.75,
+      baseColor: "#38146a",
+      hoverColor: "#0055ff",
+      className: "circular-text",
+    },
+
+    usage: {
+      language: "jsx",
+      code: `import { CircularText } from "tatva-ui"
+
+export function CircularTextDemo() {
+  return (
+    <CircularText
+      text="BUILD • CREATE • ANIMATE • "
+      radius={105}
+      fontSize={32}
+      duration={12.3}
+      direction="clockwise"
+      onHover="expand"
+      baseColor="#38146a"
+      hoverColor="#0055ff"
+      className="circular-text"
+    >
+      <YourLogo />
+    </CircularText>
+  )
+}`,
+    },
+
+    css: {
+      title: "CSS Styling",
+      description:
+        "The ring is drawn on an SVG path, so font settings on the class are inherited by every letter. Text colour comes from the baseColor prop.",
+      language: "css",
+      code: `.circular-text {
+  font-family: "Inter", sans-serif;
+  font-weight: 600;
+  text-transform: uppercase;
+}`,
+    },
+
+    props: [
+      {
+        name: "text",
+        type: "text",
+        default: '"FRAMER • WE • LOVE • "',
+        description:
+          "Text placed around the circle. It is repeated twice, so keep a trailing separator.",
+      },
+      {
+        name: "radius",
+        type: "range",
+        min: 40,
+        max: 200,
+        step: 1,
+        default: "105",
+        description: "Radius of the text baseline in pixels",
+      },
+      {
+        name: "fontSize",
+        type: "range",
+        min: 12,
+        max: 64,
+        step: 1,
+        default: "32",
+        description: "Font size of the text in pixels",
+      },
+      {
+        name: "duration",
+        type: "range",
+        min: 2,
+        max: 40,
+        step: 0.5,
+        default: "12.3",
+        description: "Seconds taken for one full rotation",
+      },
+      {
+        name: "direction",
+        type: "text",
+        default: '"clockwise"',
+        description: 'Rotation direction: "clockwise" or "counterclockwise"',
+      },
+      {
+        name: "onHover",
+        type: "text",
+        default: '"expand"',
+        description:
+          'Hover effect: "expand", "speed", "shrink", "color", "pause" or "none"',
+      },
+      {
+        name: "hoverSpeed",
+        type: "range",
+        min: 1,
+        max: 6,
+        step: 0.1,
+        default: "1.5",
+        description: 'Rotation speed multiplier when onHover is "speed"',
+      },
+      {
+        name: "expandScale",
+        type: "range",
+        min: 1,
+        max: 1.5,
+        step: 0.01,
+        default: "1.05",
+        description: 'Scale applied on hover when onHover is "expand"',
+      },
+      {
+        name: "shrinkScale",
+        type: "range",
+        min: 0.4,
+        max: 1,
+        step: 0.01,
+        default: "0.75",
+        description: 'Scale applied on hover when onHover is "shrink"',
+      },
+      {
+        name: "baseColor",
+        type: "text",
+        default: '"#ffffff"',
+        description: "Default text colour",
+      },
+      {
+        name: "hoverColor",
+        type: "text",
+        default: '"#0055ff"',
+        description: 'Text colour on hover when onHover is "color"',
       },
       {
         name: "className",
