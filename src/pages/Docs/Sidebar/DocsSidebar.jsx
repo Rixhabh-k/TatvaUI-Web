@@ -2,7 +2,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useLocation, useNavigate } from "react-router";
 import { Download, MousePointer2, Type, Layers, ToggleRight } from "lucide-react";
 import "./docsSidebar.css";
-
+import gsap from 'gsap';
 // Keep your existing navigation array and iconMap here.
 
 const navigation = [
@@ -93,9 +93,29 @@ const iconMap = {
 const DocsSidebar = () => {
   const location = useLocation();
   const navigate = useNavigate();
+  const docSidebarRef = useRef(null);
   const sidebarRef = useRef(null);
   const itemRefs = useRef(new Map());
+  useEffect(() => {
+    const sidebar = docSidebarRef.current;
+    if (!sidebar) return;
 
+    const animation = gsap.fromTo(
+      sidebar,
+      {
+        x: -50,
+        opacity: 0,
+      },
+      {
+        x: 0,
+        opacity: 1,
+        duration: 1,
+        ease: "power3.out",
+      },
+    );
+
+    return () => animation.kill();
+  }, []);
   const [hoveredSlug, setHoveredSlug] = useState(null);
   const [indicator, setIndicator] = useState({
     left: 0,
@@ -210,7 +230,7 @@ const DocsSidebar = () => {
   };
 
   return (
-    <aside className="docs-sidebar">
+    <aside ref={docSidebarRef} className="docs-sidebar">
       <nav
         ref={sidebarRef}
         className="docs-sidebar__nav"
