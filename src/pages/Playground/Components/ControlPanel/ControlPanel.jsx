@@ -577,8 +577,9 @@ const ControlPanel = ({
       {/* Controls */}
       <div className="controls-grid">
         {props.map((prop) => {
-          // className playground mein expose nahi karna
-          if (prop.name === "className") return null;
+          // className playground mein expose nahi karna; aur jin props ka
+          // control: false hai (checked, onChange...) woh sirf docs table mein dikhte hain
+          if (prop.name === "className" || prop.control === false) return null;
 
           const value = values[prop.name];
           const type = prop.type || "text";

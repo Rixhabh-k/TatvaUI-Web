@@ -5,6 +5,7 @@ import {
   MousePointer2,
   Type,
   PlayingCardsFan,
+  ToggleLeft
 } from "lucide-react";
 import { useNavigate } from "react-router";
 import "./mobileDocs.css";
@@ -84,63 +85,153 @@ const MobileDocs = () => {
         },
       ],
     },
-
     {
-  title: "Cards",
-  icon: PlayingCardsFan,
-  items: [
-    {
-      label: "Show Card",
-      slug: "show-card",
-      description: "Expandable project showcase card with customizable content.",
+      title: "Cards",
+      icon: PlayingCardsFan,
+      items: [
+        {
+          label: "Show Card",
+          slug: "show-card",
+          description:
+            "Expandable project showcase card with customizable content.",
+        },
+        {
+          label: "Side Reveal Card",
+          slug: "side-reveal-card",
+          description: "Interactive two-sided card with profile details.",
+        },
+        {
+          label: "Circle Expand",
+          slug: "circle-expand",
+          description:
+            "Image card with an expanding circular overlay animation.",
+        },
+        {
+          label: "Pixel Hover",
+          slug: "pixel-hover",
+          description: "Product card with a pixelated image hover effect.",
+        },
+        {
+          label: "Folder Card",
+          slug: "folder-card",
+          description: "Folder-style card with a rising image hover animation.",
+        },
+        {
+          label: "Neo Brutalism",
+          slug: "neo-brutalism",
+          description:
+            "Bold card design with thick borders and offset shadows.",
+        },
+        {
+          label: "Pixel Card",
+          slug: "pixel-card",
+          description: "Interactive card with customizable pixel effects.",
+        },
+        {
+          label: "Animated Border Card",
+          slug: "animated-border-card",
+          description:
+            "Card with an animated gradient border and glowing effects.",
+        },
+        {
+          label: "Gliter Card",
+          slug: "gliter-card",
+          description: "Stylish card with a glitter-inspired visual effect.",
+        },
+        {
+          label: "3D Card",
+          slug: "three-d-card",
+          description: "Interactive card with depth and 3D tilt effects.",
+        },
+      ],
     },
     {
-      label: "Side Reveal Card",
-      slug: "side-reveal-card",
-      description: "Interactive two-sided card with profile details.",
+      title: "Toggles",
+      icon: ToggleLeft,
+      items: [
+        {
+          label: "Day Night Toggle",
+          slug: "day-night-toggle",
+          description:
+            "Animated toggle that transitions between day and night modes.",
+        },
+        {
+          label: "Mood Toggle",
+          slug: "mood-toggle",
+          description:
+            "Interactive toggle with expressive mood-based animations.",
+        },
+        {
+          label: "Sleepy Cat",
+          slug: "sleepy-cat",
+          description: "Cute animated cat toggle with sleepy and awake states.",
+        },
+        {
+          label: "Rocker Switch",
+          slug: "rocker-switch",
+          description:
+            "Classic rocker-style switch with an interactive 3D effect.",
+        },
+        {
+          label: "Eye Toggle",
+          slug: "eye-toggle",
+          description:
+            "Animated eye toggle with interactive open and closed states.",
+        },
+        {
+          label: "Padlock Toggle",
+          slug: "padlock-toggle",
+          description:
+            "Animated padlock switch with locking and unlocking effects.",
+        },
+        {
+          label: "Bell Toggle",
+          slug: "bell-toggle",
+          description:
+            "Interactive notification toggle with a ringing bell animation.",
+        },
+        {
+          label: "Candle Toggle",
+          slug: "candle-toggle",
+          description: "Animated candle switch with glowing flame effects.",
+        },
+        {
+          label: "Firefly Jar",
+          slug: "firefly-jar",
+          description:
+            "Magical toggle featuring glowing fireflies inside a jar.",
+        },
+        {
+          label: "Lava Lamp",
+          slug: "lava-lamp",
+          description:
+            "Fluid animated toggle inspired by the movement of a lava lamp.",
+        },
+        {
+          label: "Record Player",
+          slug: "record-player",
+          description:
+            "Retro record player toggle with spinning vinyl animations.",
+        },
+        {
+          label: "Rocket Toggle",
+          slug: "rocket-toggle",
+          description:
+            "Animated rocket switch with a launch-inspired interaction.",
+        },
+        {
+          label: "Neon Sign",
+          slug: "neon-sign",
+          description:
+            "Neon-inspired toggle with glowing light and flickering effects.",
+        },
+        {
+          label: "Flower Bloom",
+          slug: "flower-bloom",
+          description: "Animated flower toggle that blooms when activated.",
+        },
+      ],
     },
-    {
-      label: "Circle Expand",
-      slug: "circle-expand",
-      description: "Image card with an expanding circular overlay animation.",
-    },
-    {
-      label: "Pixel Hover",
-      slug: "pixel-hover",
-      description: "Product card with a pixelated image hover effect.",
-    },
-    {
-      label: "Folder Card",
-      slug: "folder-card",
-      description: "Folder-style card with a rising image hover animation.",
-    },
-    {
-      label: "Neo Brutalism",
-      slug: "neo-brutalism",
-      description: "Bold card design with thick borders and offset shadows.",
-    },
-    {
-      label: "Pixel Card",
-      slug: "pixel-card",
-      description: "Interactive card with customizable pixel effects.",
-    },
-    {
-      label: "Animated Border Card",
-      slug: "animated-border-card",
-      description: "Card with an animated gradient border and glow.",
-    },
-    {
-      label: "Gliter Card",
-      slug: "gliter-card",
-      description: "Stylish card with a glitter-inspired visual effect.",
-    },
-    {
-      label: "3D Card",
-      slug: "three-d-card",
-      description: "Interactive card with depth and 3D tilt effects.",
-    },
-  ],
-},
   ];
 
   useEffect(() => {
@@ -200,8 +291,7 @@ const MobileDocs = () => {
         <div className="mobile-docs-actions">
           <button
             className="mobile-docs-primary"
-            onClick={() => navigate("/docs/installation")}
-          >
+            onClick={() => navigate("/docs/installation")}>
             <span>Start with installation</span>
             <ArrowUpRight size={19} />
           </button>
@@ -254,8 +344,7 @@ const MobileDocs = () => {
                           );
                         }
                         navigate(`/docs/${item.slug}`);
-                      }}
-                    >
+                      }}>
                       <div className="mobile-docs-component-content">
                         <span className="mobile-docs-component-title">
                           {item.label}

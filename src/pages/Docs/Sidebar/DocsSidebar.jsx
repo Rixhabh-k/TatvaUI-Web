@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useLocation, useNavigate } from "react-router";
-import { Download, MousePointer2, Type, Layers } from "lucide-react";
+import { Download, MousePointer2, Type, Layers, ToggleRight } from "lucide-react";
 import "./docsSidebar.css";
 
 // Keep your existing navigation array and iconMap here.
@@ -58,6 +58,26 @@ const navigation = [
           { value: "three-d-card", label: "3D Card" },
         ],
       },
+      {
+        value: "toggles",
+        label: "Toggles",
+        children: [
+          { value: "day-night-toggle", label: "Day Night Toggle" },
+          { value: "mood-toggle", label: "Mood Toggle" },
+          { value: "sleepy-cat", label: "Sleepy Cat" },
+          { value: "rocker-switch", label: "Rocker Switch" },
+          { value: "eye-toggle", label: "Eye Toggle" },
+          { value: "padlock-toggle", label: "Padlock Toggle" },
+          { value: "bell-toggle", label: "Bell Toggle" },
+          { value: "candle-toggle", label: "Candle Toggle" },
+          { value: "firefly-jar", label: "Firefly Jar" },
+          { value: "lava-lamp", label: "Lava Lamp" },
+          { value: "record-player", label: "Record Player" },
+          { value: "rocket-toggle", label: "Rocket Toggle" },
+          { value: "neon-sign", label: "Neon Sign" },
+          { value: "flower-bloom", label: "Flower Bloom" },
+        ],
+      },
     ],
   },
 ];
@@ -67,6 +87,7 @@ const iconMap = {
   buttons: MousePointer2,
   text: Type,
   cards: Layers,
+  toggles: ToggleRight,
 };
 
 const DocsSidebar = () => {
